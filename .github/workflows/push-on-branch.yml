@@ -5,7 +5,7 @@ on:
     branches: [ main, develop ]
 
 env:
-  ECR_REPOSITORY: naturescot/fit-and-competent
+  ECR_REPOSITORY: naturescot/trap-registration-return
 
 jobs:
 
