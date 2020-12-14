@@ -19,8 +19,21 @@ describe('target species page ', function () {
     cy.get('h1').should('contain', 'Did you catch any non target species?');
   });
 
-  it('main button should navigate to trap details list page', function () {
+  it('main button should navigate to the same page with errors', function () {
     cy.visit('/target-species');
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    cy.url().should('include', '/target-species');
+
+    
+    cy.get('h2#error-summary-title').should('contain', 'There is a problem');
+
+    cy.get('.govuk-error-summary ul li a')
+      .should('contain', 'You must select if you have caught any non target species');
+  });
+
+  it('main button should navigate to details list page', function () {
+    cy.visit('/target-species');
+    cy.get('#main-content form input[type="radio"][value="yes"]').click();
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/details-list');
   });
