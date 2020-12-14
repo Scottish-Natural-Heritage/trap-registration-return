@@ -28,5 +28,4 @@ describe('Verification Success page ', function () {
     cy.visit('/verification-success');
     cy.get('p').should('contain', 'We have sent you an email');
   });
-
 });
