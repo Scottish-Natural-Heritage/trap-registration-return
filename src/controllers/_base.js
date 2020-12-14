@@ -107,7 +107,8 @@ const ReturnState = Object.freeze({
   Negative: 2,
   Error: 3,
   Secondary: 4,
-  SameAgain: 5
+  SameAgain: 5,
+  Tertiary: 6
 });
 
 /**
