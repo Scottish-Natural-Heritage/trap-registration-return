@@ -9,7 +9,8 @@ const targetSpeciesController = (request) => {
     request.session.targetSpecies = true;
     // Follow the 'happy path'.
     return ReturnState.Positive;
-    }
+  }
+
   // Did the user tell us they have not caught any non target species.
   if (request.body.targetSpecies === 'no') {
     //  It's a silly answer, but not an error. This clears any previous errors.
