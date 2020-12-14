@@ -45,7 +45,7 @@ const saveVisitedPage = (session, page) => {
 const guardAllows = (session, options) => {
   // Unless the user has a completed licence number they are not allowed to
   // visit the success page.
-  if (session.licenceNo === undefined && options.path === 'success') {
+  if (session.confirm === undefined && options.path === 'success') {
     return false;
   }
 
@@ -107,7 +107,8 @@ const ReturnState = Object.freeze({
   Negative: 2,
   Error: 3,
   Secondary: 4,
-  SameAgain: 5
+  SameAgain: 5,
+  Tertiary: 6
 });
 
 /**
