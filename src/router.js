@@ -75,12 +75,10 @@ router.use(
     path: 'target-species',
     back: 'login',
     positiveForward: 'details-list',
-    // TODO: Add negative path here.
+    negativeForward: 'no-target-species',
     controller: TargetSpeciesController
   })
 );
-
-// TODO: Add no target-species path.
 
 router.use(
   Page({
@@ -117,6 +115,13 @@ router.use(
     back: 'details-list',
     positiveForward: 'success',
     controller: ConfirmController
+  })
+);
+
+router.use(
+  Page({
+    path: 'no-target-species',
+    back: 'target-species'
   })
 );
 

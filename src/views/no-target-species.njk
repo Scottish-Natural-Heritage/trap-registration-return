@@ -1,0 +1,20 @@
+{% extends "_base.njk" %}
+
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+
+{% block content %}
+  {{ govukPanel({
+        titleText: "Trap Return complete",
+        html: "Thanks for completing your trap return.<br>"
+      }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body">
+        Thank you for informing us that you did not catch any non-target species in your traps this year.
+      </p>
+
+    </div>
+  </div>
+{% endblock %}
