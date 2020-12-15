@@ -12,6 +12,8 @@ describe('confirm page ', function () {
     // POST `/login`
     cy.get('#main-content form button.naturescot-forward-button').click();
     // ~GET `/target-species`~
+    // CLICK yes
+    cy.get('#main-content form input[type="radio"][value="yes"]').click();
     // POST `/target-species`
     cy.get('#main-content form button.naturescot-forward-button').click();
     // ~GET `/details-list`~
