@@ -1,23 +1,53 @@
 {% extends "_base.njk" %}
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% block content %}
-  <h1 class="govuk-heading-xl">
-    Trap Usage
-  </h1>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p class="govuk-body">
-        Did you use meat baits in your traps?
-      </p>
-      <form method="post">
-        {{ govukButton({
-              text: "Continue",
-              classes: "naturescot-forward-button"
-            }) }}
-      </form>
-    </div>
-  </div>
+  {% if model.usageError %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [{
+          text: "You must select whether you used meat based traps or not",
+          href: "#usage-error"
+        }]
+      }) }}
+{% endif %}
+  <form method="post">
+    {{ govukRadios({
+      classes: "govuk-radios--inline",
+      idPrefix: "usage",
+      name: "usage",
+      fieldset: {
+        legend: {
+          text: "Did you use meat bait traps?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--xl"
+        }
+      },
+      errorMessage: {
+        text: "Please select if you have used meat bait traps?"
+      } if model.usageError,
+      items:[
+        {
+          value: "yes",
+          text: "Yes",
+          checked: model.usage === true
+        },
+        {
+          value: "no",
+          text: "No",
+          checked: model.usage === false
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Continue",
+      classes: "naturescot-forward-button"
+    }) }}
+  </form>
+
 
 {% endblock %}
