@@ -1,15 +1,17 @@
 {% extends "_base.njk" %}
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
 
 {% block content %}
-  <h1 class="govuk-heading-xl">
-    Trap Registration Return
-  </h1>
+    {{ govukPanel({
+        titleText: "Trap Return complete",
+        html: "Thanks for completing your trap return.<br>"
+      }) }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <p class="govuk-body">
-        No need to submit a return.
+        Thank you for informing us that you did not use any meat bait traps this year.
       </p>
 
     </div>
