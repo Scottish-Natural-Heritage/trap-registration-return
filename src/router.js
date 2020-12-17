@@ -29,12 +29,17 @@ router.use(
     path: 'usage',
     back: 'start',
     positiveForward: 'trap-registration-number',
-    // TODO: Add no usage path as negative here.
+    negativeForward: 'no-usage',
     controller: UsageController
   })
 );
 
-// TODO: Add no usage path.
+router.use(
+  Page({
+    path: 'no-usage',
+    back: 'usage'
+  })
+);
 
 router.use(
   Page({
