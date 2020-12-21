@@ -13,6 +13,9 @@
 // the project's config changing)
 
 /**
+ * This function is called when a project is opened or re-opened (e.g. Due to
+ * the project's config changing).
+ *
  * @type {Cypress.PluginConfig}
  */
 // eslint-disable-next-line no-unused-vars

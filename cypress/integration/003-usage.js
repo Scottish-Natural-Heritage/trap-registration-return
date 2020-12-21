@@ -39,8 +39,9 @@ describe('usage page ', function () {
     cy.url().should('include', '/usage');
 
     cy.get('h2#error-summary-title').should('contain', 'There is a problem');
-    cy.get('.govuk-error-summary ul li a').should('contain', 'You must select whether you used meat based traps or not');
+    cy.get('.govuk-error-summary ul li a').should(
+      'contain',
+      'You must select whether you used meat based traps or not'
+    );
   });
-
-
 });
