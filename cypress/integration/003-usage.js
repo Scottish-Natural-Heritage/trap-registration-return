@@ -41,7 +41,7 @@ describe('usage page ', function () {
     cy.get('h2#error-summary-title').should('contain', 'There is a problem');
     cy.get('.govuk-error-summary ul li a').should(
       'contain',
-      'You must select whether you used meat based traps or not'
+      'Select whether you used meat bait traps or not'
     );
   });
 });
