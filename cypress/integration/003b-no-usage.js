@@ -19,7 +19,9 @@ describe('no usage page ', function () {
   });
 
   it('should allow access if the user visits all the pages in order', function () {
+    // GET `/no-usage`
     cy.visit('/no-usage');
+    // POST `/start`
     cy.get('h1').should('contain', 'Trap Return complete');
   });
 });
