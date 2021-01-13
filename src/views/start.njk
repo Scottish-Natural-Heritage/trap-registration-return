@@ -4,13 +4,43 @@
 
 {% block content %}
   <h1 class="govuk-heading-xl">
-    Trap Registration Return
+    Trap Registration - meat bait returns
   </h1>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <p class="govuk-body">
-        Use this service to submit your trap registration return
+        If you have registered to use meat baits in:
       </p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>a Larsen mate trap</li>
+        <li>a Larsen pod trap</li>
+      </ul>
+      <p class="govuk-body">
+        Under NatureScot's General Licenses:
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a class="govuk-link" href="https://gateway.snh.gov.uk/go/?id=18">GL01
+           - To kill or take certain birds for the conservation of wild birds</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="https://gateway.snh.gov.uk/go/?id=19">GL02
+           - To kill or take certain birds for the prevention of serious damage</a>
+        </li>
+      </ul>
+      <p class="govuk-body">
+        Please use this service to provide your annual license return.
+      </p>
+      <p class="govuk-body">
+        Providing your return takes around 5 minutes
+      </p>
+      {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+      {{ govukWarningText({
+         text: "You must provide a return if you have registered to use meat baits
+         even if you have not caught any non-target species.",
+         iconFallbackText: "Warning"
+      }) }}
       <form method="post">
         {{ govukButton({
           text: "Start now",
@@ -18,6 +48,27 @@
           isStartButton: true
         }) }}
       </form>
+      <p class="govuk-body">
+      If you need any assistance with this registration, contact the NatureScot Liscensing Team.
+      </p>
+      <h3 class="govuk-heading-s">
+      Email
+      </h3>
+      <ul class="govuk-list">
+        <li><a class="govuk-link" href="mailto:licensing@nature.scot">licensing@nature.scot</a></li>
+      </ul>
+      <h3 class="govuk-heading-s">
+      Telephone
+      </h3>
+      <ul class="govuk-list">
+        <li>01463 725 364</li>
+        <li>Monday to Friday, 10am to 4pm (except public holidays)</li>
+      </ul>
+      <p class="govuk-body">
+        <a class="govuk-link" href="https://www.gov.uk/call-charges">
+          Find out about call charges
+        </a>
+      </p>
     </div>
   </div>
 
