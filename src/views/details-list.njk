@@ -1,32 +1,84 @@
 {% extends "_base.njk" %}
 
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
-
 {% block content %}
+
+  {% if model.detailsListCountError %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [
+        {
+          text: "Add at least one non target species",
+          href: "#non-target-species-count-error"
+        } if model.detailsListCountError
+      ]
+    }) }}
+  {% endif %}
+
   <h1 class="govuk-heading-xl">
     Details of non target species
   </h1>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <form method="post">
+  <form method="post">
+    <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-full" id="details-list">
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--naturescot-normal {% if model.detailsListCountError %} govuk-form-group--error {% endif %}">
+            Non target species caught.
+            {% if model.detailsListCountError %}
+              <span id="non-target-species-count-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Add at least one non target species
+              </span>
+            {% endif %}
+          </caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Grid Reference</th>
+              <th scope="col" class="govuk-table__header">Species caught</th>
+              <th scope="col" class="govuk-table__header">Number caught</th>
+              <th scope="col" class="govuk-table__header">Trap type</th>
+              <th scope="col" class="govuk-table__header">Comments</th>
+              <th scope="col" class="govuk-table__header"></th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            {% for details in model.detailsList %}
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">{{ details.gridReference }}</td>
+                <td class="govuk-table__cell">{{ details.speciesCaught }}</td>
+                <td class="govuk-table__cell">{{ details.numberCaught }}</td>
+                <td class="govuk-table__cell">{{ details.trapType }}</td>
+                <td class="govuk-table__cell">{{ details.comment }}</td>
+                <td class="govuk-table__cell">
+                  {{ govukButton({
+                    text: "Edit",
+                    name: "edit-" + loop.index0,
+                    classes: "govuk-button--secondary"
+                  }) }}
+                  {{ govukButton({
+                    text: "Delete",
+                    name: "delete-" + loop.index0,
+                    classes: "govuk-button--secondary"
+                  }) }}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
         {{ govukButton({
-              text: "Add",
-              value: "add",
+              text: "Add a non target species",
               name: "add",
-              classes: "naturescot-forward-button add"
+              classes: "govuk-button--secondary naturescot-button--add"
             }) }}
-        {{ govukButton({
-              text: "Edit",
-              value: "edit",
-              name: "edit",
-              classes: "naturescot-forward-button edit"
-            }) }}
+
         {{ govukButton({
               text: "Continue",
-              classes: "naturescot-forward-button continue"
+              name: "continue",
+              classes: "naturescot-forward-button"
             }) }}
-      </form>
+      </div>
     </div>
-  </div>
-
+  </form>
 {% endblock %}
