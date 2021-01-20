@@ -1,0 +1,206 @@
+{% extends "_base.njk" %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{pathPrefix}}/dist/accessible-autocomplete.min.css">
+{% endblock %}
+
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+{% block content %}
+
+  {% if model.detailsError %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [
+        {
+          text: "Enter a Grid Reference",
+          href: "#current-grid-reference-error"
+        } if model.currentGridReferenceError,
+        {
+          text: "Enter the Species Caught",
+          href: "#current-species-caught-error"
+        } if model.currentSpeciesCaughtError,
+        {
+          text: "Enter the Number Caught",
+          href: "#current-number-caught-error"
+        } if model.currentNumberCaughtError,
+        {
+          text: "Enter a Trap Type",
+          href: "#current-trap-type-error"
+        } if model.currentTrapTypeError
+      ]
+    }) }}
+  {% endif %}
+
+  {% set scheduleHtml %}
+    <select id="species-picker">
+    <option value="">Select a species</option>
+      {% for species in model.nonTargetSpecies %}
+        <option value="{{ species.value }}">{{ species.text }}</option>
+      {% endfor %}
+    </select>
+  {% endset -%}
+
+  {% set otherHtml %}
+    {{ govukInput({
+          label: {
+            text: "Non Target Species Caught"
+          },
+          hint: {
+            text: "The name of the type of non target species caught."
+          },
+          classes: "govuk-!-width-one-half",
+          id: "current-species-caught",
+          name: "currentSpeciesCaught",
+          value: model.currentSpeciesCaught,
+          errorMessage: {
+            text: "Enter the non target species caught"
+          } if model.currentSpeciesCaughtError,
+          attributes: {
+            spellcheck: "false"
+          }
+      }) }}
+  {% endset -%}
+
+  <form method="post">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+    {% call govukFieldset({
+      legend: {
+        text: "Details of non target species caught",
+        classes: "govuk-fieldset__legend--m",
+        isPageHeading: true
+      }
+    }) %}
+
+      {{ govukInput({
+        label: {
+          text: "Grid Reference"
+        },
+        hint: {
+          html: "An 8 or 10 digit grid reference. e.g. NH&nbsp;6381&nbsp;4403 or NO&nbsp;08529&nbsp;29128."
+        },
+        classes: "govuk-!-width-one-half",
+        id: "current-grid-reference",
+        name: "currentGridReference",
+        value: model.currentGridReference,
+        errorMessage: {
+          text: "Enter a Grid Reference"
+        } if model.currentGridReferenceError,
+        attributes: {
+          spellcheck: "false"
+        }
+      }) }}
+
+
+      {{ govukRadios({
+        id: "current-species-caught",
+        name: "currentSpeciesCaught",
+        value: model.currentSpeciesCaught,
+        fieldset: {
+          legend: {
+            text: "Non Target Species Caught",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "The name of the type of non target species caught."
+        },
+        items: [
+          {
+            value: " schedule1Birds",
+            text: " Schedule 1 birds",
+            conditional: {
+              html: scheduleHtml
+            }
+          },
+          {
+            value: "notInList",
+            text: "Other species",
+            conditional: {
+              html: otherHtml
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Number Caught"
+        },
+        hint: {
+          text: "How many did you catch of the non target species."
+        },
+        classes: "govuk-!-width-one-half",
+        id: "current-number-caught",
+        name: "currentNumberCaught",
+        value: model.currentNumberCaught,
+        errorMessage: {
+          text: "Enter the number of non target species caught"
+        } if model.currentNumberCaughtError,
+        attributes: {
+          spellcheck: "false"
+        }
+      }) }}
+
+      {{ govukSelect({
+        id: "current-trap-type",
+        name: "currentTrapType",
+        label: {
+          text: "Trap Type"
+        },
+        value: model.currentTrapType,
+        items: [
+          {
+            value: "Larson mate",
+            text: "Larson mate"
+          },
+          {
+            value: "Larson pod",
+            text: "Larson pod"
+          }
+        ]
+      }) }}
+
+      {{ govukTextarea({
+        name: "currentComment",
+        id: "current-comment",
+        label: {
+          text: "Comment"
+        },
+        value: model.currentComment,
+        hint: {
+          text: "Add any comments here"
+        }
+      }) }}
+
+    {% endcall %}
+
+    {{ govukButton({
+      text: "Continue",
+      classes: "naturescot-forward-button"
+    }) }}
+    </div></div>
+  </form>
+{% endblock %}
+{% block bodyEnd %}
+  {{ super() }}
+  <script src="{{pathPrefix}}/dist/accessible-autocomplete.min.js"></script>
+  <script type="text/javascript">
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: document.querySelector('#species-picker'),
+    defaultValue: '',
+    showAllValues: true
+  })
+
+</script>
+{% endblock %}
