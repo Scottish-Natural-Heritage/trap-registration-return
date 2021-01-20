@@ -10,8 +10,9 @@
     "lint": "xo",
     "scss": "node --experimental-modules src/scss.js",
     "assets": "cp node_modules/naturescot-frontend/naturescot/assets/images/naturescot-logo.png dist/ && cp -R src/assets/* dist/",
+    "auto-complete": "cp node_modules/accessible-autocomplete/dist/accessible-autocomplete.min.js dist/ && cp node_modules/accessible-autocomplete/dist/accessible-autocomplete.min.css dist/",
     "postassets": "node --experimental-modules src/post-assets.js",
-    "build": "npm run scss && npm run assets",
+    "build": "npm run scss && npm run assets && npm run auto-complete",
     "prestart": "npm run build",
     "start": "node --experimental-modules src/server.js",
     "dev": "TRR_PORT=3999 COOKIE_PREFIX=_ nodemon --exec \"npm run lint && npm run start\" -e js,njk,scss --ignore build/ --ignore dist/ --ignore cypress/",
@@ -24,6 +25,7 @@
     "npm": "6.13.4"
   },
   "dependencies": {
+    "accessible-autocomplete": "^2.0.3",
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
