@@ -60,7 +60,13 @@ const detailsListController = (request) => {
     request.session.currentIndex = editIndex;
 
     request.session.currentGridReference = request.session.detailsList[editIndex].gridReference;
-    request.session.currentSpeciesCaught = request.session.detailsList[editIndex].speciesCaught;
+    request.session.currentSpeciesCaughtOption = request.session.detailsList[editIndex].speciesCaughtOption;
+    if (request.session.currentSpeciesCaughtOption === 'schedule1Birds') {
+      request.session.currentSpeciesCaught = request.session.detailsList[editIndex].speciesCaught;
+    } else {
+      request.session.currentOtherSpeciesCaught = request.session.detailsList[editIndex].speciesCaught;
+    }
+
     request.session.currentNumberCaught = request.session.detailsList[editIndex].numberCaught;
     request.session.currentTrapType = request.session.detailsList[editIndex].trapType;
     request.session.currentComment = request.session.detailsList[editIndex].comment;
@@ -88,17 +94,20 @@ const detailsListController = (request) => {
     request.session.currentIndex = -1;
 
     request.session.currentGridReference = '';
+    request.session.currentSpeciesCaughtOption = '';
     request.session.currentSpeciesCaught = '';
+    request.session.currentOtherSpeciesCaught = '';
     request.session.currentNumberCaught = '';
     request.session.currentTrapType = '';
     request.session.currentComment = '';
 
-    request.session.detailsError = false;
     request.session.currentGridReferenceError = false;
+    request.session.currentSpeciesCaughtOptionError = false;
     request.session.currentSpeciesCaughtError = false;
+    request.session.currentOtherSpeciesCaughtError = false;
     request.session.currentNumberCaughtError = false;
     request.session.currentTrapTypeError = false;
-    request.session.currentCommentError = false;
+    request.session.detailsError = false;
 
     return ReturnState.Secondary;
   }

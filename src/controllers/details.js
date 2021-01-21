@@ -12,7 +12,23 @@ const validTrapType = (trapType) => {
   return true;
 };
 
-const validSpecies = (species) => {
+const validSpecies = (species, speciesArray) => {
+  if (species === undefined) {
+    return false;
+  }
+
+  if (species.trim() === '') {
+    return false;
+  }
+
+  if (!speciesArray.find((x) => x.value === species)) {
+    return false;
+  }
+
+  return true;
+};
+
+const validOtherSpecies = (species) => {
   if (species === undefined) {
     return false;
   }
@@ -91,21 +107,47 @@ const validNumber = (number) => {
 };
 
 const detailsController = (request) => {
+  request.session.currentGridReferenceError = false;
+  request.session.currentSpeciesCaughtOptionError = false;
+  request.session.currentSpeciesCaughtError = false;
+  request.session.currentOtherSpeciesCaughtError = false;
+  request.session.currentNumberCaughtError = false;
+  request.session.currentTrapTypeError = false;
+  request.session.detailsError = false;
+
   request.session.currentGridReferenceError = !validGridReference(request.body.currentGridReference);
-  request.session.currentSpeciesCaughtError = !validSpecies(request.body.currentSpeciesCaught);
+  request.session.currentSpeciesCaughtOptionError = !request.body.currentSpeciesCaughtOption;
+  if (
+    !request.session.currentSpeciesCaughtOptionError &&
+    request.body.currentSpeciesCaughtOption === 'schedule1Birds'
+  ) {
+    request.session.currentSpeciesCaughtError = !validSpecies(
+      request.body.currentSpeciesCaught,
+      request.session.nonTargetSpecies
+    );
+  }
+
+  if (!request.session.currentSpeciesCaughtOptionError && request.body.currentSpeciesCaughtOption === 'otherSpecies') {
+    request.session.currentOtherSpeciesCaughtError = !validOtherSpecies(request.body.currentOtherSpeciesCaught);
+  }
+
   request.session.currentNumberCaughtError = !validNumber(request.body.currentNumberCaught);
   request.session.currentTrapTypeError = !validTrapType(request.body.currentTrapType);
 
   request.session.detailsError =
     request.session.currentGridReferenceError ||
+    request.session.currentSpeciesCaughtOptionError ||
     request.session.currentSpeciesCaughtError ||
+    request.session.currentOtherSpeciesCaughtError ||
     request.session.currentNumberCaughtError ||
     request.session.currentTrapTypeError;
 
   if (request.session.detailsError) {
     // Don't return the 'formatted' one here, just send back the original one. It's too confusing otherwise.
     request.session.currentGridReference = request.body.currentGridReference.trim();
+    request.session.currentSpeciesCaughtOption = request.body.currentSpeciesCaughtOption;
     request.session.currentSpeciesCaught = request.body.currentSpeciesCaught;
+    request.session.currentSpeciesCaught = request.body.currentOtherSpeciesCaught;
     request.session.currentNumberCaught = request.body.currentNumberCaught;
     request.session.currentTrapType = request.body.currentTrapType;
     request.session.currentComment = request.body.currentComment;
@@ -116,7 +158,10 @@ const detailsController = (request) => {
   if (request.session.currentIndex === -1) {
     const newDetail = {
       gridReference: formatGridReference(request.body.currentGridReference),
-      speciesCaught: request.body.currentSpeciesCaught,
+      speciesCaughtOption: request.body.currentSpeciesCaughtOption,
+      speciesCaught: request.body.currentSpeciesCaught
+        ? request.body.currentSpeciesCaught
+        : request.body.currentOtherSpeciesCaught,
       numberCaught: Number.parseInt(request.body.currentNumberCaught, 10),
       trapType: request.body.currentTrapType,
       comment: request.body.currentComment
@@ -131,7 +176,12 @@ const detailsController = (request) => {
     request.session.detailsList[request.session.currentIndex].gridReference = formatGridReference(
       request.body.currentGridReference
     );
-    request.session.detailsList[request.session.currentIndex].speciesCaught = request.body.currentSpeciesCaught;
+
+    request.session.detailsList[request.session.currentIndex].speciesCaughtOption =
+      request.body.currentSpeciesCaughtOption;
+    request.session.detailsList[request.session.currentIndex].speciesCaught = request.body.currentSpeciesCaught
+      ? request.body.currentSpeciesCaught
+      : request.body.currentOtherSpeciesCaught;
     request.session.detailsList[request.session.currentIndex].numberCaught = Number.parseInt(
       request.body.currentNumberCaught,
       10
