@@ -31,7 +31,7 @@ describe('Trap Registration Number page ', function () {
     cy.url().should('include', '/postcode');
   });
 
-  it('Valid input followed by continue button should navigate to postcode', function () {
+  it('Valid, but whitespace padded, input followed by continue button should navigate to postcode', function () {
     cy.visit('/trap-registration-number');
     cy.get('input').type('     12345     ');
     cy.get('#main-content form button.naturescot-forward-button').click();
