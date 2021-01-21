@@ -1,17 +1,44 @@
 {% extends "_base.njk" %}
 
+{% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% block content %}
-  <h1 class="govuk-heading-xl">
-    Trap Registration Number
-  </h1>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p class="govuk-body">
-        Enter your trap registration number
-      </p>
-      <form method="post">
+  {% if model.registrationNumberError %}
+    {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [{
+          text: "Enter your trap registration number",
+          href: "#registration-number-error"
+        }]
+      }) }}
+  {% endif %}
+
+  <form method="post">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {{ govukInput({
+      id: "registration-number",
+      name: "registrationNumber",
+      value: model.registrationNumber,
+      label: {
+      text: "What is your trap registration number?",
+      classes: "govuk-label--l",
+      isPageHeading: true
+      },
+      hint: {
+      text: "For example, NS-TRP-00000"
+      },
+      errorMessage: {
+      text: "Enter your trap registration number"
+      }if model.registrationNumberError,
+      prefix: {
+      text: "NS-TRP-"
+      },
+      classes: "govuk-input--width-5",
+      spellcheck: false
+}) }}
         {{ govukButton({
               text: "Continue",
               classes: "naturescot-forward-button"
