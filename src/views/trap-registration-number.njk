@@ -6,19 +6,19 @@
 
 {% block content %}
   {% if model.registrationNumberError %}
-      {{ govukErrorSummary({
+    {{ govukErrorSummary({
         titleText: "There is a problem",
         errorList: [{
           text: "What is your trap registration number?",
           href: "#registrationNumber-error"
         }]
       }) }}
-{% endif %}
+  {% endif %}
 
-      <form method="post">
-        <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {{ govukInput({
+  <form method="post">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {{ govukInput({
       id: "registration-number",
       name: "registrationNumber",
       value: model.registrationNumber,
