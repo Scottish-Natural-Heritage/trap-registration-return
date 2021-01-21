@@ -56,7 +56,7 @@
     <select id="current-species-caught" name="currentSpeciesCaught">
     <option value="">Select a species</option>
       {% for species in model.nonTargetSpecies %}
-        <option value="{{ species.value }}">{{ species.text }}</option>
+        <option value="{{ species.value }}" {% if model.currentSpeciesCaught === species.value %} selected {% endif %}>{{ species.text }}</option>
       {% endfor %}
     </select>
   {% endset -%}
@@ -176,15 +176,16 @@
         label: {
           text: "Trap Type"
         },
-        value: model.currentTrapType,
         items: [
           {
             value: "Larson mate",
-            text: "Larson mate"
+            text: "Larson mate",
+            selected: model.currentTrapType === "Larson mate"
           },
           {
             value: "Larson pod",
-            text: "Larson pod"
+            text: "Larson pod",
+            selected: model.currentTrapType === "Larson pod"
           }
         ]
       }) }}

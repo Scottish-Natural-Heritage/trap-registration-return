@@ -1,11 +1,16 @@
 import {ReturnState} from './_base.js';
 
 const validTrapType = (trapType) => {
+  const trapTypeArray = ['Larson mate', 'Larson pod'];
   if (trapType === undefined) {
     return false;
   }
 
   if (trapType.trim() === '') {
+    return false;
+  }
+
+  if (!trapTypeArray.includes(trapType)) {
     return false;
   }
 
@@ -159,9 +164,10 @@ const detailsController = (request) => {
     const newDetail = {
       gridReference: formatGridReference(request.body.currentGridReference),
       speciesCaughtOption: request.body.currentSpeciesCaughtOption,
-      speciesCaught: request.body.currentSpeciesCaught
-        ? request.body.currentSpeciesCaught
-        : request.body.currentOtherSpeciesCaught,
+      speciesCaught:
+        request.body.currentSpeciesCaughtOption === 'schedule1Birds'
+          ? request.body.currentSpeciesCaught
+          : request.body.currentOtherSpeciesCaught,
       numberCaught: Number.parseInt(request.body.currentNumberCaught, 10),
       trapType: request.body.currentTrapType,
       comment: request.body.currentComment
@@ -179,9 +185,10 @@ const detailsController = (request) => {
 
     request.session.detailsList[request.session.currentIndex].speciesCaughtOption =
       request.body.currentSpeciesCaughtOption;
-    request.session.detailsList[request.session.currentIndex].speciesCaught = request.body.currentSpeciesCaught
-      ? request.body.currentSpeciesCaught
-      : request.body.currentOtherSpeciesCaught;
+    request.session.detailsList[request.session.currentIndex].speciesCaught =
+      request.body.currentSpeciesCaughtOption === 'schedule1Birds'
+        ? request.body.currentSpeciesCaught
+        : request.body.currentOtherSpeciesCaught;
     request.session.detailsList[request.session.currentIndex].numberCaught = Number.parseInt(
       request.body.currentNumberCaught,
       10

@@ -54,7 +54,6 @@ describe('details list page ', function () {
       .and('contain', 'Enter the Number Caught');
   });
 
-
   it('add button should navigate to add page enter a semi empty form (schedule1Birds) and see errors', function () {
     cy.visit('/details-list');
     cy.get('#main-content form button.naturescot-button--add').click();
@@ -69,8 +68,7 @@ describe('details list page ', function () {
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/details');
 
-    cy.get('.govuk-error-summary ul li a')
-      .should('contain', 'Enter the Species Caught');
+    cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the Species Caught');
   });
 
   it('add button should navigate to add page enter a semi empty form (other species) and see errors', function () {
@@ -87,8 +85,7 @@ describe('details list page ', function () {
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/details');
 
-    cy.get('.govuk-error-summary ul li a')
-      .should('contain', 'Enter the name of the species caught');
+    cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the name of the species caught');
   });
 
   it('main button should navigate to confirm page', function () {
