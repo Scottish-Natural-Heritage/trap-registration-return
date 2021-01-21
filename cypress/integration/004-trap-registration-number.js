@@ -24,17 +24,16 @@ describe('Trap Registration Number page ', function () {
     cy.get('h1').should('contain', 'What is your trap registration number?');
   });
 
-
   it('Valid input followed by continue button should navigate to postcode', function () {
     cy.visit('/trap-registration-number');
-    cy.get('input').type('12345')
+    cy.get('input').type('12345');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/postcode');
   });
 
   it('Valid input followed by continue button should navigate to postcode', function () {
     cy.visit('/trap-registration-number');
-    cy.get('input').type('     12345     ')
+    cy.get('input').type('     12345     ');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/postcode');
   });
@@ -50,7 +49,7 @@ describe('Trap Registration Number page ', function () {
 
   it('Whitespace input followed by continue button should present an error and ask user to re-enter', function () {
     cy.visit('/trap-registration-number');
-    cy.get('input').type('     ')
+    cy.get('input').type('     ');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/trap-registration-number');
 
@@ -60,7 +59,7 @@ describe('Trap Registration Number page ', function () {
 
   it('Invalid input followed by continue button should present an error and ask user to re-enter', function () {
     cy.visit('/trap-registration-number');
-    cy.get('input').type('123456')
+    cy.get('input').type('123456');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/trap-registration-number');
 
@@ -70,7 +69,7 @@ describe('Trap Registration Number page ', function () {
 
   it('Invalid input followed by continue button should present an error and ask user to re-enter', function () {
     cy.visit('/trap-registration-number');
-    cy.get('input').type('abcde')
+    cy.get('input').type('abcde');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/trap-registration-number');
 
