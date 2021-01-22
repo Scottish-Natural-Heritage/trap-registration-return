@@ -17,6 +17,7 @@ describe('Postcode page ', function () {
     cy.get('#main-content form input[type="radio"][value="yes"]').click();
     cy.get('#main-content form button.naturescot-forward-button').click();
     // ~GET `/trap-registration-number`~
+    cy.get('input').type('12345');
     // POST `/trap-registration-number`
     cy.get('#main-content form button.naturescot-forward-button').click();
     // ~GET `/postcode`~
@@ -24,12 +25,49 @@ describe('Postcode page ', function () {
 
   it('should allow access if the user visits all the pages in order', function () {
     cy.visit('/postcode');
-    cy.get('h1').should('contain', 'Enter the postcode you used when completing your trap registration');
+    cy.get('h1').should('contain', 'What is your postcode?');
   });
 
-  it('main button should navigate to verification success', function () {
+  it('Valid input followed by continue button should navigate to postcode', function () {
     cy.visit('/postcode');
+    cy.get('input').type('G740PR');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/verification-success');
+  });
+
+  it('Valid, but whitespace padded, input followed by continue button should navigate to postcode', function () {
+    cy.visit('/postcode');
+    cy.get('input').type('   G740PR   ');
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    cy.url().should('include', '/verification-success');
+  });
+
+  it('Empty input followed by continue button should present error and ask user to reenter', function () {
+    cy.visit('/postcode');
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    cy.url().should('include', '/postcode');
+
+    cy.get('h2#error-summary-title').should('contain', 'There is a problem');
+    cy.get('#postcode-error').should('contain', 'Enter your postcode');
+  });
+
+  it('Whitespace input followed by continue button should present error and ask user to reenter', function () {
+    cy.visit('/postcode');
+    cy.get('input').type('      ');
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    cy.url().should('include', '/postcode');
+
+    cy.get('h2#error-summary-title').should('contain', 'There is a problem');
+    cy.get('#postcode-error').should('contain', 'Enter your postcode');
+  });
+
+  it('Invalid input followed by continue button should present error and ask user to reenter', function () {
+    cy.visit('/postcode');
+    cy.get('input').type('123');
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    cy.url().should('include', '/postcode');
+
+    cy.get('h2#error-summary-title').should('contain', 'There is a problem');
+    cy.get('#postcode-error').should('contain', 'Enter your postcode');
   });
 });
