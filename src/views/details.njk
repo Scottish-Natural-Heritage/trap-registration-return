@@ -2,7 +2,8 @@
 
 {% block head %}
   {{ super() }}
-  <link rel="stylesheet" href="{{pathPrefix}}/dist/accessible-autocomplete.min.css">
+  <link rel="stylesheet" href="{{pathPrefix}}/accessible-autocomplete/accessible-autocomplete.min.css">
+  <script src="{{pathPrefix}}/accessible-autocomplete/accessible-autocomplete.min.js"></script>
 {% endblock %}
 
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
@@ -213,13 +214,11 @@
 {% endblock %}
 {% block bodyEnd %}
   {{ super() }}
-  <script src="{{pathPrefix}}/dist/accessible-autocomplete.min.js"></script>
   <script type="text/javascript">
   accessibleAutocomplete.enhanceSelectElement({
     selectElement: document.querySelector('#current-species-caught'),
     showAllValues: true,
     classes: "{% if model.currentSpeciesCaughtError %} govuk-form-group--error {% endif %}"
   })
-
-</script>
+  </script>
 {% endblock %}

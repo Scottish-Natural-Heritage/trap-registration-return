@@ -76,6 +76,13 @@ app.use(
   `${config.pathPrefix}/govuk-frontend`,
   express.static(path.join(__dirname, '..', '/node_modules/govuk-frontend/govuk'), {immutable: true, maxAge: '3 hours'})
 );
+app.use(
+  `${config.pathPrefix}/accessible-autocomplete`,
+  express.static(path.join(__dirname, '..', '/node_modules/accessible-autocomplete/dist'), {
+    immutable: true,
+    maxAge: '3 hours'
+  })
+);
 
 // `health` is a simple health-check end-point to test whether the service is
 // up.
