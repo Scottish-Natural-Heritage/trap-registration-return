@@ -30,14 +30,14 @@ describe('Postcode page ', function () {
 
   it('Valid input followed by continue button should navigate to postcode', function () {
     cy.visit('/postcode');
-    cy.get('input').type('G740PR');
+    cy.get('input').type('IV3 8NW');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/verification-success');
   });
 
   it('Valid, but whitespace padded, input followed by continue button should navigate to postcode', function () {
     cy.visit('/postcode');
-    cy.get('input').type('   G740PR   ');
+    cy.get('input').type('   IV3 8NW   ');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/verification-success');
   });
