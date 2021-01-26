@@ -89,7 +89,7 @@
 
     {% call govukFieldset({
       legend: {
-        text: "Details of non target species caught",
+        text: "What are the details of the non-target species you caught?",
         classes: "govuk-fieldset__legend--l",
         isPageHeading: true
       }
@@ -97,7 +97,7 @@
 
       {{ govukInput({
         label: {
-          text: "Grid Reference"
+          text: "Trap location"
         },
         hint: {
           html: "An 8 or 10 digit grid reference. e.g. NH&nbsp;6381&nbsp;4403 or NO&nbsp;08529&nbsp;29128."
@@ -121,13 +121,10 @@
         value: model.currentSpeciesCaughtOption,
         fieldset: {
           legend: {
-            text: "Non-Target Species Caught",
+            text: "Non-target species caught",
             isPageHeading: true,
             classes: "govuk-heading-m"
           }
-        },
-        hint: {
-          text: "The name of the type of non target species caught."
         },
         errorMessage: {
           text: "Select the type of non target species caught"
@@ -135,7 +132,7 @@
         items: [
           {
             value: "schedule1Birds",
-            text: " Schedule 1 birds",
+            text: "A schedule 1 bird",
             checked: model.currentSpeciesCaughtOption === "schedule1Birds",
             conditional: {
               html: scheduleHtml
@@ -143,7 +140,7 @@
           },
           {
             value: "otherSpecies",
-            text: "Other species",
+            text: "Another species",
             checked: model.currentSpeciesCaughtOption === "otherSpecies",
             conditional: {
               html: otherHtml
@@ -157,7 +154,7 @@
           text: "Number Caught"
         },
         hint: {
-          text: "How many did you catch of the non target species."
+          text: "How many of this non-target species did you catch?"
         },
         classes: "govuk-!-width-one-half govuk-heading-m",
         id: "current-number-caught",
@@ -171,23 +168,27 @@
         }
       }) }}
 
-      {{ govukSelect({
+
+      {{ govukRadios({
         id: "current-trap-type",
         name: "currentTrapType",
-        classes: "govuk-!-width-one-half govuk-heading-m",
-        label: {
-          text: "Trap Type"
+        fieldset: {
+          legend: {
+            text: "Trap type",
+            isPageHeading: true,
+            classes: "govuk-heading-m"
+          }
         },
         items: [
           {
             value: "Larson mate",
             text: "Larson mate",
-            selected: model.currentTrapType === "Larson mate"
+            checked: model.currentTrapType === "Larson mate"
           },
           {
             value: "Larson pod",
             text: "Larson pod",
-            selected: model.currentTrapType === "Larson pod"
+            checked: model.currentTrapType === "Larson pod"
           }
         ]
       }) }}
