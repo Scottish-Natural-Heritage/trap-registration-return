@@ -55,7 +55,7 @@
       </span>
     {% endif %}
     <select id="current-species-caught" name="currentSpeciesCaught">
-    <option value="">Select a species</option>
+        <option disabled selected value> -- select an option -- </option>
       {% for species in model.nonTargetSpecies %}
         <option value="{{ species.value }}" {% if model.currentSpeciesCaught === species.value %} selected {% endif %}>{{ species.text }}</option>
       {% endfor %}
@@ -90,7 +90,7 @@
     {% call govukFieldset({
       legend: {
         text: "Details of non target species caught",
-        classes: "govuk-fieldset__legend--m",
+        classes: "govuk-fieldset__legend--l",
         isPageHeading: true
       }
     }) %}
@@ -102,7 +102,7 @@
         hint: {
           html: "An 8 or 10 digit grid reference. e.g. NH&nbsp;6381&nbsp;4403 or NO&nbsp;08529&nbsp;29128."
         },
-        classes: "govuk-!-width-one-half",
+        classes: "govuk-!-width-one-half govuk-heading-m",
         id: "current-grid-reference",
         name: "currentGridReference",
         value: model.currentGridReference,
@@ -121,9 +121,9 @@
         value: model.currentSpeciesCaughtOption,
         fieldset: {
           legend: {
-            text: "Non Target Species Caught",
+            text: "Non-Target Species Caught",
             isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
+            classes: "govuk-heading-m"
           }
         },
         hint: {
@@ -159,7 +159,7 @@
         hint: {
           text: "How many did you catch of the non target species."
         },
-        classes: "govuk-!-width-one-half",
+        classes: "govuk-!-width-one-half govuk-heading-m",
         id: "current-number-caught",
         name: "currentNumberCaught",
         value: model.currentNumberCaught,
@@ -174,6 +174,7 @@
       {{ govukSelect({
         id: "current-trap-type",
         name: "currentTrapType",
+        classes: "govuk-!-width-one-half govuk-heading-m",
         label: {
           text: "Trap Type"
         },
@@ -194,6 +195,7 @@
       {{ govukTextarea({
         name: "currentComment",
         id: "current-comment",
+        classes: "govuk-!-width-one-half govuk-heading-m",
         label: {
           text: "Comment"
         },
@@ -217,8 +219,10 @@
   <script type="text/javascript">
   accessibleAutocomplete.enhanceSelectElement({
     selectElement: document.querySelector('#current-species-caught'),
-    showAllValues: true,
-    classes: "{% if model.currentSpeciesCaughtError %} govuk-form-group--error {% endif %}"
+    confirmOnBlur: false,
+    classes: "{% if model.currentSpeciesCaughtError %} govuk-form-group--error {% endif %}",
+    defaultValue: "",
+    showAllValues: true
   })
   </script>
 {% endblock %}
