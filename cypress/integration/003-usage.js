@@ -16,7 +16,7 @@ describe('usage page ', function () {
 
   it('should allow access if the user visits all the pages in order', function () {
     cy.visit('/usage');
-    cy.get('h1').should('contain', 'Did you use meat bait traps?');
+    cy.get('h1').should('contain', 'Did you register to use meat baits?');
   });
 
   it('main button should navigate to trap registration number', function () {
@@ -39,6 +39,6 @@ describe('usage page ', function () {
     cy.url().should('include', '/usage');
 
     cy.get('h2#error-summary-title').should('contain', 'There is a problem');
-    cy.get('.govuk-error-summary ul li a').should('contain', 'Select whether you used meat bait traps or not');
+    cy.get('.govuk-error-summary ul li a').should('contain', 'Select yes if you registered to use meat baits');
   });
 });
