@@ -49,9 +49,10 @@ describe('details list page ', function () {
     cy.url().should('include', '/details');
 
     cy.get('.govuk-error-summary ul li a')
-      .should('contain', 'Enter a Grid Reference')
-      .and('contain', 'Select the category of Species Caught')
-      .and('contain', 'Enter the Number Caught');
+      .should('contain', 'Enter a grid reference')
+      .and('contain', 'Select the category of species caught')
+      .and('contain', 'Enter the number caught')
+      .and('contain', 'Select the trap type that was used');
   });
 
   it('add button should navigate to add page enter a semi empty form (schedule1Birds) and see errors', function () {
@@ -62,13 +63,13 @@ describe('details list page ', function () {
     cy.get('input[type="text"]#current-grid-reference').type('NO 08529 29128', {delay: 1});
     cy.get('#main-content form input[type="radio"][value="schedule1Birds"]').click();
     cy.get('input[type="text"]#current-number-caught').type('12', {delay: 1});
-    cy.get('select#current-trap-type').select('Larson pod', {delay: 1});
+    cy.get('#main-content form input[type="radio"][value="Larson pod"]').click();
     cy.get('textarea#current-comment').type('Test comment', {delay: 1});
 
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/details');
 
-    cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the Species Caught');
+    cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the species caught');
   });
 
   it('add button should navigate to add page enter a semi empty form (other species) and see errors', function () {
@@ -79,7 +80,7 @@ describe('details list page ', function () {
     cy.get('input[type="text"]#current-grid-reference').type('NO 08529 29128', {delay: 1});
     cy.get('#main-content form input[type="radio"][value="otherSpecies"]').click();
     cy.get('input[type="text"]#current-number-caught').type('12', {delay: 1});
-    cy.get('select#current-trap-type').select('Larson pod', {delay: 1});
+    cy.get('#main-content form input[type="radio"][value="Larson pod"]').click();
     cy.get('textarea#current-comment').type('Test comment', {delay: 1});
 
     cy.get('#main-content form button.naturescot-forward-button').click();
@@ -97,7 +98,7 @@ describe('details list page ', function () {
     cy.get('#main-content form input[type="radio"][value="otherSpecies"]').click();
     cy.get('input[type="text"]#current-other-species-caught').type('Test Species', {delay: 1});
     cy.get('input[type="text"]#current-number-caught').type('12', {delay: 1});
-    cy.get('select#current-trap-type').select('Larson pod', {delay: 1});
+    cy.get('#main-content form input[type="radio"][value="Larson pod"]').click();
     cy.get('textarea#current-comment').type('Test comment', {delay: 1});
 
     cy.get('#main-content form button.naturescot-forward-button').click();
