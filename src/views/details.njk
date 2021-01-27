@@ -21,15 +21,15 @@
       titleText: "There is a problem",
       errorList: [
         {
-          text: "Enter a Grid Reference",
+          text: "Enter a grid reference",
           href: "#current-grid-reference-error"
         } if model.currentGridReferenceError,
         {
-          text: "Select the category of Species Caught",
+          text: "Select the category of species caught",
           href: "#current-species-caught-option-error"
         } if model.currentSpeciesCaughtOptionError,
         {
-          text: "Enter the Species Caught",
+          text: "Enter the species caught",
           href: "#current-species-caught-error"
         } if model.currentSpeciesCaughtError,
         {
@@ -37,11 +37,11 @@
           href: "#current-other-species-caught-error"
         } if model.currentOtherSpeciesCaughtError,
         {
-          text: "Enter the Number Caught",
+          text: "Enter the number caught",
           href: "#current-number-caught-error"
         } if model.currentNumberCaughtError,
         {
-          text: "Enter a Trap Type",
+          text: "Select the trap type that was used",
           href: "#current-trap-type-error"
         } if model.currentTrapTypeError
       ]
@@ -51,7 +51,7 @@
   {% set scheduleHtml %}
     {% if model.currentSpeciesCaughtError %}
       <span id="current-species-caught-error" class="govuk-error-message">
-        <span class="govuk-visually-hidden">Error:</span> Enter the Species Caught
+        <span class="govuk-visually-hidden">Error:</span> Enter the species caught
       </span>
     {% endif %}
     <select id="current-species-caught" name="currentSpeciesCaught">
@@ -107,7 +107,7 @@
         name: "currentGridReference",
         value: model.currentGridReference,
         errorMessage: {
-          text: "Enter a Grid Reference"
+          text: "Enter a grid reference"
         } if model.currentGridReferenceError,
         attributes: {
           spellcheck: "false"
@@ -202,7 +202,7 @@
         },
         value: model.currentComment,
         hint: {
-          text: "Add any comments here"
+          text: "Please provide any additional details regarding non-target species caught i.e. same bird twice, released unharmed."
         }
       }) }}
 

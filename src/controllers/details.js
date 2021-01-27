@@ -1,22 +1,5 @@
 import {ReturnState} from './_base.js';
 
-const validTrapType = (trapType) => {
-  const trapTypeArray = ['Larson mate', 'Larson pod'];
-  if (trapType === undefined) {
-    return false;
-  }
-
-  if (trapType.trim() === '') {
-    return false;
-  }
-
-  if (!trapTypeArray.includes(trapType)) {
-    return false;
-  }
-
-  return true;
-};
-
 const validSpecies = (species, speciesArray) => {
   if (species === undefined) {
     return false;
@@ -137,7 +120,7 @@ const detailsController = (request) => {
   }
 
   request.session.currentNumberCaughtError = !validNumber(request.body.currentNumberCaught);
-  request.session.currentTrapTypeError = !validTrapType(request.body.currentTrapType);
+  request.session.currentTrapTypeError = !request.body.currentTrapType;
 
   request.session.detailsError =
     request.session.currentGridReferenceError ||
