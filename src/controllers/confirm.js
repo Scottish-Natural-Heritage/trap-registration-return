@@ -1,12 +1,33 @@
+import axios from 'axios';
+import config from '../config.js';
 import {ReturnState} from './_base.js';
 
-const confirmController = (request) => {
-  // The confirm page is where the user will confirm the details of their return.
-  request.session.confirm = true;
+const confirmController = async (request) => {
+  try {
+    // Allocate a new return.
+    const newReturnResponse = await axios.post(config.apiEndpoint + '/return');
 
-  // The only way out of this page for now is onwards, so return success and continue
-  // the form.
-  return ReturnState.Positive;
+    // Determine where the back-end's saved it.
+    const newReturnUrl = newReturnResponse.headers.location;
+
+    // Get our return object ready for submission.
+    const newReturn = {
+      trapRegistrationNumber: request.session.trapRegistrationNumber,
+      nonTargetSpeciesToReport: request.session.targetSpecies,
+      nonTargetSpeciesCaught: request.session.detailsList
+    };
+
+    // Send the back-end our Return.
+    await axios.put(newReturnUrl, newReturn);
+    // Let them know it all went well.
+    return ReturnState.Positive;
+  } catch (error) {
+    // TODO: Do something useful with this error.
+    console.log(error);
+
+    // Let the user know it went wrong, and to 'probably' try again?
+    return ReturnState.Error;
+  }
 };
 
 export {confirmController as default};
