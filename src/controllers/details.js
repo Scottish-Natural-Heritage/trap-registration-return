@@ -135,7 +135,7 @@ const detailsController = (request) => {
     request.session.currentGridReference = request.body.currentGridReference.trim();
     request.session.currentSpeciesCaughtOption = request.body.currentSpeciesCaughtOption;
     request.session.currentSpeciesCaught = request.body.currentSpeciesCaught;
-    request.session.currentSpeciesCaught = request.body.currentOtherSpeciesCaught;
+    request.session.currentOtherSpeciesCaught = request.body.currentOtherSpeciesCaught;
     request.session.currentNumberCaught = request.body.currentNumberCaught;
     request.session.currentTrapType = request.body.currentTrapType;
     request.session.currentComment = request.body.currentComment;

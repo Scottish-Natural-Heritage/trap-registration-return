@@ -50,8 +50,8 @@ describe('details list page ', function () {
 
     cy.get('.govuk-error-summary ul li a')
       .should('contain', 'Enter a grid reference')
-      .and('contain', 'Select the category of species caught')
-      .and('contain', 'Enter the number caught')
+      .and('contain', 'Select the type of non-target species caught')
+      .and('contain', 'Enter the number of non-target species caught')
       .and('contain', 'Select the trap type that was used');
   });
 
@@ -69,7 +69,7 @@ describe('details list page ', function () {
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/details');
 
-    cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the species caught');
+    cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the non-target species caught');
   });
 
   it('add button should navigate to add page enter a semi empty form (other species) and see errors', function () {
@@ -86,7 +86,7 @@ describe('details list page ', function () {
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/details');
 
-    cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the name of the species caught');
+    cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the name of the non-target species caught');
   });
 
   it('main button should navigate to confirm page', function () {

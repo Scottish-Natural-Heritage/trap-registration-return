@@ -25,19 +25,19 @@
           href: "#current-grid-reference-error"
         } if model.currentGridReferenceError,
         {
-          text: "Select the category of species caught",
+          text: "Select the type of non-target species caught",
           href: "#current-species-caught-option-error"
         } if model.currentSpeciesCaughtOptionError,
         {
-          text: "Enter the species caught",
+          text: "Enter the non-target species caught",
           href: "#current-species-caught-error"
         } if model.currentSpeciesCaughtError,
         {
-          text: "Enter the name of the species caught",
+          text: "Enter the name of the non-target species caught",
           href: "#current-other-species-caught-error"
         } if model.currentOtherSpeciesCaughtError,
         {
-          text: "Enter the number caught",
+          text: "Enter the number of non-target species caught",
           href: "#current-number-caught-error"
         } if model.currentNumberCaughtError,
         {
@@ -49,9 +49,10 @@
   {% endif %}
 
   {% set scheduleHtml %}
+    <div class="govuk-form-group {% if model.currentSpeciesCaughtError %} govuk-form-group--error {% endif %}">
     {% if model.currentSpeciesCaughtError %}
       <span id="current-species-caught-error" class="govuk-error-message">
-        <span class="govuk-visually-hidden">Error:</span> Enter the species caught
+        <span class="govuk-visually-hidden">Error:</span> Enter the non-target species caught
       </span>
     {% endif %}
     <select id="current-species-caught" name="currentSpeciesCaught">
@@ -60,6 +61,7 @@
         <option value="{{ species.value }}" {% if model.currentSpeciesCaught === species.value %} selected {% endif %}>{{ species.text }}</option>
       {% endfor %}
     </select>
+    </div>
   {% endset -%}
 
   {% set otherHtml %}
@@ -68,14 +70,14 @@
             text: "Non Target Species Caught"
           },
           hint: {
-            text: "The name of the type of non target species caught."
+            text: "The name of the type of non-target species caught."
           },
           classes: "govuk-!-width-one-half",
           id: "current-other-species-caught",
           name: "currentOtherSpeciesCaught",
           value: model.currentOtherSpeciesCaught,
           errorMessage: {
-            text: "Enter the non target species caught"
+            text: "Enter the name of the non-target species caught"
           } if model.currentOtherSpeciesCaughtError,
           attributes: {
             spellcheck: "false"
@@ -116,7 +118,7 @@
 
 
       {{ govukRadios({
-        id: "current-species-caught-option",
+        idPrefix: "current-species-caught-option",
         name: "currentSpeciesCaughtOption",
         value: model.currentSpeciesCaughtOption,
         fieldset: {
@@ -127,7 +129,7 @@
           }
         },
         errorMessage: {
-          text: "Select the type of non target species caught"
+          text: "Select the type of non-target species caught"
         } if model.currentSpeciesCaughtOptionError,
         items: [
           {
@@ -161,7 +163,7 @@
         name: "currentNumberCaught",
         value: model.currentNumberCaught,
         errorMessage: {
-          text: "Enter the number of non target species caught"
+          text: "Enter the number of non-target species caught"
         } if model.currentNumberCaughtError,
         attributes: {
           spellcheck: "false"
@@ -170,7 +172,7 @@
 
 
       {{ govukRadios({
-        id: "current-trap-type",
+        idPrefix: "current-trap-type",
         name: "currentTrapType",
         fieldset: {
           legend: {
@@ -179,6 +181,9 @@
             classes: "govuk-heading-m"
           }
         },
+        errorMessage: {
+          text: "Select the trap type that was used"
+        } if model.currentTrapTypeError,
         items: [
           {
             value: "Larson mate",

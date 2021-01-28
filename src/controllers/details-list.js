@@ -71,6 +71,14 @@ const detailsListController = (request) => {
     request.session.currentTrapType = request.session.detailsList[editIndex].trapType;
     request.session.currentComment = request.session.detailsList[editIndex].comment;
 
+    request.session.currentGridReferenceError = false;
+    request.session.currentSpeciesCaughtOptionError = false;
+    request.session.currentSpeciesCaughtError = false;
+    request.session.currentOtherSpeciesCaughtError = false;
+    request.session.currentNumberCaughtError = false;
+    request.session.currentTrapTypeError = false;
+    request.session.detailsError = false;
+
     return ReturnState.Secondary;
   }
 
@@ -93,6 +101,14 @@ const detailsListController = (request) => {
     request.session.currentNumberCaught = '';
     request.session.currentTrapType = '';
     request.session.currentComment = '';
+
+    request.session.currentGridReferenceError = false;
+    request.session.currentSpeciesCaughtOptionError = false;
+    request.session.currentSpeciesCaughtError = false;
+    request.session.currentOtherSpeciesCaughtError = false;
+    request.session.currentNumberCaughtError = false;
+    request.session.currentTrapTypeError = false;
+    request.session.detailsError = false;
 
     return ReturnState.Secondary;
   }
