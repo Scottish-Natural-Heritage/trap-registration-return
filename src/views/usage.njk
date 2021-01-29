@@ -6,14 +6,14 @@
 
 {% block content %}
   {% if model.usageError %}
-      {{ govukErrorSummary({
+    {{ govukErrorSummary({
         titleText: "There is a problem",
         errorList: [{
-          text: "Select whether you used meat bait traps or not",
+          text: "Select yes if you registered to use meat baits",
           href: "#usage-error"
         }]
       }) }}
-{% endif %}
+  {% endif %}
   <form method="post">
     {{ govukRadios({
       classes: "govuk-radios--inline",
@@ -21,13 +21,16 @@
       name: "usage",
       fieldset: {
         legend: {
-          text: "Did you use meat bait traps?",
+          text: "Did you register to use meat baits?",
           isPageHeading: true,
           classes: "govuk-fieldset__legend--xl"
         }
       },
+      hint: {
+      text: "The requirement to provide a return applies even if you did not use meat baits or catch any non-target species."
+      },
       errorMessage: {
-        text: "Select whether you used meat bait traps or not"
+        text: "Select yes if you registered to use meat baits"
       } if model.usageError,
       items:[
         {
@@ -42,12 +45,9 @@
         }
       ]
     }) }}
-
     {{ govukButton({
       text: "Continue",
       classes: "naturescot-forward-button"
     }) }}
   </form>
-
-
 {% endblock %}
