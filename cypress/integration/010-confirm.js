@@ -8,7 +8,12 @@ describe('confirm page directly', function () {
 describe('confirm page ', function () {
   beforeEach(() => {
     // GET `/login`
-    cy.visit('/login');
+    cy.visit(
+      '/login?token=' +
+        'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.' +
+        'eyJleHAiOjQ3Njc2NzQ1NTgsInN1YiI6Ii0xIn0.' +
+        'XSHX6QB8robVaEuXVeHKbBed13uAdWvLBaNeGCYPAWWlw7Fm7bafXMPUQQE69TNc8DbjUgaRDxKvS2ju5uZziw'
+    );
     // POST `/login`
     cy.get('#main-content form button.naturescot-forward-button').click();
     // ~GET `/target-species`~
