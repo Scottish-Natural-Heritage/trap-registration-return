@@ -11,8 +11,7 @@ import PostcodeController from './controllers/postcode.js';
 import LoginController from './controllers/login.js';
 import TargetSpeciesController from './controllers/target-species.js';
 import DetailsListController from './controllers/details-list.js';
-import DetailsAddController from './controllers/details-add.js';
-import DetailsEditController from './controllers/details-edit.js';
+import DetailsController from './controllers/details.js';
 import ConfirmController from './controllers/confirm.js';
 // Configure all of the pages and routes.
 // First half of application/
@@ -90,27 +89,17 @@ router.use(
     path: 'details-list',
     back: 'target-species',
     positiveForward: 'confirm',
-    secondaryForward: 'details-add',
-    tertiaryForward: 'details-edit',
+    secondaryForward: 'details',
     controller: DetailsListController
   })
 );
 
 router.use(
   Page({
-    path: 'details-add',
+    path: 'details',
     back: 'details-list',
     positiveForward: 'details-list',
-    controller: DetailsAddController
-  })
-);
-
-router.use(
-  Page({
-    path: 'details-edit',
-    back: 'details-list',
-    positiveForward: 'details-list',
-    controller: DetailsEditController
+    controller: DetailsController
   })
 );
 
