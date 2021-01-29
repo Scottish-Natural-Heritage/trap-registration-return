@@ -7,7 +7,7 @@ import jwkToPem from 'jwk-to-pem';
 /**
  * Get the TR-API's public key.
  *
- * @returns {any} jwk representation of our public key
+ * @returns {any} JWK representation of our public key.
  */
 const getPublicKey = async () => {
   const response = await axios.get(`${config.apiEndpoint}/public-key`);
@@ -19,9 +19,9 @@ const getPublicKey = async () => {
  *
  * Clears the token when it's finished, but keeps a copy of their trap reg no.
  *
- * @param {any} session our user's session object
- * @param {string} session.token the user's saved login token
- * @returns {boolean} true if the token is valid, false otherwise
+ * @param {any} session Our user's session object.
+ * @param {string} session.token The user's saved login token.
+ * @returns {boolean} True if the token is valid, false otherwise.
  */
 const validateToken = async (session) => {
   const publicKey = await getPublicKey();
@@ -49,7 +49,7 @@ const validateToken = async (session) => {
 
 const loginController = async (request) => {
   // First of all, check if we've already logged in.
-  if(request.session.loggedInRegNo) {
+  if (request.session.loggedInRegNo) {
     // If so, go right ahead!
     return ReturnState.Positive;
   }

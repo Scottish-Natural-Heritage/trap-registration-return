@@ -47,7 +47,7 @@ const mockAxios = {
    *
    * Right now this only supports getting the fake public key from above.
    *
-   * @param {string} url
+   * @param {string} url The url to get.
    * @returns {Promise<any>} A fake response.
    */
   get: async (url) => {
