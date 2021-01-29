@@ -69,8 +69,14 @@ router.use(
   Page({
     path: 'login',
     positiveForward: 'target-species',
-    negativeForward: 'error',
+    negativeForward: 'error-login',
     controller: LoginController
+  })
+);
+
+router.use(
+  Page({
+    path: 'error-login'
   })
 );
 
