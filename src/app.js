@@ -6,7 +6,7 @@ import nunjucks from 'nunjucks';
 import session from 'express-session';
 import memorystore from 'memorystore';
 
-import config from './config.js';
+import config from './config/app.js';
 import logger from './logger.js';
 import router from './router.js';
 

@@ -1,7 +1,7 @@
 'use strict';
 
 // Load the config.
-import config from './config.js';
+import config from './config/app.js';
 
 // Load the app.
 import app from './app.js';

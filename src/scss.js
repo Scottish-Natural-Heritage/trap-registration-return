@@ -4,7 +4,7 @@ import {readFileSync, writeFileSync} from 'fs';
 import sass from 'sass';
 import packageImporter from 'node-sass-package-importer';
 
-import config from './config.js';
+import config from './config/app.js';
 
 // Read in the source file.
 const lines = readFileSync('src/main.scss').toString().split('\n');

@@ -1,6 +1,6 @@
 import express from 'express';
 
-import config from '../config.js';
+import config from '../config/app.js';
 
 /**
  * Save a record of our visitor's current page to their session.
