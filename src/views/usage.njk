@@ -1,8 +1,8 @@
--{% extends "_base.njk" %}
--
--{% from "govuk/components/button/macro.njk" import govukButton %}
--{% from "govuk/components/radios/macro.njk" import govukRadios %}
--{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% extends "_base.njk" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% block content %}
   {% if model.usageError %}
@@ -13,7 +13,7 @@
           href: "#usage-error"
         }]
       }) }}
-{% endif %}
+  {% endif %}
   <form method="post">
     {{ govukRadios({
       classes: "govuk-radios--inline",
