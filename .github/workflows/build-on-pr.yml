@@ -4,6 +4,12 @@ on:
   pull_request:
     branches: [ main, develop ]
 
+env:
+  ECR_REPOSITORY: naturescot/trap-registration-return
+  TRR_PORT: 3010
+  TRR_SESSION_SECRET: override_this_value
+  TR_API_URL: override_this_value
+
 jobs:
 
   lint_and_test:
