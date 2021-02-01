@@ -1,18 +1,19 @@
 import axios from 'axios';
-import config from '../config.js';
+import config from '../config/app.js';
 import {ReturnState} from './_base.js';
 
 const confirmController = async (request) => {
   try {
     // Allocate a new return.
-    const newReturnResponse = await axios.post(config.apiEndpoint + '/return');
+    const newReturnResponse = await axios.post(
+      config.apiEndpoint + '/registrations' + request.session.loggedInRegNo + '/return'
+    );
 
     // Determine where the back-end's saved it.
     const newReturnUrl = newReturnResponse.headers.location;
 
     // Get our return object ready for submission.
     const newReturn = {
-      trapRegistrationNumber: request.session.trapRegistrationNumber,
       nonTargetSpeciesToReport: request.session.targetSpecies,
       nonTargetSpeciesCaught: request.session.detailsList
     };
