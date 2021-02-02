@@ -38,7 +38,7 @@ const postcodeController = async (request) => {
     await axios.get(`${config.apiEndpoint}/registrations/${request.session.registrationNumber}/login`, {
       params: {
         postcode: request.session.postcode,
-        redirectBaseUrl: `${config.hostPrefix}${config.pathPrefix}/login?token=`,
+        redirectBaseUrl: `${config.hostPrefix}${config.pathPrefix}/login?token=`
       }
     });
   } catch (error) {
