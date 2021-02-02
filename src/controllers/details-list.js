@@ -121,7 +121,7 @@ const detailsListController = (request) => {
       return ReturnState.Error;
     }
 
-    request.session.detailsList = buildDetailsList(request.session);
+    request.session.detailsListTable = buildDetailsList(request.session);
 
     return ReturnState.Positive;
   }

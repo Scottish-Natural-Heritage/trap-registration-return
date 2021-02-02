@@ -41,12 +41,6 @@ describe('confirm page ', function () {
 
   it('should allow access if the user visits all the pages in order', function () {
     cy.visit('/confirm');
-    cy.get('h1').should('contain', 'Confirm details of return');
-  });
-
-  it('main button should navigate to success page', function () {
-    cy.visit('/confirm');
-    cy.get('#main-content form button.naturescot-forward-button').click();
-    cy.url().should('include', '/success');
+    cy.get('h1').should('contain', 'Confirm the details of return');
   });
 });
