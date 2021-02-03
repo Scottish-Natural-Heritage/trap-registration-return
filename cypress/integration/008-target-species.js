@@ -21,7 +21,7 @@ describe('target species page ', function () {
 
   it('should allow access if the user visits all the pages in order', function () {
     cy.visit('/target-species');
-    cy.get('h1').should('contain', 'Did you catch any non target species?');
+    cy.get('h1').should('contain', 'Did you catch any non-target species?');
   });
 
   it('main button should navigate to the same page with errors', function () {
@@ -33,7 +33,7 @@ describe('target species page ', function () {
 
     cy.get('.govuk-error-summary ul li a').should(
       'contain',
-      'You must select if you have caught any non target species'
+      'You must select if you have caught any non-target species'
     );
   });
 
