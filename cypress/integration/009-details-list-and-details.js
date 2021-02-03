@@ -26,7 +26,7 @@ describe('details list page ', function () {
 
   it('should allow access if the user visits all the pages in order', function () {
     cy.visit('/details-list');
-    cy.get('h1').should('contain', 'Details of non target species');
+    cy.get('h1').should('contain', 'Details of non-target species');
   });
 
   it('add button should navigate to details-add page', function () {
@@ -41,8 +41,8 @@ describe('details list page ', function () {
     cy.url().should('include', '/details-list');
 
     cy.get('h2#error-summary-title').should('contain', 'There is a problem');
-    cy.get('.govuk-error-summary ul li a').should('contain', 'Add at least one non target species');
-    cy.get('form .govuk-form-group--error').should('contain', 'Add at least one non target species');
+    cy.get('.govuk-error-summary ul li a').should('contain', 'Add at least one non-target species');
+    cy.get('form .govuk-form-group--error').should('contain', 'Add at least one non-target species');
   });
 
   it('add button should navigate to add page enter empty form and see errors', function () {
