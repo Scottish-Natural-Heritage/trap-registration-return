@@ -30,11 +30,7 @@ describe('target species page ', function () {
     cy.url().should('include', '/target-species');
 
     cy.get('h2#error-summary-title').should('contain', 'There is a problem');
-
-    cy.get('.govuk-error-summary ul li a').should(
-      'contain',
-      'You must select if you have caught any non-target species'
-    );
+    cy.get('.govuk-error-summary ul li a').should('contain', 'Select yes if you have caught any non-target species');
   });
 
   it('main button should navigate to details list page', function () {
