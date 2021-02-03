@@ -22,7 +22,7 @@ const targetSpeciesController = async (request) => {
     try {
       // Allocate a new return.
       const newReturnResponse = await axios.post(
-        config.apiEndpoint + '/registrations' + request.session.loggedInRegNo + '/return'
+        config.apiEndpoint + '/registrations/' + request.session.loggedInRegNo + '/return'
       );
       // Determine where the back-end's saved it.
       const newReturnUrl = newReturnResponse.headers.location;
