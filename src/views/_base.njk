@@ -15,7 +15,7 @@
    the submit process. #}
 {% set servicePage = "/target-species" if model.loggedInRegNo !== undefined else "/" %}
 
-{% block pageTitle %}NatureScot - Licensing - Trap Registration Return{% endblock %}
+{% block pageTitle %}NatureScot - Licensing - Trap Registration - Meat Bait Return{% endblock %}
 
 {% block headIcons %}
   <link rel="shortcut icon" type="image/png" sizes="192x192" href="{{hostPrefix}}{{pathPrefix}}/dist/icon-192x192.png">
@@ -30,7 +30,7 @@
   <meta name="description" content="Use this service to submit your Trap Registration Return.">
 
   <!-- OpenGraph Data -->
-  <meta property="og:title" content="NatureScot - Licensing - Trap Registration Return">
+  <meta property="og:title" content="NatureScot - Licensing - Trap Registration - Meat Bait Return">
   <meta property="og:type" content="website">
   <meta property="og:image" content="{{hostPrefix}}{{pathPrefix}}/dist/naturescot-opengraph-image.png">
   <meta property="og:url" content="{{hostPrefix}}{{pathPrefix}}">
@@ -75,7 +75,7 @@
   {{ naturescotHeader({
     homepageUrl: "https://www.nature.scot/professional-advice/safeguarding-protected-areas-and-species/licensing",
     containerClasses: "govuk-width-container",
-    serviceName: "Trap Registration Return",
+    serviceName: "Trap Registration - Meat Bait Return",
     serviceUrl: serviceRoot + servicePage,
     attributes: {
       id: "top-of-page"
