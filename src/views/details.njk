@@ -13,6 +13,7 @@
 {% from "govuk/components/select/macro.njk" import govukSelect %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
 
 {% block content %}
 
@@ -116,7 +117,8 @@
         }
       }) }}
 
-
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
       {{ govukRadios({
         idPrefix: "current-species-caught-option",
         name: "currentSpeciesCaughtOption",
@@ -134,7 +136,7 @@
         items: [
           {
             value: "schedule1Birds",
-            text: "A schedule 1 bird",
+            text: "A Schedule 1 bird",
             checked: model.currentSpeciesCaughtOption === "schedule1Birds",
             conditional: {
               html: scheduleHtml
@@ -150,7 +152,29 @@
           }
         ]
       }) }}
-
+    </div>
+    <div class="govuk-grid-column-one-third">
+        {{ govukAccordion({
+          id: "schedule1BirdExplanation",
+          items: [
+            {
+              heading: {
+                text: "What is a Schedule 1 bird?"
+              },
+              content: {
+                html: '' +
+                '<p class="govuk-body">' +
+                '  A Schedule 1 bird is a bird listed on' +
+                '  Schedule 1 of the Wildlife &amp Countryside Act 1981.' +
+                '  see all Schedule 1 birds <a target="_blank" href="https://www.nature.scot/protected-species-list-wca-schedules-1-1a-a1-2-3-and-4">here</a>' +
+                '</p>'
+              },
+              expanded: false
+            }
+          ]
+        }) }}
+      </div>
+    </div>
       {{ govukInput({
         label: {
           text: "Number Caught"
