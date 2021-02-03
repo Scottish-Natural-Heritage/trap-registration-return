@@ -9,7 +9,7 @@
     {{ govukErrorSummary({
       titleText: "There is a problem",
       errorList: [{
-        text: "You must select if you have caught any non target species",
+        text: "Select yes if you have caught any non-target species",
         href: "#target-species-error"
       }]
     }) }}
@@ -23,13 +23,13 @@
       name: "targetSpecies",
       fieldset: {
         legend: {
-          text: "Did you catch any non target species?",
+          text: "Did you catch any non-target species?",
           isPageHeading: true,
           classes: "govuk-fieldset__legend--xl"
         }
       },
       errorMessage: {
-        text: "You must select if you have caught any non target species"
+        text: "Select yes if you have caught any non-target species"
       } if model.targetSpeciesError,
       items: [
         {
