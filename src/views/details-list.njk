@@ -10,7 +10,7 @@
       titleText: "There is a problem",
       errorList: [
         {
-          text: "Add at least one non target species",
+          text: "Add at least one non-target species",
           href: "#non-target-species-count-error"
         } if model.detailsListCountError
       ]
@@ -18,7 +18,7 @@
   {% endif %}
 
   <h1 class="govuk-heading-xl">
-    Details of non target species
+    Details of non-target species
   </h1>
   <form method="post">
     <div class="govuk-grid-row">
@@ -26,10 +26,10 @@
       <div class="govuk-grid-column-full" id="details-list">
         <table class="govuk-table">
           <caption class="govuk-table__caption govuk-table__caption--naturescot-normal {% if model.detailsListCountError %} govuk-form-group--error {% endif %}">
-            Non target species caught.
+            Non-target species caught.
             {% if model.detailsListCountError %}
               <span id="non-target-species-count-error" class="govuk-error-message">
-                <span class="govuk-visually-hidden">Error:</span> Add at least one non target species
+                <span class="govuk-visually-hidden">Error:</span> Add at least one non-target species
               </span>
             {% endif %}
           </caption>
@@ -68,7 +68,7 @@
           </tbody>
         </table>
         {{ govukButton({
-              text: "Add a non target species",
+              text: "Add a non-target species",
               name: "add",
               classes: "govuk-button--secondary naturescot-button--add"
             }) }}
