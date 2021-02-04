@@ -21,6 +21,9 @@ describe('target species page ', function () {
     cy.get('#main-content form input[type="radio"][value="no"]').click();
     // POST `/target-species`
     cy.get('#main-content form button.naturescot-forward-button').click();
+    // ~GET `no-target-species confirm`
+    // POST `no-target-species confirm`
+    cy.get('#main-content form button.naturescot-forward-button').click();
   });
 
   it('should allow access if the user visits all the pages in order', function () {
