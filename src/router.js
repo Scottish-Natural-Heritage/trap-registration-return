@@ -95,7 +95,7 @@ router.use(
   Page({
     path: 'no-target-species-confirm',
     back: 'target-species',
-    positiveForward: 'no-target-species',
+    positiveForward: 'no-target-species-success',
     controller: NoTargetSpeciesConfirmController
   })
 );
@@ -130,7 +130,7 @@ router.use(
 
 router.use(
   Page({
-    path: 'no-target-species',
+    path: 'no-target-species-success',
     back: 'no-target-species-confirm'
   })
 );
