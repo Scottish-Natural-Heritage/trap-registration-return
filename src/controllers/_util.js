@@ -2,332 +2,332 @@
 const nonTargetSpecies = () => {
   return [
     {
-      value: 'Recurvirostra avosetta',
-      text: 'Recurvirostra avosetta / Avocet'
+      value: 'Avocet / Recurvirostra avosetta',
+      text: 'Avocet / Recurvirostra avosetta'
     },
     {
-      value: 'Tyto alba',
-      text: 'Tyto alba / Barn owl'
+      value: 'Barn owl / Tyto alba',
+      text: 'Barn owl / Tyto alba'
     },
     {
-      value: 'Panurus biarmicus',
-      text: 'Panurus biarmicus / Bearded tit'
+      value: 'Bearded tit / Panurus biarmicus',
+      text: 'Bearded tit / Panurus biarmicus'
     },
     {
-      value: 'Merops apiaster',
-      text: 'Merops apiaster / Bee-eater'
+      value: 'Bee-eater / Merops apiaster',
+      text: 'Bee-eater / Merops apiaster'
     },
     {
-      value: 'Cygnus columbianus',
-      text: 'Cygnus columbianus / Bewick’s swan'
+      value: 'Bewick’s swan / Cygnus columbianus',
+      text: 'Bewick’s swan / Cygnus columbianus'
     },
     {
-      value: 'Botaurus stellaris',
-      text: 'Botaurus stellaris / Bittern'
+      value: 'Bittern / BitternBotaurus stellaris',
+      text: 'Bittern / Botaurus stellaris'
     },
     {
-      value: 'Phoenicurus ochruros',
-      text: 'Phoenicurus ochruros / Black redstart'
+      value: 'Black redstart / Phoenicurus ochruros',
+      text: 'Black redstart / Phoenicurus ochruros'
     },
     {
-      value: 'Podiceps nigricollis',
-      text: 'Podiceps nigricollis / Black-necked grebe'
+      value: 'Black-necked grebe / Podiceps nigricollis',
+      text: 'Black-necked grebe / Podiceps nigricollis'
     },
     {
-      value: 'Limosa limosa',
-      text: 'Limosa limosa / Black-tailed godwit'
+      value: 'Black-tailed godwit / Limosa limosa',
+      text: 'Black-tailed godwit / Limosa limosa'
     },
     {
-      value: 'Gavia arctica',
-      text: 'Gavia arctica / Black-throated diver'
+      value: 'Black-throated diver / Gavia arctica',
+      text: 'Black-throated diver / Gavia arctica'
     },
     {
-      value: 'Luscinia svecica',
-      text: 'Luscinia svecica / Bluethroat'
+      value: 'Bluethroat / Luscinia svecica',
+      text: 'Bluethroat / Luscinia svecica'
     },
     {
-      value: 'Fringilla montifringilla',
-      text: 'Fringilla montifringilla / Brambling'
+      value: 'Brambling / Fringilla montifringilla',
+      text: 'Brambling / Fringilla montifringilla'
     },
     {
-      value: 'Buteo buteo',
-      text: 'Buteo buteo / Buzzard'
+      value: 'Buzzard / Buteo buteo',
+      text: 'Buzzard / Buteo buteo'
     },
     {
-      value: 'Tetrao urogallus',
-      text: 'Tetrao urogallus / Capercaillie'
+      value: 'Capercaillie / Tetrao urogallus',
+      text: 'Capercaillie / Tetrao urogallus'
     },
     {
-      value: 'Pyrrhocorax pyrrhocorax',
-      text: 'Pyrrhocorax pyrrhocorax / Chough'
+      value: 'Chough / Pyrrhocorax pyrrhocorax',
+      text: 'Chough / Pyrrhocorax pyrrhocorax'
     },
     {
-      value: 'Melanitta nigra',
-      text: 'Melanitta nigra / Common scoter'
+      value: 'Common scoter / Melanitta nigra',
+      text: 'Common scoter / Melanitta nigra'
     },
     {
-      value: 'Crex crex',
-      text: 'Crex crex / Corncrake'
+      value: 'Corncrake / Crex crex',
+      text: 'Corncrake / Crex crex'
     },
     {
-      value: 'Parus cristatus',
-      text: 'Parus cristatus / Crested tit'
+      value: 'Crested tit / Parus cristatus',
+      text: 'Crested tit / Parus cristatus'
     },
     {
-      value: 'Loxia curvirostra',
-      text: 'Loxia curvirostra / Crossbill'
+      value: 'Crossbill / Loxia curvirostra',
+      text: 'Crossbill / Loxia curvirostra'
     },
     {
-      value: 'Sylvia undata',
-      text: 'Sylvia undata / Dartford warbler'
+      value: 'Dartford warbler / Sylvia undata',
+      text: 'Dartford warbler / Sylvia undata'
     },
     {
-      value: 'Charadrius morinellus',
-      text: 'Charadrius morinellus / Dotterel'
+      value: 'Dotterel / Charadrius morinellus',
+      text: 'Dotterel / Charadrius morinellus'
     },
     {
-      value: 'Turdus pilaris',
-      text: 'Turdus pilaris / Fieldfare'
+      value: 'Fieldfare / Turdus pilaris',
+      text: 'Fieldfare / Turdus pilaris'
     },
     {
-      value: 'Regulus ignicapillus',
-      text: 'Regulus ignicapillus / Firecrest'
+      value: 'Firecrest / Regulus ignicapillus',
+      text: 'Firecrest / Regulus ignicapillus'
     },
     {
-      value: 'Anas querquedula',
-      text: 'Anas querquedula / Garganey'
+      value: 'Garganey / Anas querquedula',
+      text: 'Garganey / Anas querquedula'
     },
     {
-      value: 'Aquila chrysaetos',
-      text: 'Aquila chrysaetos / Golden eagle'
+      value: 'Golden eagle / Aquila chrysaetos',
+      text: 'Golden eagle / Aquila chrysaetos'
     },
     {
-      value: 'Oriolus oriolus',
-      text: 'Oriolus oriolus / Golden oriole'
+      value: 'Golden oriole / Oriolus oriolus',
+      text: 'Golden oriole / Oriolus oriolus'
     },
     {
-      value: 'Bucephala clangula',
-      text: 'Bucephala clangula / Goldeneye'
+      value: 'Goldeneye / Bucephala clangula',
+      text: 'Goldeneye / Bucephala clangula'
     },
     {
-      value: 'Accipter gentilis',
-      text: 'Accipter gentilis / Goshawk'
+      value: 'Goshawk / Accipter gentilis',
+      text: 'Goshawk / Accipter gentilis'
     },
     {
-      value: 'Gavia immer',
-      text: 'Gavia immer / Great Northern diver'
+      value: 'Great Northern diver / Gavia immer',
+      text: 'Great Northern diver / Gavia immer'
     },
     {
-      value: 'Tringa ochropus',
-      text: 'Tringa ochropus / Green sandpiper'
+      value: 'Green sandpiper / Tringa ochropus',
+      text: 'Green sandpiper / Tringa ochropus'
     },
     {
-      value: 'Tringa nebularia',
-      text: 'Tringa nebularia / Greenshank'
+      value: 'Greenshank / Tringa nebularia',
+      text: 'Greenshank / Tringa nebularia'
     },
     {
-      value: 'Anser anser',
-      text: 'Anser anser / Greylag goose'
+      value: 'Greylag goose / Anser anser',
+      text: 'Greylag goose / Anser anser'
     },
     {
-      value: 'Falco rusticolus',
-      text: 'Falco rusticolus / Gyr falcon'
+      value: 'Gyr falcon / Falco rusticolus',
+      text: 'Gyr falcon / Falco rusticolus'
     },
     {
-      value: 'Circus cyaneus',
-      text: 'Circus cyaneus / Hen harrier'
+      value: 'Hen harrier / Circus cyaneus',
+      text: 'Hen harrier / Circus cyaneus'
     },
     {
-      value: 'Falco subbuteo',
-      text: 'Falco subbuteo / Hobby'
+      value: 'Hobby / Falco subbuteo',
+      text: 'Hobby / Falco subbuteo'
     },
     {
-      value: 'Pernis apivorus',
-      text: 'Pernis apivorus / Honey buzzard'
+      value: 'Honey buzzard / Pernis apivorus',
+      text: 'Honey buzzard / Pernis apivorus'
     },
     {
-      value: 'Upupa epops',
-      text: 'Upupa epops / Hoopoe'
+      value: 'Hoopoe / Upupa epops',
+      text: 'Hoopoe / Upupa epops'
     },
     {
-      value: 'Falco tinnunculus',
-      text: 'Falco tinnunculus / Kestrel'
+      value: 'Kestrel / Falco tinnunculus',
+      text: 'Kestrel / Falco tinnunculus'
     },
     {
-      value: 'Alcedo atthis',
-      text: 'Alcedo atthis / Kingfisher'
+      value: 'Kingfisher / Alcedo atthis',
+      text: 'Kingfisher / Alcedo atthis'
     },
     {
-      value: 'Calcarius lapponicus',
-      text: 'Calcarius lapponicus / Lapland bunting'
+      value: 'Lapland bunting / Calcarius lapponicus',
+      text: 'Lapland bunting / Calcarius lapponicus'
     },
     {
-      value: 'Oceanodroma leucorhoa',
-      text: 'Oceanodroma leucorhoa / Leach’s petrel'
+      value: 'Leach’s petrel / Oceanodroma leucorhoa',
+      text: 'Leach’s petrel / Oceanodroma leucorhoa'
     },
     {
-      value: 'Larus minutus',
-      text: 'Larus minutus / Little gull'
+      value: 'Little gull / Larus minutus',
+      text: 'Little gull / Larus minutus'
     },
     {
-      value: 'Charadrius dubius',
-      text: 'Charadrius dubius / Little ringed plover'
+      value: 'Little ringed plover / Charadrius dubius',
+      text: 'Little ringed plover / Charadrius dubius'
     },
     {
-      value: 'Sterna albifrons',
-      text: 'Sterna albifrons / Little tern'
+      value: 'Little tern / Sterna albifrons',
+      text: 'Little tern / Sterna albifrons'
     },
     {
-      value: 'Clangula hyemalis',
-      text: 'Clangula hyemalis / Long-tailed duck'
+      value: 'Long-tailed duck / Clangula hyemalis',
+      text: 'Long-tailed duck / Clangula hyemalis'
     },
     {
-      value: 'Circus aeruginosus',
-      text: 'Circus aeruginosus / Marsh harrier'
+      value: 'Marsh harrier / Circus aeruginosus',
+      text: 'Marsh harrier / Circus aeruginosus'
     },
     {
-      value: 'Larus melanocephalus',
-      text: 'Larus melanocephalus / Mediterranean gull'
+      value: 'Mediterranean gull / Larus melanocephalus',
+      text: 'Mediterranean gull / Larus melanocephalus'
     },
     {
-      value: 'Falco columbarius',
-      text: 'Falco columbarius / Merlin'
+      value: 'Merlin / Falco columbarius',
+      text: 'Merlin / Falco columbarius'
     },
     {
-      value: 'Circus pygargus',
-      text: 'Circus pygargus / Montagu’s harrier'
+      value: 'Montagu’s harrier / Circus pygargus',
+      text: 'Montagu’s harrier / Circus pygargus'
     },
     {
-      value: 'Pandion haliaetus',
-      text: 'Pandion haliaetus / Osprey'
+      value: 'Osprey / Pandion haliaetus',
+      text: 'Osprey / Pandion haliaetus'
     },
     {
-      value: 'Loxia pytyopsittacus',
-      text: 'Loxia pytyopsittacus / Parrot Crossbill'
+      value: 'Parrot Crossbill / Loxia pytyopsittacus',
+      text: 'Parrot Crossbill / Loxia pytyopsittacus'
     },
     {
-      value: 'Falco perigrinus',
-      text: 'Falco perigrinus / Peregrine falcon'
+      value: 'Peregrine falcon / Falco perigrinus',
+      text: 'Peregrine falcon / Falco perigrinus'
     },
     {
-      value: 'Anas acuta',
-      text: 'Anas acuta / Pintail'
+      value: 'Pintail / Anas acuta',
+      text: 'Pintail / Anas acuta'
     },
     {
-      value: 'Ardea purpurea',
-      text: 'Ardea purpurea / Purple heron'
+      value: 'Purple heron / Ardea purpurea',
+      text: 'Purple heron / Ardea purpurea'
     },
     {
-      value: 'Calidris maritima',
-      text: 'Calidris maritima / Purple sandpiper'
+      value: 'Purple sandpiper / Calidris maritima',
+      text: 'Purple sandpiper / Calidris maritima'
     },
     {
-      value: 'Coturnix coturnix',
-      text: 'Coturnix coturnix / Quail'
+      value: 'Quail / Coturnix coturnix',
+      text: 'Quail / Coturnix coturnix'
     },
     {
-      value: 'Milvus milvus',
-      text: 'Milvus milvus / Red kite'
+      value: 'Red kite / Milvus milvus',
+      text: 'Red kite / Milvus milvus'
     },
     {
-      value: 'Lanius collurio',
-      text: 'Lanius collurio / Red-backed shrike'
+      value: 'Red-backed shrike / Lanius collurio',
+      text: 'Red-backed shrike / Lanius collurio'
     },
     {
-      value: 'Phalaropus lobatus',
-      text: 'Phalaropus lobatus / Red-necked phalarope'
+      value: 'Red-necked phalarope / Phalaropus lobatus',
+      text: 'Red-necked phalarope / Phalaropus lobatus'
     },
     {
-      value: 'Gavia stellata',
-      text: 'Gavia stellata / Red-throated diver'
+      value: 'Red-throated diver / Gavia stellata',
+      text: 'Red-throated diver / Gavia stellata'
     },
     {
-      value: 'Turdus iliacus',
-      text: 'Turdus iliacus / Redwing'
+      value: 'Redwing / Turdus iliacus',
+      text: 'Redwing / Turdus iliacus'
     },
     {
-      value: 'Sterna dougallii',
-      text: 'Sterna dougallii / Roseate tern'
+      value: 'Roseate tern / Sterna dougallii',
+      text: 'Roseate tern / Sterna dougallii'
     },
     {
-      value: 'Carpodacus erythrinus',
-      text: 'Carpodacus erythrinus / Rosefinch'
+      value: 'Rosefinch / Carpodacus erythrinus',
+      text: 'Rosefinch / Carpodacus erythrinus'
     },
     {
-      value: 'Philomachus pugnax',
-      text: 'Philomachus pugnax / Ruff'
+      value: 'Ruff / Philomachus pugnax',
+      text: 'Ruff / Philomachus pugnax'
     },
     {
-      value: 'Aythya marila',
-      text: 'Aythya marila / Scaup'
+      value: 'Scaup / Aythya marila',
+      text: 'Scaup / Aythya marila'
     },
     {
-      value: 'Loxia scotica',
-      text: 'Loxia scotica / Scottish Crossbill'
+      value: 'Scottish Crossbill / Loxia scotica',
+      text: 'Scottish Crossbill / Loxia scotica'
     },
     {
-      value: 'Serinus serinus',
-      text: 'Serinus serinus / Serin'
+      value: 'Serin / Serinus serinus',
+      text: 'Serin / Serinus serinus'
     },
     {
-      value: 'Eremophila alpestris',
-      text: 'Eremophila alpestris / Shore lark'
+      value: 'Shore lark / Eremophila alpestris',
+      text: 'Shore lark / Eremophila alpestris'
     },
     {
-      value: 'Podiceps auritus',
-      text: 'Podiceps auritus / Slavonian grebe'
+      value: 'Slavonian grebe / Podiceps auritus',
+      text: 'Slavonian grebe / Podiceps auritus'
     },
     {
-      value: 'Plectrophenax nivalis',
-      text: 'Plectrophenax nivalis / Snow bunting'
+      value: 'Snow bunting / Plectrophenax nivalis',
+      text: 'Snow bunting / Plectrophenax nivalis'
     },
     {
-      value: 'Nyctea scandiaca',
-      text: 'Nyctea scandiaca / Snowy owl'
+      value: 'Snowy owl / Nyctea scandiaca',
+      text: 'Snowy owl / Nyctea scandiaca'
     },
     {
-      value: 'Accipiter nisus',
-      text: 'Accipiter nisus / Sparrowhawk'
+      value: 'Sparrowhawk / Accipiter nisus',
+      text: 'Sparrowhawk / Accipiter nisus'
     },
     {
-      value: 'Platalea leucorodia',
-      text: 'Platalea leucorodia / Spoonbill'
+      value: 'Spoonbill / Platalea leucorodia',
+      text: 'Spoonbill / Platalea leucorodia'
     },
     {
-      value: 'Porzana porzana',
-      text: 'Porzana porzana / Spotted crake'
+      value: 'Spotted crake / Porzana porzana',
+      text: 'Spotted crake / Porzana porzana'
     },
     {
-      value: 'Calidris temminckii',
-      text: 'Calidris temminckii / Temminck’s stint'
+      value: 'Temminck’s stint / Calidris temminckii',
+      text: 'Temminck’s stint / Calidris temminckii'
     },
     {
-      value: 'Melanitta fusca',
-      text: 'Melanitta fusca / Velvet scoter'
+      value: 'Velvet scoter / Melanitta fusca',
+      text: 'Velvet scoter / Melanitta fusca'
     },
     {
-      value: 'Numenius phaeopus',
-      text: 'Numenius phaeopus / Whimbrel'
+      value: 'Whimbrel / Numenius phaeopus',
+      text: 'Whimbrel / Numenius phaeopus'
     },
     {
-      value: 'Gavia adamsii',
-      text: 'Gavia adamsii / White-billed diver'
+      value: 'White-billed diver / Gavia adamsii',
+      text: 'White-billed diver / Gavia adamsii'
     },
     {
-      value: 'Haliaeetus albicilla',
-      text: 'Haliaeetus albicilla / White-tailed eagle'
+      value: 'White-tailed eagle / Haliaeetus albicilla',
+      text: 'White-tailed eagle / Haliaeetus albicilla'
     },
     {
-      value: 'Cygnus cygnus',
-      text: 'Cygnus cygnus / Whooper swan'
+      value: 'Whooper swan / Cygnus cygnus',
+      text: 'Whooper swan / Cygnus cygnus'
     },
     {
-      value: 'Tringa glareola',
-      text: 'Tringa glareola / Wood sandpiper'
+      value: 'Wood sandpiper / Tringa glareola',
+      text: 'Wood sandpiper / Tringa glareola'
     },
     {
-      value: 'Jynx torquilla',
-      text: 'Jynx torquilla / Wryneck'
+      value: 'Wryneck / Jynx torquilla',
+      text: 'Wryneck / Jynx torquilla'
     }
   ];
 };
