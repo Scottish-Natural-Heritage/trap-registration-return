@@ -13,6 +13,7 @@ import TargetSpeciesController from './controllers/target-species.js';
 import DetailsListController from './controllers/details-list.js';
 import DetailsController from './controllers/details.js';
 import ConfirmController from './controllers/confirm.js';
+import NoTargetSpeciesConfirmController from './controllers/no-target-species-confirm.js';
 // Configure all of the pages and routes.
 // First half of application/
 router.use(
@@ -85,8 +86,17 @@ router.use(
     path: 'target-species',
     back: 'login',
     positiveForward: 'details-list',
-    negativeForward: 'no-target-species',
+    negativeForward: 'no-target-species-confirm',
     controller: TargetSpeciesController
+  })
+);
+
+router.use(
+  Page({
+    path: 'no-target-species-confirm',
+    back: 'target-species',
+    positiveForward: 'no-target-species-success',
+    controller: NoTargetSpeciesConfirmController
   })
 );
 
@@ -120,8 +130,8 @@ router.use(
 
 router.use(
   Page({
-    path: 'no-target-species',
-    back: 'target-species'
+    path: 'no-target-species-success',
+    back: 'no-target-species-confirm'
   })
 );
 
