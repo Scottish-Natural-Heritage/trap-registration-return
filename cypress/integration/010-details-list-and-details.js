@@ -94,6 +94,24 @@ describe('details list page ', function () {
     cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the name of the non-target species caught');
   });
 
+  it('add button should navigate to add page enter a semi empty form (other species) and see errors', function () {
+    cy.visit('/details-list');
+    cy.get('#main-content form button.naturescot-button--add').click();
+    cy.url().should('include', '/details');
+
+    cy.get('input[type="text"]#current-grid-reference').type('NO 08529 29128', {delay: 1});
+    cy.get('#main-content form input[type="radio"][value="otherSpecies"]').click();
+    cy.get('input[type="text"]#current-other-species-caught').type('Test Species', {delay: 1});
+    cy.get('input[type="text"]#current-number-caught').type('0', {delay: 1});
+    cy.get('#main-content form input[type="radio"][value="Larson pod"]').click();
+    cy.get('textarea#current-comment').type('Test comment', {delay: 1});
+
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    cy.url().should('include', '/details');
+
+    cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the number of non-target species caught');
+  });
+
   it('main button should navigate to confirm page', function () {
     cy.visit('/details-list');
     cy.get('#main-content form button.naturescot-button--add').click();

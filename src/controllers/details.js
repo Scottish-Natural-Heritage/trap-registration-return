@@ -91,6 +91,10 @@ const validNumber = (number) => {
     return false;
   }
 
+  if (testParse <= 0) {
+    return false;
+  }
+
   return true;
 };
 
