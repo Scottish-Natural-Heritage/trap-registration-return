@@ -22,7 +22,7 @@ const nonTargetSpecies = () => {
       text: 'Bewick’s swan / Cygnus columbianus'
     },
     {
-      value: 'Bittern / BitternBotaurus stellaris',
+      value: 'Bittern / Botaurus stellaris',
       text: 'Bittern / Botaurus stellaris'
     },
     {
