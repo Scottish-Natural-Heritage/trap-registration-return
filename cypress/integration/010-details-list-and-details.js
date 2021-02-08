@@ -68,7 +68,7 @@ describe('details list page ', function () {
     cy.get('input[type="text"]#current-grid-reference').type('NO 08529 29128', {delay: 1});
     cy.get('#main-content form input[type="radio"][value="schedule1Birds"]').click();
     cy.get('input[type="text"]#current-number-caught').type('12', {delay: 1});
-    cy.get('#main-content form input[type="radio"][value="Larson pod"]').click();
+    cy.get('#main-content form input[type="radio"][value="Larsen pod"]').click();
     cy.get('textarea#current-comment').type('Test comment', {delay: 1});
 
     cy.get('#main-content form button.naturescot-forward-button').click();
@@ -85,7 +85,7 @@ describe('details list page ', function () {
     cy.get('input[type="text"]#current-grid-reference').type('NO 08529 29128', {delay: 1});
     cy.get('#main-content form input[type="radio"][value="otherSpecies"]').click();
     cy.get('input[type="text"]#current-number-caught').type('12', {delay: 1});
-    cy.get('#main-content form input[type="radio"][value="Larson pod"]').click();
+    cy.get('#main-content form input[type="radio"][value="Larsen pod"]').click();
     cy.get('textarea#current-comment').type('Test comment', {delay: 1});
 
     cy.get('#main-content form button.naturescot-forward-button').click();
@@ -103,7 +103,7 @@ describe('details list page ', function () {
     cy.get('#main-content form input[type="radio"][value="otherSpecies"]').click();
     cy.get('input[type="text"]#current-other-species-caught').type('Test Species', {delay: 1});
     cy.get('input[type="text"]#current-number-caught').type('0', {delay: 1});
-    cy.get('#main-content form input[type="radio"][value="Larson pod"]').click();
+    cy.get('#main-content form input[type="radio"][value="Larsen pod"]').click();
     cy.get('textarea#current-comment').type('Test comment', {delay: 1});
 
     cy.get('#main-content form button.naturescot-forward-button').click();
@@ -121,7 +121,7 @@ describe('details list page ', function () {
     cy.get('#main-content form input[type="radio"][value="otherSpecies"]').click();
     cy.get('input[type="text"]#current-other-species-caught').type('Test Species', {delay: 1});
     cy.get('input[type="text"]#current-number-caught').type('12', {delay: 1});
-    cy.get('#main-content form input[type="radio"][value="Larson pod"]').click();
+    cy.get('#main-content form input[type="radio"][value="Larsen pod"]').click();
     cy.get('textarea#current-comment').type('Test comment', {delay: 1});
 
     cy.get('#main-content form button.naturescot-forward-button').click();
