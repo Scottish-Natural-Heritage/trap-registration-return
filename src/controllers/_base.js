@@ -44,8 +44,8 @@ const saveVisitedPage = (session, page) => {
  */
 const guardAllows = (session, options) => {
   // Unless the user has a completed licence number they are not allowed to
-  // visit the success page.
-  if (session.loggedInRegNo === undefined && options.path === 'success') {
+  // visit a success page.
+  if (session.loggedInRegNo === undefined && ['no-target-species-success', 'success'].includes(options.path)) {
     return false;
   }
 
@@ -88,10 +88,10 @@ const renderPage = (request, response, options) => {
     return;
   }
 
-  // Handle un-session-ed accesses to '/success' a little differently. The
+  // Handle un-session-ed accesses to success pages a little differently. The
   // user may have bookmarked this page, thinking they could see their
-  // application code again. Give them an error page that says otherwise.
-  if (options.path === 'success') {
+  // answer again. Give them an error page that says otherwise.
+  if (['no-target-species-success', 'success'].includes(options.path)) {
     response.status(403).render('error-success.njk', {hostPrefix: config.hostPrefix, pathPrefix: config.pathPrefix});
     return;
   }
@@ -158,7 +158,7 @@ const Page = (options) => {
     renderPage(request, response, options);
 
     // If we've just rendered a success page...
-    if (options.path === 'success' || options.path === 'other-success') {
+    if (['verification-success', 'no-target-species-success', 'success'].includes(options.path)) {
       // Kill the user session, so they cannot re-submit.
       request.session.destroy();
     }
