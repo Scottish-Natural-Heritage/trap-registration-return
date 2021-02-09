@@ -239,9 +239,3 @@
         </div>
   </form>
 {% endblock %}
-{% block bodyEnd %}
-  {{ super() }}
-  <script type="text/javascript">
-    accessibleAutocomplete.enhanceSelectElement({selectElement: document.querySelector('#current-species-caught'), confirmOnBlur: false, classes: "{% if model.currentSpeciesCaughtError %} govuk-form-group--error {% endif %}", defaultValue: "", showAllValues: true})
-  </script>
-{% endblock %}
