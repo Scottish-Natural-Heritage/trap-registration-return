@@ -50,23 +50,23 @@
   {% endif %}
 
   {% set scheduleHtml %}
-    <div class="govuk-form-group {% if model.currentSpeciesCaughtError %} govuk-form-group--error {% endif %}">
+  <div class="govuk-form-group {% if model.currentSpeciesCaughtError %} govuk-form-group--error {% endif %}">
     {% if model.currentSpeciesCaughtError %}
       <span id="current-species-caught-error" class="govuk-error-message">
         <span class="govuk-visually-hidden">Error:</span> Enter the non-target species caught
       </span>
     {% endif %}
     <select id="current-species-caught" name="currentSpeciesCaught">
-        <option disabled selected value> -- select an option -- </option>
+      <option disabled selected value> -- select an option -- </option>
       {% for species in model.nonTargetSpecies %}
         <option value="{{ species.value }}" {% if model.currentSpeciesCaught === species.value %} selected {% endif %}>{{ species.text }}</option>
       {% endfor %}
     </select>
-    </div>
+  </div>
   {% endset -%}
 
   {% set otherHtml %}
-    {{ govukInput({
+  {{ govukInput({
           label: {
             text: "Non Target Species Caught"
           },
@@ -90,15 +90,15 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-    {% call govukFieldset({
-      legend: {
+        {% call govukFieldset({
+        legend: {
         text: "What are the details of the non-target species you caught?",
         classes: "govuk-fieldset__legend--l",
         isPageHeading: true
-      }
-    }) %}
+        }
+       }) %}
 
-      {{ govukInput({
+        {{ govukInput({
         label: {
           text: "Trap location"
         },
@@ -115,11 +115,9 @@
         attributes: {
           spellcheck: "false"
         }
-      }) }}
+        }) }}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {{ govukRadios({
+        {{ govukRadios({
         idPrefix: "current-species-caught-option",
         name: "currentSpeciesCaughtOption",
         value: model.currentSpeciesCaughtOption,
@@ -151,30 +149,8 @@
             }
           }
         ]
-      }) }}
-    </div>
-    <div class="govuk-grid-column-one-third">
-        {{ govukAccordion({
-          id: "schedule1BirdExplanation",
-          items: [
-            {
-              heading: {
-                text: "What is a Schedule 1 bird?"
-              },
-              content: {
-                html: '' +
-                '<p class="govuk-body">' +
-                '  A Schedule 1 bird is a bird listed on' +
-                '  Schedule 1 of the Wildlife &amp Countryside Act 1981.' +
-                '  See all Schedule 1 birds <a target="_blank" href="https://www.nature.scot/protected-species-list-wca-schedules-1-1a-a1-2-3-and-4">here</a>' +
-                '</p>'
-              },
-              expanded: false
-            }
-          ]
         }) }}
-      </div>
-    </div>
+
       {{ govukInput({
         label: {
           text: "Number Caught"
@@ -193,7 +169,6 @@
           spellcheck: "false"
         }
       }) }}
-
 
       {{ govukRadios({
         idPrefix: "current-trap-type",
@@ -235,24 +210,38 @@
         }
       }) }}
 
-    {% endcall %}
+      {% endcall %}
 
-    {{ govukButton({
+      {{ govukButton({
       text: "Continue",
       classes: "naturescot-forward-button"
     }) }}
-    </div></div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+          {{ govukAccordion({
+          id: "schedule1BirdExplanation",
+          items: [
+            {
+              heading: {
+                text: "What is a Schedule 1 bird?"
+              },
+              content: {
+                html: '' +
+                '<p class="govuk-body">' +
+                '  A <a target="_blank" href="https://www.nature.scot/protected-species-list-wca-schedules-1-1a-a1-2-3-and-4">Schedule 1 bird (opens in new tab)</a> is a bird listed on' +
+                '  Schedule 1 of the Wildlife &amp Countryside Act 1981.' +
+                '</p>'
+              },
+              expanded: false
+            }
+          ]
+        }) }}
+        </div>
   </form>
 {% endblock %}
 {% block bodyEnd %}
   {{ super() }}
   <script type="text/javascript">
-  accessibleAutocomplete.enhanceSelectElement({
-    selectElement: document.querySelector('#current-species-caught'),
-    confirmOnBlur: false,
-    classes: "{% if model.currentSpeciesCaughtError %} govuk-form-group--error {% endif %}",
-    defaultValue: "",
-    showAllValues: true
-  })
+    accessibleAutocomplete.enhanceSelectElement({selectElement: document.querySelector('#current-species-caught'), confirmOnBlur: false, classes: "{% if model.currentSpeciesCaughtError %} govuk-form-group--error {% endif %}", defaultValue: "", showAllValues: true})
   </script>
 {% endblock %}
