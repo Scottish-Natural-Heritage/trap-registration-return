@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../config/http-request.js';
 import config from '../config/app.js';
 import {ReturnState} from './_base.js';
 

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import config from './app.js';
 
 const generalError = {
   status: 500,
@@ -34,6 +35,29 @@ const publicKeyResponse = {
   request: undefined
 };
 
+// A created-ok response to a 'return' post made against a registration.
+const postReturnResponse = {
+  status: 201,
+  statusText: 'OK',
+  data: {},
+  headers: {
+    location: config.apiEndpoint + '/registrations/-1/return/-1'
+  },
+  config: {},
+  request: undefined
+};
+
+// A straight-up, OK response. Used by us for mocking 'put' calls against a
+// registration's return.
+const putReturnResponse = {
+  status: 200,
+  statusText: 'OK',
+  data: {},
+  headers: {},
+  config: {},
+  request: undefined
+};
+
 // This is unused, but is useful for building URLs for testing. As long as the
 // app is started with TRR_TEST=true, then this token will validate as a 100
 // year long token for the trap registration number "-1".
@@ -53,6 +77,47 @@ const mockAxios = {
   get: async (url) => {
     if (url.endsWith('/trap-registration-api/v1/public-key')) {
       return Promise.resolve(publicKeyResponse);
+    }
+
+    return Promise.resolve(generalError);
+  },
+
+  /**
+   * Mock the post method from the axios library.
+   *
+   * This only supports posting to create a new return. Uses the hard-coded post
+   * response from above so the target registration is -1 and the created return
+   * is -1.
+   *
+   * @param {string} url The url to post to.
+   * @returns {Promise<any>} A fake response.
+   */
+  post: async (url) => {
+    if (url.startsWith(config.apiEndpoint + '/registrations/') && url.endsWith('/return')) {
+      return Promise.resolve(postReturnResponse);
+    }
+
+    return Promise.resolve(generalError);
+  },
+
+  /**
+   * Mock the put method from the axios library.
+   *
+   * As long as you wave a vaguely correct url at this method, you'll get a
+   * positive response.
+   *
+   * @param {string} url The url to put to.
+   * @param {any} body Only included to match the axios API.
+   * @returns {Promise<any>} A fake response.
+   */
+  put: async (url, body) => {
+    if (url.startsWith(config.apiEndpoint + '/registrations/') && url.includes('/return/')) {
+      // Copy the body back to the response so the linters don't complain about
+      // unused parameters.
+      const response = putReturnResponse;
+      response.data = body;
+
+      return Promise.resolve(response);
     }
 
     return Promise.resolve(generalError);
