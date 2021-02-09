@@ -3,6 +3,16 @@ window.addEventListener('load', (event) => {
 
   if (window.GOVUKFrontend) {
     window.GOVUKFrontend.initAll();
+  if(document.querySelector('#current-species-caught')) {
+    accessibleAutocomplete.enhanceSelectElement({
+      selectElement: document.querySelector('#current-species-caught'),
+      confirmOnBlur: false,
+      classes: "{% if model.currentSpeciesCaughtError %} govuk-form-group--error {% endif %}",
+      defaultValue: "",
+      showAllValues: true
+    })
+  }
+
   }
 
 });

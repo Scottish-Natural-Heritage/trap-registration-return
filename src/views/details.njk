@@ -1,11 +1,5 @@
 {% extends "_base.njk" %}
 
-{% block head %}
-  {{ super() }}
-  <link rel="stylesheet" href="{{pathPrefix}}/accessible-autocomplete/accessible-autocomplete.min.css">
-  <script src="{{pathPrefix}}/accessible-autocomplete/accessible-autocomplete.min.js"></script>
-{% endblock %}
-
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
@@ -238,10 +232,4 @@
         }) }}
         </div>
   </form>
-{% endblock %}
-{% block bodyEnd %}
-  {{ super() }}
-  <script type="text/javascript">
-    accessibleAutocomplete.enhanceSelectElement({selectElement: document.querySelector('#current-species-caught'), confirmOnBlur: false, classes: "{% if model.currentSpeciesCaughtError %} govuk-form-group--error {% endif %}", defaultValue: "", showAllValues: true})
-  </script>
 {% endblock %}
