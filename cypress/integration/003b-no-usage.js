@@ -22,6 +22,6 @@ describe('no usage page ', function () {
     // GET `/no-usage`
     cy.visit('/no-usage');
     // POST `/start`
-    cy.get('h1').should('contain', 'Meat Bait Return complete');
+    cy.get('h1').should('contain', 'You do not need to provide a return');
   });
 });
