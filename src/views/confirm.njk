@@ -13,9 +13,26 @@
 
     {{ govukSummaryList({
       rows: [
+         {
+          key: {
+            text: "Non-target species to report"
+          },
+          value: {
+            text: 'Yes' if model.targetSpecies === true else 'No'
+          },
+          actions: {
+            items: [
+              {
+                href: pathPrefix + "/target-species",
+                text: "Change",
+                visuallyHiddenText: "Target species"
+              }
+            ]
+          }
+        },
         {
           key: {
-            text: "Non target species caught"
+            text: "Non-target species caught"
           },
           value: {
             html: model.detailsListTable

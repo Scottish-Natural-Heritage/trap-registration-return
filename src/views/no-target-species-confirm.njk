@@ -8,12 +8,38 @@
 {% block content %}
   <form method="post">
     <h1 class="govuk-heading-xl">
-      Confirm the details of return
+      Confirm your nil return
     </h1>
 
-    <h2 class="govuk-heading-m">
-      You caught 0 non-target species.
-    </h2>
+ {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Non-target species to report"
+          },
+          value: {
+            text: 'Yes' if model.targetSpecies === true else 'No'
+          },
+          actions: {
+            items: [
+              {
+                href: pathPrefix + "/target-species",
+                text: "Change",
+                visuallyHiddenText: "Target species"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Non-target species caught"
+          },
+          value: {
+            text: "No Non-target species caught"
+          }
+        }
+      ]
+    }) }}
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
