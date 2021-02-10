@@ -102,6 +102,12 @@ router.use(
 
 router.use(
   Page({
+    path: 'no-target-species-success'
+  })
+);
+
+router.use(
+  Page({
     path: 'details-list',
     back: 'target-species',
     positiveForward: 'confirm',
@@ -125,13 +131,6 @@ router.use(
     back: 'details-list',
     positiveForward: 'success',
     controller: ConfirmController
-  })
-);
-
-router.use(
-  Page({
-    path: 'no-target-species-success',
-    back: 'no-target-species-confirm'
   })
 );
 
