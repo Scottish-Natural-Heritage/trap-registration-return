@@ -1,17 +1,24 @@
 {% extends "_base.njk" %}
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/panel/macro.njk" import govukPanel %}
 
 {% block content %}
-    {{ govukPanel({
-        titleText: "Meat Bait Return complete",
-        html: "Thank you for completing your meat bait return.<br>"
-      }) }}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        You do not need to provide a return
+      </h1>
       <p class="govuk-body">
-        Thank you for informing us that you did not use any meat bait traps this year.
+        You only need to provide a return if you have registered to use meat baits. For more information, please contact the NatureScot Licensing Team.
+      </p>
+      <p class="govuk-body">
+        Email:<br>
+        <strong class="govuk-!-font-weight-bold">
+          <a class="govuk-link" href="mailto:licensing@nature.scot">
+            licensing@nature.scot
+          </a>
+        </strong>
       </p>
 
     </div>
