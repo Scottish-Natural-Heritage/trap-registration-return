@@ -1,0 +1,32 @@
+{% extends "_base.njk" %}
+
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% block content %}
+  {{ govukPanel({
+        titleText: "Authentication complete",
+        html: "Please check your email.<br>"
+      }) }}
+  <p class="govuk-body">We have sent you an email.</p>
+  <h2 class="govuk-heading-m">What happens next</h2>
+  <p class="govuk-body">
+    You will receive an email containing a link that allows you to submit your
+    return.
+  </p>
+  <p  class="govuk-body">
+  If you do not receive an email you may have entered your details incorrectly.
+  Please try again and if the issue persists contact the licensing team.
+  </p>
+  <p class="govuk-body">
+          Email:<br>
+    <strong class="govuk-!-font-weight-bold">
+      <a class="govuk-link" href="mailto:licensing@nature.scot"> licensing@nature.scot</a>
+    </strong>
+  </p>
+
+  <p class="govuk-body">
+    <a class="govuk-link" href="http://gateway.snh.gov.uk/go/?id=40">
+      What do you think of this service?
+    </a>
+    (takes 30 seconds)
+  </p>
+{% endblock %}

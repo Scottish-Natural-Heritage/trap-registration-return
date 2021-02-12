@@ -1,0 +1,24 @@
+{% extends "_base.njk" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">
+    Meat bait return
+  </h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body">
+        You can now continue to provide your return.
+      </p>
+      <form method="post">
+        {{ govukButton({
+          text: "Continue",
+          classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8 naturescot-forward-button",
+          isStartButton: true
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

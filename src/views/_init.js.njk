@@ -1,0 +1,16 @@
+window.addEventListener('load', (event) => {
+  document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+
+  if (window.GOVUKFrontend) {
+    window.GOVUKFrontend.initAll();
+    if(document.querySelector('select#current-species-caught')) {
+      accessibleAutocomplete.enhanceSelectElement({
+        selectElement: document.querySelector('select#current-species-caught'),
+        confirmOnBlur: false,
+        classes: "{% if model.currentSpeciesCaughtError %} govuk-form-group--error {% endif %}",
+        defaultValue: "",
+        showAllValues: true
+      })
+    }
+  }
+});

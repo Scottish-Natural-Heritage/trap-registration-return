@@ -1,0 +1,54 @@
+{% extends "_base.njk" %}
+
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% block content %}
+
+  {% if model.targetSpeciesError %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [{
+        text: "Select yes if you have caught any non-target species",
+        href: "#target-species-error"
+      }]
+    }) }}
+  {% endif %}
+
+  <form method="post">
+
+    {{ govukRadios({
+      classes: "govuk-radios--inline",
+      idPrefix: "target-species",
+      name: "targetSpecies",
+      fieldset: {
+        legend: {
+          text: "Did you catch any non-target species?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--xl"
+        }
+      },
+      errorMessage: {
+        text: "Select yes if you have caught any non-target species"
+      } if model.targetSpeciesError,
+      items: [
+        {
+          value: "yes",
+          text: "Yes",
+          checked: model.targetSpecies === true
+        },
+        {
+          value: "no",
+          text: "No",
+          checked: model.targetSpecies === false
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Continue",
+      classes: "naturescot-forward-button"
+    }) }}
+  </form>
+
+{% endblock %}

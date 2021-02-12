@@ -1,0 +1,27 @@
+{% extends "_base.njk" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        You do not need to provide a return
+      </h1>
+      <p class="govuk-body">
+        You only need to provide a return if you have registered to use meat baits. For more information, please contact the NatureScot Licensing Team.
+      </p>
+      <p class="govuk-body">
+        Email:<br>
+        <strong class="govuk-!-font-weight-bold">
+          <a class="govuk-link" href="mailto:licensing@nature.scot">
+            licensing@nature.scot
+          </a>
+        </strong>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

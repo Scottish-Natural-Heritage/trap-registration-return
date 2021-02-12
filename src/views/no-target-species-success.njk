@@ -1,0 +1,32 @@
+{% extends "_base.njk" %}
+
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+
+{% block content %}
+  {{ govukPanel({
+        titleText: "Meat Bait Return complete",
+        html: "Thank you for completing your meat bait return<br>"
+      }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body">
+        Thank you for informing us that you did not catch any non-target species in your traps this year.
+      </p>
+
+    </div>
+  </div>
+    <p class="govuk-body">
+          Email:<br>
+    <strong class="govuk-!-font-weight-bold">
+      <a class="govuk-link" href="mailto:licensing@nature.scot">licensing@nature.scot</a>
+    </strong>
+  </p>
+  <p class="govuk-body">
+    <a class="govuk-link" href="http://gateway.snh.gov.uk/go/?id=40">
+      What do you think of this service?
+    </a>
+    (takes 30 seconds)
+  </p>
+{% endblock %}

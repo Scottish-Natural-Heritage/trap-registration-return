@@ -1,0 +1,53 @@
+{% extends "_base.njk" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% block content %}
+  {% if model.usageError %}
+    {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [{
+          text: "Select yes if you registered to use meat baits",
+          href: "#usage-error"
+        }]
+      }) }}
+  {% endif %}
+  <form method="post">
+    {{ govukRadios({
+      classes: "govuk-radios--inline",
+      idPrefix: "usage",
+      name: "usage",
+      fieldset: {
+        legend: {
+          text: "Did you register to use meat baits?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--xl"
+        }
+      },
+      hint: {
+      text: "The requirement to provide a return applies even if you did not use meat baits or catch any non-target species."
+      },
+      errorMessage: {
+        text: "Select yes if you registered to use meat baits"
+      } if model.usageError,
+      items:[
+        {
+          value: "yes",
+          text: "Yes",
+          checked: model.usage === true
+        },
+        {
+          value: "no",
+          text: "No",
+          checked: model.usage === false
+        }
+      ]
+    }) }}
+    {{ govukButton({
+      text: "Continue",
+      classes: "naturescot-forward-button"
+    }) }}
+  </form>
+{% endblock %}
