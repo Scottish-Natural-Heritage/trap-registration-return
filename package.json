@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "cypress": "^4.3.0",
+    "cypress": "^6.4.0",
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-jsdoc": "^22.1.0",
     "nodemon": "^2.0.2",
