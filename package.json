@@ -15,9 +15,13 @@
     "prestart": "npm run build",
     "start": "node --experimental-modules src/server.js",
     "dev": "TRR_PORT=3999 COOKIE_PREFIX=_ nodemon --exec \"npm run lint && npm run start\" -e js,njk,scss --ignore build/ --ignore dist/ --ignore cypress/",
-    "cy:run": "cypress run",
-    "test": "COOKIE_PREFIX=_ TRR_TEST=true start-server-and-test start http://localhost:3010/trap-registration-return/health cy:run",
-    "cy:open": "cypress open"
+    "test:e2e:open": "cypress open",
+    "test:e2e:run": "cypress run",
+    "test:e2e": "COOKIE_PREFIX=_ TRR_TEST=true start-server-and-test start http://localhost:3010/trap-registration-return/health test:e2e:run",
+    "test:a11y:open": "cypress open --config-file cypress.a11y.json",
+    "test:a11y:run": "cypress run --config-file cypress.a11y.json",
+    "test:a11y": "COOKIE_PREFIX=_ TRR_TEST=true start-server-and-test start http://localhost:3010/trap-registration-return/health test:a11y:run",
+    "test": "npm run test:e2e && npm run test:a11y"
   },
   "engines": {
     "node": "12.14.1",
