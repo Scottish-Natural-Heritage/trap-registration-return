@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://localhost:3010/trap-registration-return",
+  "integrationFolder": "cypress/a11y",
+  "screenshotsFolder": "cypress/screenshots-a11y",
+  "videosFolder": "cypress/videos-a11y"
+}
