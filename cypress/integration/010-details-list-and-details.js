@@ -1,11 +1,11 @@
-describe('details list page directly', function () {
-  it('should prevent access', function () {
+describe('details list page directly', () => {
+  it('should prevent access', () => {
     cy.visit('/details-list', {failOnStatusCode: false});
     cy.get('h1').should('contain', 'there is a problem with the service');
   });
 });
 
-describe('details list page ', function () {
+describe('details list page ', () => {
   beforeEach(() => {
     // GET `/login`
     cy.visit(
@@ -24,18 +24,18 @@ describe('details list page ', function () {
     // ~GET `/details-list`~
   });
 
-  it('should allow access if the user visits all the pages in order', function () {
+  it('should allow access if the user visits all the pages in order', () => {
     cy.visit('/details-list');
     cy.get('h1').should('contain', 'Details of non-target species');
   });
 
-  it('add button should navigate to details-add page', function () {
+  it('add button should navigate to details-add page', () => {
     cy.visit('/details-list');
     cy.get('#main-content form button.naturescot-button--add').click();
     cy.url().should('include', '/details');
   });
 
-  it('continue button should navigate to same page if nothing is added with errors', function () {
+  it('continue button should navigate to same page if nothing is added with errors', () => {
     cy.visit('/details-list');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/details-list');
@@ -45,7 +45,7 @@ describe('details list page ', function () {
     cy.get('form .govuk-form-group--error').should('contain', 'Add at least one non-target species');
   });
 
-  it('add button should navigate to add page enter empty form and see errors', function () {
+  it('add button should navigate to add page enter empty form and see errors', () => {
     cy.visit('/details-list');
     cy.get('#main-content form button.naturescot-button--add').click();
     cy.url().should('include', '/details');
@@ -60,7 +60,7 @@ describe('details list page ', function () {
       .and('contain', 'Select the trap type that was used');
   });
 
-  it('add button should navigate to add page enter a semi empty form (schedule1Birds) and see errors', function () {
+  it('add button should navigate to add page enter a semi empty form (schedule1Birds) and see errors', () => {
     cy.visit('/details-list');
     cy.get('#main-content form button.naturescot-button--add').click();
     cy.url().should('include', '/details');
@@ -77,7 +77,7 @@ describe('details list page ', function () {
     cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the non-target species caught');
   });
 
-  it('add button should navigate to add page enter a semi empty form (other species) and see errors', function () {
+  it('add button should navigate to add page enter a semi empty form (other species) and see errors', () => {
     cy.visit('/details-list');
     cy.get('#main-content form button.naturescot-button--add').click();
     cy.url().should('include', '/details');
@@ -94,7 +94,7 @@ describe('details list page ', function () {
     cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the name of the non-target species caught');
   });
 
-  it('add button should navigate to add page enter a semi empty form (other species) and see errors', function () {
+  it('add button should navigate to add page enter a semi empty form (other species) and see errors', () => {
     cy.visit('/details-list');
     cy.get('#main-content form button.naturescot-button--add').click();
     cy.url().should('include', '/details');
@@ -112,7 +112,7 @@ describe('details list page ', function () {
     cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the number of non-target species caught');
   });
 
-  it('main button should navigate to confirm page', function () {
+  it('main button should navigate to confirm page', () => {
     cy.visit('/details-list');
     cy.get('#main-content form button.naturescot-button--add').click();
     cy.url().should('include', '/details');
