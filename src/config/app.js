@@ -5,7 +5,7 @@ const config = Object.freeze({
   apiEndpoint: process.env.TR_API_URL || 'http://localhost:3001/trap-registration-api/v1',
   hostPrefix: process.env.TRR_HOST_PREFIX || `http://localhost:${process.env.TRR_PORT || 3010}`,
   pathPrefix: process.env.TRR_PATH_PREFIX ? `/${process.env.TRR_PATH_PREFIX}` : '/trap-registration-return',
-  cookiePrefix: process.env.COOKIE_PREFIX || '_'
+  cookiePrefix: process.env.COOKIE_PREFIX || '__Secure'
 });
 
 export {config as default};
