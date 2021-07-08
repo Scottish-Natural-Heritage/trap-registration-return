@@ -98,8 +98,6 @@ describe('details page ', () => {
     cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the non-target species caught');
   });
 
-
-
   it('add button on list page should navigate to add page and submit semi-empty form (other species) and see errors', () => {
     cy.visit('/details');
 

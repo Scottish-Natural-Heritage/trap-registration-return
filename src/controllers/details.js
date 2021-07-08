@@ -144,7 +144,7 @@ const detailsController = (request) => {
   }
 
   // Set current index to -1 if it hasn't been set yet.
-  if (!request.session.currentIndex) {
+  if (request.session.currentIndex === undefined) {
     request.session.currentIndex = -1;
   }
 
