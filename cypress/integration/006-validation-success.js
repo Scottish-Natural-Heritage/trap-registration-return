@@ -1,11 +1,11 @@
-describe('Verification Success page directly', () => {
-  it('should prevent access', () => {
+describe('Verification Success page directly', function () {
+  it('should prevent access', function () {
     cy.visit('/postcode', {failOnStatusCode: false});
     cy.get('h1').should('contain', 'there is a problem with the service');
   });
 });
 
-describe('Verification Success page ', () => {
+describe('Verification Success page ', function () {
   beforeEach(() => {
     // GET `/start`
     cy.visit('/start');
@@ -25,7 +25,7 @@ describe('Verification Success page ', () => {
     // ~GET `/verification-success`
   });
 
-  it('should allow access if the user visits all the pages in order', () => {
+  it('should allow access if the user visits all the pages in order', function () {
     cy.visit('/verification-success');
     cy.get('p').should('contain', 'We have sent you an email');
   });

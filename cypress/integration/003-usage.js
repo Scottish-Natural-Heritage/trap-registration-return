@@ -1,11 +1,11 @@
-describe('usage page directly', () => {
-  it('should prevent access', () => {
+describe('usage page directly', function () {
+  it('should prevent access', function () {
     cy.visit('/usage', {failOnStatusCode: false});
     cy.get('h1').should('contain', 'there is a problem with the service');
   });
 });
 
-describe('usage page ', () => {
+describe('usage page ', function () {
   beforeEach(() => {
     // GET `/start`
     cy.visit('/start');
@@ -14,26 +14,26 @@ describe('usage page ', () => {
     // ~GET `/usage`~
   });
 
-  it('should allow access if the user visits all the pages in order', () => {
+  it('should allow access if the user visits all the pages in order', function () {
     cy.visit('/usage');
     cy.get('h1').should('contain', 'Did you register to use meat baits?');
   });
 
-  it('main button should navigate to trap registration number', () => {
+  it('main button should navigate to trap registration number', function () {
     cy.visit('/usage');
     cy.get('#main-content form input[type="radio"][value="yes"]').click();
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/trap-registration-number');
   });
 
-  it('no button should navigate to trap no-usage page', () => {
+  it('no button should navigate to trap no-usage page', function () {
     cy.visit('/usage');
     cy.get('#main-content form input[type="radio"][value="no"]').click();
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/no-usage');
   });
 
-  it('no input should navigate to usage page', () => {
+  it('no input should navigate to usage page', function () {
     cy.visit('/usage');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/usage');

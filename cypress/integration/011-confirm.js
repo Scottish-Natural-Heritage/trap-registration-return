@@ -1,11 +1,11 @@
-describe('confirm page directly', () => {
-  it('should prevent access', () => {
+describe('confirm page directly', function () {
+  it('should prevent access', function () {
     cy.visit('/confirm', {failOnStatusCode: false});
     cy.get('h1').should('contain', 'there is a problem with the service');
   });
 });
 
-describe('confirm page ', () => {
+describe('confirm page ', function () {
   beforeEach(() => {
     // GET `/login`
     cy.visit(
@@ -21,6 +21,9 @@ describe('confirm page ', () => {
     cy.get('#main-content form input[type="radio"][value="yes"]').click();
     // POST `/target-species`
     cy.get('#main-content form button.naturescot-forward-button').click();
+    // ~GET `/details-list`~
+    // CLICK add
+    cy.get('#main-content form button.naturescot-button--add').click();
     // ~GET `/details`~
     cy.get('input[type="text"]#current-grid-reference').type('NO 08529 29128', {delay: 1});
     cy.get('#main-content form input[type="radio"][value="otherSpecies"]').click();
@@ -36,7 +39,7 @@ describe('confirm page ', () => {
     // ~GET `/confirm`~
   });
 
-  it('should allow access if the user visits all the pages in order', () => {
+  it('should allow access if the user visits all the pages in order', function () {
     cy.visit('/confirm');
     cy.get('h1').should('contain', 'Confirm the details of your return');
   });
