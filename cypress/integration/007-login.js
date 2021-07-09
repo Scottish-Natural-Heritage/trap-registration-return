@@ -1,5 +1,5 @@
-describe('Login page', () => {
-  it('with a valid token then main button should navigate to usage', () => {
+describe('Login page', function () {
+  it('with a valid token then main button should navigate to usage', function () {
     cy.visit(
       '/login?token=' +
         'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.' +
@@ -10,7 +10,7 @@ describe('Login page', () => {
     cy.url().should('include', '/target-species');
   });
 
-  it('with an unsigned token then main button should prevent access', () => {
+  it('with an unsigned token then main button should prevent access', function () {
     cy.visit(
       '/login?token=' +
         'ewogICJhbGciOiAibm9uZSIsCiAgInR5cCI6ICJKV1QiCn0.' +
@@ -20,7 +20,7 @@ describe('Login page', () => {
     cy.url().should('include', '/error-login');
   });
 
-  it('with a tampered token then main button should prevent access', () => {
+  it('with a tampered token then main button should prevent access', function () {
     cy.visit(
       '/login?token=' +
         'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.' +
