@@ -1,11 +1,11 @@
-describe('target species page directly', function () {
-  it('should prevent access', function () {
+describe('target species page directly', () => {
+  it('should prevent access', () => {
     cy.visit('/target-species', {failOnStatusCode: false});
     cy.get('h1').should('contain', 'there is a problem with the service');
   });
 });
 
-describe('target species page ', function () {
+describe('target species page ', () => {
   beforeEach(() => {
     // GET `/login`
     cy.visit(
@@ -19,12 +19,12 @@ describe('target species page ', function () {
     // ~GET `/target-species`~
   });
 
-  it('should allow access if the user visits all the pages in order', function () {
+  it('should allow access if the user visits all the pages in order', () => {
     cy.visit('/target-species');
     cy.get('h1').should('contain', 'Did you catch any non-target species?');
   });
 
-  it('main button should navigate to the same page with errors', function () {
+  it('main button should navigate to the same page with errors', () => {
     cy.visit('/target-species');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/target-species');
@@ -33,10 +33,10 @@ describe('target species page ', function () {
     cy.get('.govuk-error-summary ul li a').should('contain', 'Select yes if you have caught any non-target species');
   });
 
-  it('main button should navigate to details list page', function () {
+  it('main button should navigate to details page', () => {
     cy.visit('/target-species');
     cy.get('#main-content form input[type="radio"][value="yes"]').click();
     cy.get('#main-content form button.naturescot-forward-button').click();
-    cy.url().should('include', '/details-list');
+    cy.url().should('include', '/details');
   });
 });
