@@ -1,5 +1,4 @@
 import {ReturnState} from './_base.js';
-import {nonTargetSpecies} from './_util.js';
 
 const validSpecies = (species, speciesArray) => {
   if (species === undefined) {
@@ -96,8 +95,6 @@ const validNumber = (number) => {
 };
 
 const detailsController = (request) => {
-  request.session.nonTargetSpecies = nonTargetSpecies();
-
   request.session.currentGridReferenceError = false;
   request.session.currentSpeciesCaughtOptionError = false;
   request.session.currentSpeciesCaughtError = false;
