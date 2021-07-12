@@ -33,10 +33,10 @@ describe('target species page ', () => {
     cy.get('.govuk-error-summary ul li a').should('contain', 'Select yes if you have caught any non-target species');
   });
 
-  it('main button should navigate to details list page', () => {
+  it('main button should navigate to details page', () => {
     cy.visit('/target-species');
     cy.get('#main-content form input[type="radio"][value="yes"]').click();
     cy.get('#main-content form button.naturescot-forward-button').click();
-    cy.url().should('include', '/details-list');
+    cy.url().should('include', '/details');
   });
 });

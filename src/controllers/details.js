@@ -146,6 +146,11 @@ const detailsController = (request) => {
     return ReturnState.Error;
   }
 
+  // Set current index to -1 if it hasn't been set yet.
+  if (request.session.currentIndex === undefined) {
+    request.session.currentIndex = -1;
+  }
+
   if (request.session.currentIndex === -1) {
     const newDetail = {
       gridReference: formatGridReference(request.body.currentGridReference),
