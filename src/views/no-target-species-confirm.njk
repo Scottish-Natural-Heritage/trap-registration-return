@@ -8,7 +8,7 @@
 {% block content %}
   <form method="post">
     <h1 class="govuk-heading-xl">
-      Confirm your nil return
+      Confirm the registrant's nil return
     </h1>
 
  {{ govukSummaryList({
@@ -28,14 +28,6 @@
                 visuallyHiddenText: "Target species"
               }
             ]
-          }
-        },
-        {
-          key: {
-            text: "Non-target species caught"
-          },
-          value: {
-            text: "No non-target species caught"
           }
         }
       ]

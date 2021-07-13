@@ -1,4 +1,5 @@
 import {ReturnState} from './_base.js';
+import {nonTargetSpecies} from './_util.js';
 
 const targetSpeciesController = async (request) => {
   // Did the user tell us they have caught some non target species.
@@ -7,6 +8,8 @@ const targetSpeciesController = async (request) => {
     request.session.targetSpeciesError = false;
     // Save the decision.
     request.session.targetSpecies = true;
+    // Needed to populate the schedule 1 bird select.
+    request.session.nonTargetSpecies = nonTargetSpecies();
     // Follow the 'happy path'.
     return ReturnState.Positive;
   }

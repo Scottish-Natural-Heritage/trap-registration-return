@@ -1,5 +1,4 @@
 import {ReturnState} from './_base.js';
-import {nonTargetSpecies} from './_util.js';
 
 const removeIndex = (array, index) => {
   const before = array.slice(0, index);
@@ -45,7 +44,6 @@ const buildDetailsList = (session) => {
 };
 
 const detailsListController = (request) => {
-  request.session.nonTargetSpecies = nonTargetSpecies();
   const formKeys = Object.keys(request.body);
 
   const editMode = formKeys.some((key) => key.startsWith('edit-'));
