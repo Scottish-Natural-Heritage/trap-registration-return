@@ -2,6 +2,7 @@ import {ReturnState} from './_base.js';
 
 import config from '../config/app.js';
 import axios from '../config/http-request.js';
+import utils from 'naturescot-utils';
 
 const cleanInput = (body) => {
   return {
@@ -17,14 +18,9 @@ const postcodeController = async (request) => {
   // Clear error state
   request.session.postcodeError = false;
 
-  // Input validation of postcode ensures between 5 and 7 characters
-  if (
-    request.session.postcode === undefined ||
-    request.session.postcode.trim() === '' ||
-    request.session.postcode.trim().length < 5
-  ) {
-    request.session.postcodeError = true;
-  }
+  // Call natureScot utils to check validity of postcode
+  request.session.postcodeError =
+    request.session.postcode === undefined ? true : !utils.postalAddress.isaRealUkPostcode(request.session.postcode);
 
   // Set error state
   if (request.session.postcodeError) {
