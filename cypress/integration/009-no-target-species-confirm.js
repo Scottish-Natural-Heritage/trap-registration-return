@@ -25,6 +25,6 @@ describe('no target species confirm page ', () => {
 
   it('should allow access if the user visits all the pages in order', () => {
     cy.visit('/no-target-species-confirm');
-    cy.get('h1').should('contain', "Confirm the registrant's nil return");
+    cy.get('h1').should('contain', "Confirm your nil return");
   });
 });
