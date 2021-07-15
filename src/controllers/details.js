@@ -9,7 +9,11 @@ const validSpecies = (species, speciesArray) => {
     return false;
   }
 
-  return speciesArray.some((x) => x.value === species);
+  if (!speciesArray.find((x) => x.value === species)) {
+    return false;
+  }
+
+  return true;
 };
 
 const validOtherSpecies = (species) => {
@@ -141,11 +145,6 @@ const detailsController = (request) => {
     request.session.currentComment = request.body.currentComment;
 
     return ReturnState.Error;
-  }
-
-  // Set current index to -1 if it hasn't been set yet.
-  if (request.session.currentIndex === undefined) {
-    request.session.currentIndex = -1;
   }
 
   if (request.session.currentIndex === -1) {

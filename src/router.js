@@ -85,7 +85,7 @@ router.use(
   Page({
     path: 'target-species',
     back: 'login',
-    positiveForward: 'details',
+    positiveForward: 'details-list',
     negativeForward: 'no-target-species-confirm',
     controller: TargetSpeciesController
   })
@@ -109,7 +109,7 @@ router.use(
 router.use(
   Page({
     path: 'details-list',
-    back: 'details',
+    back: 'target-species',
     positiveForward: 'confirm',
     secondaryForward: 'details',
     controller: DetailsListController
@@ -119,7 +119,7 @@ router.use(
 router.use(
   Page({
     path: 'details',
-    back: 'target-species',
+    back: 'details-list',
     positiveForward: 'details-list',
     controller: DetailsController
   })
