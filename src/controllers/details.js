@@ -9,7 +9,7 @@ const validSpecies = (species, speciesArray) => {
     return false;
   }
 
-  if (!speciesArray.find((x) => x.value === species)) {
+  if (!speciesArray.some((x) => x.value === species)) {
     return false;
   }
 

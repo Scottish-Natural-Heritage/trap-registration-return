@@ -1,11 +1,11 @@
-describe('confirm page directly', function () {
-  it('should prevent access', function () {
+describe('confirm page directly', () => {
+  it('should prevent access', () => {
     cy.visit('/confirm', {failOnStatusCode: false});
     cy.get('h1').should('contain', 'there is a problem with the service');
   });
 });
 
-describe('confirm page ', function () {
+describe('confirm page ', () => {
   beforeEach(() => {
     // GET `/login`
     cy.visit(
@@ -36,7 +36,7 @@ describe('confirm page ', function () {
     // ~GET `/confirm`~
   });
 
-  it('should allow access if the user visits all the pages in order', function () {
+  it('should allow access if the user visits all the pages in order', () => {
     cy.visit('/confirm');
     cy.get('h1').should('contain', 'Confirm the details of your return');
   });
