@@ -21,9 +21,6 @@ describe('confirm page ', function () {
     cy.get('#main-content form input[type="radio"][value="yes"]').click();
     // POST `/target-species`
     cy.get('#main-content form button.naturescot-forward-button').click();
-    // ~GET `/details-list`~
-    // CLICK add
-    cy.get('#main-content form button.naturescot-button--add').click();
     // ~GET `/details`~
     cy.get('input[type="text"]#current-grid-reference').type('NO 08529 29128', {delay: 1});
     cy.get('#main-content form input[type="radio"][value="otherSpecies"]').click();
