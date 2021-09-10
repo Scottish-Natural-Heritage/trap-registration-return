@@ -81,8 +81,8 @@ const detailsListController = (request) => {
   }
 
   if (deleteMode) {
-    const deleteKeys = formKeys.find((key) => key.startsWith('delete-'));
-    const deleteIndex = Number.parseInt(deleteKeys.split('delete-')[1], 10);
+    const deleteKey = formKeys.find((key) => key.startsWith('delete-'));
+    const deleteIndex = Number.parseInt(deleteKey.split('delete-')[1], 10);
 
     request.session.detailsList = removeIndex(request.session.detailsList, deleteIndex);
 
