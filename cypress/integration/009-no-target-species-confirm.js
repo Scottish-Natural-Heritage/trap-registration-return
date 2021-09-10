@@ -1,11 +1,11 @@
-describe('no target species confirm page directly', function () {
-  it('should prevent access', function () {
+describe('no target species confirm page directly', () => {
+  it('should prevent access', () => {
     cy.visit('/no-target-species-confirm', {failOnStatusCode: false});
     cy.get('h1').should('contain', 'there is a problem with the service');
   });
 });
 
-describe('no target species confirm page ', function () {
+describe('no target species confirm page ', () => {
   beforeEach(() => {
     // GET `/login`
     cy.visit(
@@ -23,7 +23,7 @@ describe('no target species confirm page ', function () {
     cy.get('#main-content form button.naturescot-forward-button').click();
   });
 
-  it('should allow access if the user visits all the pages in order', function () {
+  it('should allow access if the user visits all the pages in order', () => {
     cy.visit('/no-target-species-confirm');
     cy.get('h1').should('contain', 'Confirm your nil return');
   });
