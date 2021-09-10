@@ -52,8 +52,8 @@ const detailsListController = (request) => {
   const continueMode = formKeys.filter((key) => key.startsWith('continue')).length === 1;
 
   if (editMode) {
-    const editKeys = formKeys.find((key) => key.startsWith('edit-'));
-    const editIndex = Number.parseInt(editKeys[0].split('edit-')[1], 10);
+    const editKey = formKeys.find((key) => key.startsWith('edit-'));
+    const editIndex = Number.parseInt(editKey.split('edit-')[1], 10);
 
     request.session.currentIndex = editIndex;
 
@@ -82,7 +82,7 @@ const detailsListController = (request) => {
 
   if (deleteMode) {
     const deleteKeys = formKeys.find((key) => key.startsWith('delete-'));
-    const deleteIndex = Number.parseInt(deleteKeys[0].split('delete-')[1], 10);
+    const deleteIndex = Number.parseInt(deleteKeys.split('delete-')[1], 10);
 
     request.session.detailsList = removeIndex(request.session.detailsList, deleteIndex);
 
