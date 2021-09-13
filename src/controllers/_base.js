@@ -168,16 +168,30 @@ const Page = (options) => {
     let decision;
     try {
       decision = await options.controller(request, options);
-      if (decision === ReturnState.Positive) {
-        response.redirect(`${config.pathPrefix}/${options.positiveForward}`);
-      } else if (decision === ReturnState.Negative) {
-        response.redirect(`${config.pathPrefix}/${options.negativeForward}`);
-      } else if (decision === ReturnState.Secondary) {
-        response.redirect(`${config.pathPrefix}/${options.secondaryForward}`);
-      } else if (decision === ReturnState.Tertiary) {
-        response.redirect(`${config.pathPrefix}/${options.tertiaryForward}`);
-      } else {
-        renderPage(request, response, options);
+      switch (decision) {
+        case ReturnState.Positive: {
+          response.redirect(`${config.pathPrefix}/${options.positiveForward}`);
+          break;
+        }
+
+        case ReturnState.Negative: {
+          response.redirect(`${config.pathPrefix}/${options.negativeForward}`);
+          break;
+        }
+
+        case ReturnState.Secondary: {
+          response.redirect(`${config.pathPrefix}/${options.secondaryForward}`);
+          break;
+        }
+
+        case ReturnState.Tertiary: {
+          response.redirect(`${config.pathPrefix}/${options.tertiaryForward}`);
+          break;
+        }
+
+        default: {
+          renderPage(request, response, options);
+        }
       }
     } catch (error) {
       console.log(error);

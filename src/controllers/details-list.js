@@ -3,7 +3,7 @@ import {ReturnState} from './_base.js';
 const removeIndex = (array, index) => {
   const before = array.slice(0, index);
   const after = array.slice(index + 1, array.length);
-  return before.concat(after);
+  return [...before, ...after];
 };
 
 const buildDetailsList = (session) => {
@@ -23,7 +23,7 @@ const buildDetailsList = (session) => {
       <tbody class="govuk-table__body">
   `);
 
-  session.detailsList.forEach((nonTargetSpecies) => {
+  for (const nonTargetSpecies of session.detailsList) {
     table.push(`
       <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__header">${nonTargetSpecies.gridReference}</th>
@@ -33,7 +33,7 @@ const buildDetailsList = (session) => {
         <td class="govuk-table__cell">${nonTargetSpecies.comment}</td>
       </tr>
     `);
-  });
+  }
 
   table.push(`
       </tbody>
@@ -52,8 +52,8 @@ const detailsListController = (request) => {
   const continueMode = formKeys.filter((key) => key.startsWith('continue')).length === 1;
 
   if (editMode) {
-    const editKeys = formKeys.filter((key) => key.startsWith('edit-'));
-    const editIndex = Number.parseInt(editKeys[0].split('edit-')[1], 10);
+    const editKey = formKeys.find((key) => key.startsWith('edit-'));
+    const editIndex = Number.parseInt(editKey.split('edit-')[1], 10);
 
     request.session.currentIndex = editIndex;
 
@@ -81,8 +81,8 @@ const detailsListController = (request) => {
   }
 
   if (deleteMode) {
-    const deleteKeys = formKeys.filter((key) => key.startsWith('delete-'));
-    const deleteIndex = Number.parseInt(deleteKeys[0].split('delete-')[1], 10);
+    const deleteKey = formKeys.find((key) => key.startsWith('delete-'));
+    const deleteIndex = Number.parseInt(deleteKey.split('delete-')[1], 10);
 
     request.session.detailsList = removeIndex(request.session.detailsList, deleteIndex);
 
