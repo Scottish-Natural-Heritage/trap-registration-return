@@ -1,3 +1,4 @@
+import process from 'node:process';
 import axios from 'axios';
 import config from './app.js';
 
@@ -74,12 +75,12 @@ const mockAxios = {
    * @param {string} url The url to get.
    * @returns {Promise<any>} A fake response.
    */
-  get: async (url) => {
+  async get(url) {
     if (url.endsWith('/trap-registration-api/v1/public-key')) {
-      return Promise.resolve(publicKeyResponse);
+      return publicKeyResponse;
     }
 
-    return Promise.resolve(generalError);
+    return generalError;
   },
 
   /**
@@ -92,12 +93,12 @@ const mockAxios = {
    * @param {string} url The url to post to.
    * @returns {Promise<any>} A fake response.
    */
-  post: async (url) => {
+  async post(url) {
     if (url.startsWith(config.apiEndpoint + '/registrations/') && url.endsWith('/return')) {
-      return Promise.resolve(postReturnResponse);
+      return postReturnResponse;
     }
 
-    return Promise.resolve(generalError);
+    return generalError;
   },
 
   /**
@@ -110,17 +111,17 @@ const mockAxios = {
    * @param {any} body Only included to match the axios API.
    * @returns {Promise<any>} A fake response.
    */
-  put: async (url, body) => {
+  async put(url, body) {
     if (url.startsWith(config.apiEndpoint + '/registrations/') && url.includes('/return/')) {
       // Copy the body back to the response so the linters don't complain about
       // unused parameters.
       const response = putReturnResponse;
       response.data = body;
 
-      return Promise.resolve(response);
+      return response;
     }
 
-    return Promise.resolve(generalError);
+    return generalError;
   }
 };
 

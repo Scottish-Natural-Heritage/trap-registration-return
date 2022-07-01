@@ -1,6 +1,5 @@
-'use strict';
-
 // Load the config.
+import process from 'node:process';
 import config from './config/app.js';
 import {counterpart100yearToken} from './config/http-request.js';
 

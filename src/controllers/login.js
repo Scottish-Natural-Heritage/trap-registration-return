@@ -1,8 +1,8 @@
-import {ReturnState} from './_base.js';
-import config from '../config/app.js';
-import axios from '../config/http-request.js';
 import jwt from 'jsonwebtoken';
 import jwkToPem from 'jwk-to-pem';
+import config from '../config/app.js';
+import axios from '../config/http-request.js';
+import {ReturnState} from './_base.js';
 
 /**
  * Get the TR-API's public key.
