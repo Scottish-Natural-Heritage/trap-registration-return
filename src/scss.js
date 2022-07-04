@@ -1,6 +1,4 @@
-'use strict';
-
-import {readFileSync, writeFileSync} from 'fs';
+import {readFileSync, writeFileSync} from 'node:fs';
 import sass from 'sass';
 import packageImporter from 'node-sass-package-importer';
 
@@ -12,9 +10,7 @@ const lines = readFileSync('src/main.scss').toString().split('\n');
 // Fill the place-holder line with a correct path.
 for (const l in lines) {
   if (lines[l].startsWith('$path-prefix:')) {
-    /* eslint-disable unicorn/string-content */
     lines[l] = `$path-prefix: '${config.pathPrefix}';`;
-    /* eslint-enable unicorn/string-content */
   }
 }
 
