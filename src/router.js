@@ -1,19 +1,19 @@
 import express from 'express';
-const router = express.Router();
-
 // Import all the controllers.
 import {Page} from './controllers/_base.js';
 import StartController from './controllers/start.js';
 import UsageController from './controllers/usage.js';
 import TrapRegistrationNumberController from './controllers/trap-registration-number.js';
 import PostcodeController from './controllers/postcode.js';
-
 import LoginController from './controllers/login.js';
 import TargetSpeciesController from './controllers/target-species.js';
 import DetailsListController from './controllers/details-list.js';
 import DetailsController from './controllers/details.js';
 import ConfirmController from './controllers/confirm.js';
 import NoTargetSpeciesConfirmController from './controllers/no-target-species-confirm.js';
+
+const router = express.Router();
+
 // Configure all of the pages and routes.
 // First half of application/
 router.use(

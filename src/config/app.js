@@ -1,3 +1,4 @@
+import process from 'node:process';
 // Grab our config from the env vars, or set some defaults if they're missing.
 const config = Object.freeze({
   port: process.env.TRR_PORT || '3010',
