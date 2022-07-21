@@ -1,0 +1,8 @@
+{% extends "_base.njk" %}
+
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% block content %}
+  {{ govukPanel({
+        titleText: "You have submitted a return"
+      }) }}
+{% endblock %}
