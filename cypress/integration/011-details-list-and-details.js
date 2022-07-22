@@ -16,11 +16,6 @@ describe('details page ', () => {
     );
     // POST `/login`
     cy.get('#main-content form button.naturescot-forward-button').click();
-    // ~GET `/target-species`~
-    // CLICK yes
-    cy.get('#main-content form input[type="radio"][value="yes"]').click();
-    // POST `/target-species`
-    cy.get('#main-content form button.naturescot-forward-button').click();
     // ~GET `/details`~
   });
 
@@ -153,6 +148,6 @@ describe('details page ', () => {
     cy.url().should('include', '/details-list');
 
     cy.get('#main-content form button.naturescot-forward-button').click();
-    cy.url().should('include', '/confirm');
+    cy.url().should('include', '/check-answers');
   });
 });

@@ -7,7 +7,7 @@ describe('Login page', () => {
         'XSHX6QB8robVaEuXVeHKbBed13uAdWvLBaNeGCYPAWWlw7Fm7bafXMPUQQE69TNc8DbjUgaRDxKvS2ju5uZziw'
     );
     cy.get('#main-content form button.naturescot-forward-button').click();
-    cy.url().should('include', '/target-species');
+    cy.url().should('include', '/year');
   });
 
   it('with an unsigned token then main button should prevent access', () => {

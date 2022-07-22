@@ -1,11 +1,11 @@
-describe('no target species confirm page directly', () => {
+describe('year page directly', () => {
   it('should prevent access', () => {
-    cy.visit('/no-target-species-confirm', {failOnStatusCode: false});
+    cy.visit('/year', {failOnStatusCode: false});
     cy.get('h1').should('contain', 'there is a problem with the service');
   });
 });
 
-describe('no target species confirm page ', () => {
+describe('year page ', () => {
   beforeEach(() => {
     // GET `/login`
     cy.visit(
@@ -16,15 +16,18 @@ describe('no target species confirm page ', () => {
     );
     // POST `/login`
     cy.get('#main-content form button.naturescot-forward-button').click();
-    // ~GET `/target-species`~
-    // CLICK no
-    cy.get('#main-content form input[type="radio"][value="no"]').click();
-    // POST `/no-target-species-confirm`
-    cy.get('#main-content form button.naturescot-forward-button').click();
+    // ~GET `/year`~
   });
 
   it('should allow access if the user visits all the pages in order', () => {
-    cy.visit('/no-target-species-confirm');
-    cy.get('h1').should('contain', 'Confirm your nil return');
+    cy.visit('/year');
+    cy.get('h1').should('contain', 'What year is your return for?');
+  });
+
+  it('main button should navigate to meat-baits-in-traps page', () => {
+    cy.visit('/year');
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    cy.url().should('include', '/meat-baits-in-traps');
+    cy.get('h1').should('contain', 'Did you use meat bait in your traps?');
   });
 });
