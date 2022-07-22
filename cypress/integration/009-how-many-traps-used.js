@@ -16,6 +16,10 @@ describe('how-many-traps-used page ', () => {
     );
     // POST `/login`
     cy.get('#main-content form button.naturescot-forward-button').click();
+    // ~GET `/year`~
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    // ~GET `/meat-baits-in-traps`~
+    cy.get('#main-content form button.naturescot-forward-button').click();
     // ~GET `/how-many-traps-used`~
   });
 
@@ -27,6 +31,7 @@ describe('how-many-traps-used page ', () => {
   it('main button should navigate to target species page', () => {
     cy.visit('/how-many-traps-used');
     cy.get('#main-content form button.naturescot-forward-button').click();
+
     cy.url().should('include', '/target-species');
     cy.get('h1').should('contain', 'Did you catch any non-target species?');
   });

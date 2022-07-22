@@ -16,6 +16,17 @@ describe('meat-baits-in-traps page ', () => {
     );
     // POST `/login`
     cy.get('#main-content form button.naturescot-forward-button').click();
+    // ~GET `/year`~
+  });
+
+  it('should allow access if the user visits all the pages in order', () => {
+    cy.visit('/year');
+    cy.get('h1').should('contain', 'What year is your return for?');
+  });
+
+  it('main button should navigate to meat-baits-in-traps page', () => {
+    cy.visit('/year');
+    cy.get('#main-content form button.naturescot-forward-button').click();
     // ~GET `/meat-baits-in-traps`~
   });
 
@@ -24,9 +35,10 @@ describe('meat-baits-in-traps page ', () => {
     cy.get('h1').should('contain', 'Did you use meat bait in your traps?');
   });
 
-  it('main button should navigate to how-many-traps-used page', () => {
+  it('main button should navigate to how many traps used page', () => {
     cy.visit('/meat-baits-in-traps');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/how-many-traps-used');
+    cy.get('h1').should('contain', 'How many traps did you use meat baits in?');
   });
 });

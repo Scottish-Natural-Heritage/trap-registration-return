@@ -16,7 +16,15 @@ describe('target species page ', () => {
     );
     // POST `/login`
     cy.get('#main-content form button.naturescot-forward-button').click();
-    // ~GET `/target-species`~
+    // ~GET `/year`~
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    // ~GET `/meat-baits-in-traps`~
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    // ~GET `/how-many-traps-used`~
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    // CLICK yes
+    cy.get('#main-content form input[type="radio"][value="yes"]').click();
+    // POST `/target-species`
   });
 
   it('should allow access if the user visits all the pages in order', () => {
