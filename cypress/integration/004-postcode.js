@@ -12,10 +12,6 @@ describe('Postcode page ', () => {
 
     // POST `/start`
     cy.get('#main-content form button.naturescot-forward-button').click();
-    // ~GET `/usage`~
-    // POST `/usage`
-    cy.get('#main-content form input[type="radio"][value="yes"]').click();
-    cy.get('#main-content form button.naturescot-forward-button').click();
     // ~GET `/trap-registration-number`~
     cy.get('input').type('12345');
     // POST `/trap-registration-number`

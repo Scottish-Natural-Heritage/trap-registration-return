@@ -1,11 +1,11 @@
-describe('confirm page directly', () => {
+describe('check answers page directly', () => {
   it('should prevent access', () => {
-    cy.visit('/confirm', {failOnStatusCode: false});
+    cy.visit('/check-answers', {failOnStatusCode: false});
     cy.get('h1').should('contain', 'there is a problem with the service');
   });
 });
 
-describe('confirm page ', () => {
+describe('check-answers page ', () => {
   beforeEach(() => {
     // GET `/login`
     cy.visit(
@@ -16,7 +16,12 @@ describe('confirm page ', () => {
     );
     // POST `/login`
     cy.get('#main-content form button.naturescot-forward-button').click();
-    // ~GET `/target-species`~
+    // ~GET `/year`~
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    // ~GET `/meat-baits-in-traps`~
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    // ~GET `/how-many-traps-used`~
+    cy.get('#main-content form button.naturescot-forward-button').click();
     // CLICK yes
     cy.get('#main-content form input[type="radio"][value="yes"]').click();
     // POST `/target-species`
@@ -33,11 +38,18 @@ describe('confirm page ', () => {
     // ~GET `/details-list`~
     // POST `/details-list`
     cy.get('#main-content form button.naturescot-forward-button').click();
-    // ~GET `/confirm`~
+    // ~GET `/check-answers`~
   });
 
   it('should allow access if the user visits all the pages in order', () => {
-    cy.visit('/confirm');
-    cy.get('h1').should('contain', 'Confirm the details of your return');
+    cy.visit('/check-answers');
+    cy.get('h1').should('contain', 'Check your answers before sending');
+  });
+
+  it('main button should navigate to submitted a return page', () => {
+    cy.visit('/check-answers');
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    cy.url().should('include', '/submitted-return-success');
+    cy.get('h1').should('contain', 'You have submitted a return');
   });
 });

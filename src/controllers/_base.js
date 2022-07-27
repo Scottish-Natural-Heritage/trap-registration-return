@@ -45,7 +45,10 @@ const saveVisitedPage = (session, page) => {
 const guardAllows = (session, options) => {
   // Unless the user has a completed licence number they are not allowed to
   // visit a success page.
-  if (session.loggedInRegNo === undefined && ['no-target-species-success', 'success'].includes(options.path)) {
+  if (
+    session.loggedInRegNo === undefined &&
+    ['no-target-species-success', 'submitted-return-success'].includes(options.path)
+  ) {
     return false;
   }
 
@@ -91,7 +94,7 @@ const renderPage = (request, response, options) => {
   // Handle un-session-ed accesses to success pages a little differently. The
   // user may have bookmarked this page, thinking they could see their
   // answer again. Give them an error page that says otherwise.
-  if (['no-target-species-success', 'success'].includes(options.path)) {
+  if (['no-target-species-success', 'submitted-return-success'].includes(options.path)) {
     response.status(403).render('error-success.njk', {hostPrefix: config.hostPrefix, pathPrefix: config.pathPrefix});
     return;
   }

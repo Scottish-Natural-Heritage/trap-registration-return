@@ -2,49 +2,33 @@ import express from 'express';
 // Import all the controllers.
 import {Page} from './controllers/_base.js';
 import StartController from './controllers/start.js';
-import UsageController from './controllers/usage.js';
 import TrapRegistrationNumberController from './controllers/trap-registration-number.js';
 import PostcodeController from './controllers/postcode.js';
 import LoginController from './controllers/login.js';
+import YearController from './controllers/year.js';
+import MeatBaitsInTrapsController from './controllers/meat-baits-in-traps.js';
+import HowManyTrapsUsedController from './controllers/how-many-traps-used.js';
 import TargetSpeciesController from './controllers/target-species.js';
 import DetailsListController from './controllers/details-list.js';
 import DetailsController from './controllers/details.js';
-import ConfirmController from './controllers/confirm.js';
-import NoTargetSpeciesConfirmController from './controllers/no-target-species-confirm.js';
+import CheckAnswersController from './controllers/check-answers.js';
 
 const router = express.Router();
 
 // Configure all of the pages and routes.
-// First half of application/
+// First half of application.
 router.use(
   Page({
     path: 'start',
-    positiveForward: 'usage',
+    positiveForward: 'trap-registration-number',
     controller: StartController
   })
 );
 
 router.use(
   Page({
-    path: 'usage',
-    back: 'start',
-    positiveForward: 'trap-registration-number',
-    negativeForward: 'no-usage',
-    controller: UsageController
-  })
-);
-
-router.use(
-  Page({
-    path: 'no-usage',
-    back: 'usage'
-  })
-);
-
-router.use(
-  Page({
     path: 'trap-registration-number',
-    back: 'usage',
+    back: 'start',
     positiveForward: 'postcode',
     controller: TrapRegistrationNumberController
   })
@@ -65,11 +49,11 @@ router.use(
   })
 );
 
-// Second half of application/
+// Second half of application.
 router.use(
   Page({
     path: 'login',
-    positiveForward: 'target-species',
+    positiveForward: 'year',
     negativeForward: 'error-login',
     controller: LoginController
   })
@@ -83,26 +67,47 @@ router.use(
 
 router.use(
   Page({
-    path: 'target-species',
+    path: 'year',
     back: 'login',
+    positiveForward: 'meat-baits-in-traps',
+    controller: YearController
+  })
+);
+
+router.use(
+  Page({
+    path: 'meat-baits-in-traps',
+    back: 'year',
+    positiveForward: 'how-many-traps-used',
+    controller: MeatBaitsInTrapsController
+  })
+);
+
+router.use(
+  Page({
+    path: 'how-many-traps-used',
+    back: 'meat-baits-in-traps',
+    positiveForward: 'target-species',
+    controller: HowManyTrapsUsedController
+  })
+);
+
+router.use(
+  Page({
+    path: 'target-species',
+    back: 'how-many-traps-used',
     positiveForward: 'details',
-    negativeForward: 'no-target-species-confirm',
+    negativeForward: 'check-answers',
     controller: TargetSpeciesController
   })
 );
 
 router.use(
   Page({
-    path: 'no-target-species-confirm',
+    path: 'check-answers',
     back: 'target-species',
-    positiveForward: 'no-target-species-success',
-    controller: NoTargetSpeciesConfirmController
-  })
-);
-
-router.use(
-  Page({
-    path: 'no-target-species-success'
+    positiveForward: 'submitted-return-success',
+    controller: CheckAnswersController
   })
 );
 
@@ -110,7 +115,7 @@ router.use(
   Page({
     path: 'details-list',
     back: 'details',
-    positiveForward: 'confirm',
+    positiveForward: 'check-answers',
     secondaryForward: 'details',
     controller: DetailsListController
   })
@@ -127,16 +132,16 @@ router.use(
 
 router.use(
   Page({
-    path: 'confirm',
+    path: 'check-answers',
     back: 'details-list',
-    positiveForward: 'success',
-    controller: ConfirmController
+    positiveForward: 'submitted-return-success',
+    controller: CheckAnswersController
   })
 );
 
 router.use(
   Page({
-    path: 'success'
+    path: 'submitted-return-success'
   })
 );
 
