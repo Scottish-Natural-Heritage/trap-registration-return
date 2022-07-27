@@ -1,7 +1,7 @@
 describe('submitted return success page directly', () => {
   it('should prevent access', () => {
     cy.visit('/submitted-return-success', {failOnStatusCode: false});
-    cy.get('h1').should('contain', 'there is a problem with the service');
+    cy.get('h1').should('contain', 'Meat Bait Return complete');
   });
 });
 

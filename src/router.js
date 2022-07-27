@@ -16,7 +16,7 @@ import CheckAnswersController from './controllers/check-answers.js';
 const router = express.Router();
 
 // Configure all of the pages and routes.
-// First half of application/
+// First half of application.
 router.use(
   Page({
     path: 'start',
@@ -49,7 +49,7 @@ router.use(
   })
 );
 
-// Second half of application/
+// Second half of application.
 router.use(
   Page({
     path: 'login',
@@ -108,12 +108,6 @@ router.use(
     back: 'target-species',
     positiveForward: 'submitted-return-success',
     controller: CheckAnswersController
-  })
-);
-
-router.use(
-  Page({
-    path: 'submitted-return-success'
   })
 );
 
