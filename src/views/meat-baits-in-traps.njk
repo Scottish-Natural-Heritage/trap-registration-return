@@ -1,21 +1,42 @@
 {% extends "_base.njk" %}
 
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% block content %}
-  <h1 class="govuk-heading-xl">
-    Did you use meat bait in your traps?
-  </h1>
   <div class="govuk-grid-row">
 
+    <form method="post">
 
-      <form method="post">
-        {{ govukButton({
-          text: "Continue",
-          classes: "govuk-!-margin-top-2  govuk-!-margin-bottom-8 naturescot-forward-button",
-          isStartButton: true
-        }) }}
-      </form>
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        idPrefix: "meat-baits-used",
+        name: "meatBaitsUsed",
+        fieldset: {
+          legend: {
+            text: "Did you use meat bait in your traps",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue",
+        classes: "govuk-!-margin-top-2  govuk-!-margin-bottom-8 naturescot-forward-button",
+        isStartButton: true
+      }) }}
+    </form>
   </div>
 
 {% endblock %}
