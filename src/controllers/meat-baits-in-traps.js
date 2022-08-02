@@ -1,6 +1,6 @@
 import {ReturnState} from './_base.js';
 
-const meatBaitInTrapsController = (_request) => {
+const meatBaitInTrapsController = (request) => {
   // The only way out of the meat bait in traps page is onwards, so return success and begin
   // the form.
   // Did the user tell us they have used meat baits.
@@ -23,7 +23,7 @@ const meatBaitInTrapsController = (_request) => {
     return ReturnState.Negative;
   }
 
-  // The user submitted the form without selecting an option, this is an error!
+  // The user submitted the form without selecting an option, this is an error.
   request.session.meatBaitsError = true;
   // Reload the page to highlight errors.
   return ReturnState.Error;
