@@ -79,6 +79,7 @@ router.use(
     path: 'meat-baits-in-traps',
     back: 'year',
     positiveForward: 'how-many-traps-used',
+    negativeForward: 'check-answers',
     controller: MeatBaitsInTrapsController
   })
 );
