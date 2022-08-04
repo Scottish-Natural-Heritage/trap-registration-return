@@ -6,7 +6,7 @@
 
 {% block content %}
 
-  {% if model.noLarsenMateError or model.noLarsenPodError%}
+  {% if model.noLarsenError%}
     {{ govukErrorSummary({
       titleText: "There is a problem",
       errorList: [
@@ -38,6 +38,7 @@
         },
           classes: "govuk-input--width-5",
           id: "larsen-mate",
+          value: model.numberLarsenMateCaught,
           name: "numberLarsenMateCaught",
             errorMessage: {
             text: "Enter amount of larsen mates, between 0-999"
@@ -51,6 +52,7 @@
         },
           classes: "govuk-input--width-5",
           id: "larsen-pod",
+          value: model.numberLarsenPodCaught,
           name: "numberLarsenPodCaught",
           errorMessage: {
             text: "Enter amount of larsen pods, between 0-999"

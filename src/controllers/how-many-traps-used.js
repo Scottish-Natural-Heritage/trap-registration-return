@@ -21,7 +21,7 @@ import {ReturnState} from './_base.js';
     return false;
   }
 
-  if (testParse <= 0) {
+  if (testParse < 0) {
     return false;
   }
 
@@ -29,28 +29,38 @@ import {ReturnState} from './_base.js';
 };
 
 const howManyTrapsUsedController = (request) => {
-
+  // Clear all errors.
+  request.session.noLarsenError = false;
   request.session.noLarsenMateError = false;
   request.session.noLarsenPodError = false;
 
-  // Did the user add an amount for larsen mate.
+  // If the value is not a valid number then create an error.
   if (!validNumber(request.body.numberLarsenMateCaught)) {
-    // Check it's a valid number then save the number into session.
     request.session.noLarsenMateError = true;
   }
 
+  // If the value is not a valid number then create an error.
   if (!validNumber(request.body.numberLarsenPodCaught)) {
-    // Check it's a valid number then save the number into session.
     request.session.noLarsenPodError = true;
   }
 
-  if (request.session.noLarsenMateError || request.session.noLarsenPodError) {
+  // Set errors under generic error.
+  request.session.noLarsenError =
+  request.session.noLarsenMateError ||
+  request.session.noLarsenPodError;
+
+  // If we've seen an error in any of the fields, our visitor needs to go back
+  // and fix them.
+  if (request.session.noLarsenError) {
     return ReturnState.Error;
   }
 
+  // Set in values into session.
   request.session.numberLarsenMateCaught = request.body.numberLarsenMateCaught;
   request.session.numberLarsenPodCaught = request.body.numberLarsenPodCaught;
 
+  // The request passed all our validation, we've stored copies of everything we
+  // need, so it's time to go on.
   return ReturnState.Positive;
 };
 
