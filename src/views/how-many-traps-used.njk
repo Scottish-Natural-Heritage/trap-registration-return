@@ -1,12 +1,61 @@
 {% extends "_base.njk" %}
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% block content %}
+
+  {% if model.noLarsenMateError or model.noLarsenPodError%}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [
+        {
+          text: "Enter amount of larsen mates, between 0-999",
+          href: "#larsen-mate"
+        } if model.noLarsenMateError,
+        {
+          text: "Enter amount of larsen pods, between 0-999",
+          href: "#larsen-pod"
+        } if model.noLarsenPodError
+      ]
+    }) }}
+  {% endif %}
+
   <h1 class="govuk-heading-xl">
     How many traps did you use meat baits in?
   </h1>
   <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-three-quarters">
+        <p class="govuk-body-m">How many of each type of trap did you use meat baits in?</p>
+
+        <form method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Larsen mate"
+        },
+          classes: "govuk-input--width-5",
+          id: "larsen-mate",
+          name: "numberLarsenMateCaught",
+            errorMessage: {
+            text: "Enter amount of larsen mates, between 0-999"
+          } if model.noLarsenMateError
+        }) }}
+
+
+        {{ govukInput({
+          label: {
+            text: "Larsen pod"
+        },
+          classes: "govuk-input--width-5",
+          id: "larsen-pod",
+          name: "numberLarsenPodCaught",
+          errorMessage: {
+            text: "Enter amount of larsen pods, between 0-999"
+          } if model.noLarsenPodError
+        }) }}
 
 
       <form method="post">
@@ -17,5 +66,6 @@
         }) }}
       </form>
   </div>
+</div>
 
 {% endblock %}
