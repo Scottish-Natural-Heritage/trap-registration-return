@@ -7,7 +7,7 @@ import {ReturnState} from './_base.js';
  * @returns {boolean} True if this looks like a valid number,
  * otherwise false.
  */
- const validNumber = (number) => {
+const validNumber = (number) => {
   if (number === undefined) {
     return false;
   }
@@ -45,9 +45,7 @@ const howManyTrapsUsedController = (request) => {
   }
 
   // Set errors under generic error.
-  request.session.noLarsenError =
-  request.session.noLarsenMateError ||
-  request.session.noLarsenPodError;
+  request.session.noLarsenError = request.session.noLarsenMateError || request.session.noLarsenPodError;
 
   // If we've seen an error in any of the fields, our visitor needs to go back
   // and fix them.
