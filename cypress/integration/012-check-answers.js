@@ -21,6 +21,8 @@ describe('check-answers page ', () => {
     // ~GET `/meat-baits-in-traps`~
     cy.get('#main-content form button.naturescot-forward-button').click();
     // ~GET `/how-many-traps-used`~
+    cy.get('input[type=text][name=numberLarsenPodCaught]').type('0');
+    cy.get('input[type=text][name=numberLarsenMateCaught]').type('1');
     cy.get('#main-content form button.naturescot-forward-button').click();
     // CLICK yes
     cy.get('#main-content form input[type="radio"][value="yes"]').click();
@@ -50,6 +52,6 @@ describe('check-answers page ', () => {
     cy.visit('/check-answers');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/submitted-return-success');
-    cy.get('h1').should('contain', 'You have submitted a return');
+    cy.get('h1').should('contain', 'Meat Bait Return complete');
   });
 });

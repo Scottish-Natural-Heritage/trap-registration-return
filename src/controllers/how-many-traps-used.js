@@ -34,6 +34,10 @@ const howManyTrapsUsedController = (request) => {
   request.session.noLarsenMateError = false;
   request.session.noLarsenPodError = false;
 
+  // Set in values into session.
+  request.session.numberLarsenMateCaught = request.body.numberLarsenMateCaught;
+  request.session.numberLarsenPodCaught = request.body.numberLarsenPodCaught;
+
   // If the value is not a valid number then create an error.
   if (!validNumber(request.body.numberLarsenMateCaught)) {
     request.session.noLarsenMateError = true;
@@ -52,10 +56,6 @@ const howManyTrapsUsedController = (request) => {
   if (request.session.noLarsenError) {
     return ReturnState.Error;
   }
-
-  // Set in values into session.
-  request.session.numberLarsenMateCaught = request.body.numberLarsenMateCaught;
-  request.session.numberLarsenPodCaught = request.body.numberLarsenPodCaught;
 
   // The request passed all our validation, we've stored copies of everything we
   // need, so it's time to go on.
