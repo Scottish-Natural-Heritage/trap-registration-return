@@ -32,7 +32,7 @@ describe('meat-baits-in-traps page ', () => {
 
   it('should allow access if the user visits all the pages in order', () => {
     cy.visit('/meat-baits-in-traps');
-    cy.get('h1').should('contain', 'Did you use meat bait in your traps?');
+    cy.get('h1').should('contain', 'Did you use meat baits in your traps?');
   });
 
   it('if meat baits are not used main button should navigate to how many traps used page', () => {
