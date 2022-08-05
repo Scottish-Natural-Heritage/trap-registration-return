@@ -52,6 +52,6 @@ describe('check-answers page ', () => {
     cy.visit('/check-answers');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/submitted-return-success');
-    cy.get('h1').should('contain', 'Meat Bait Return complete');
+    cy.get('h1').should('contain', 'You have submitted a return');
   });
 });

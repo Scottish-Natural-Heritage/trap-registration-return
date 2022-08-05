@@ -47,6 +47,6 @@ describe('submitted-return-success page ', () => {
 
   it('should allow access if the user visits all the pages in order', () => {
     cy.visit('/submitted-return-success');
-    cy.get('h1').should('contain', 'Meat Bait Return complete');
+    cy.get('h1').should('contain', 'You have submitted a return');
   });
 });

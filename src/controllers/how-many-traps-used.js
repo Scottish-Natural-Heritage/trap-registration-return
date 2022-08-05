@@ -33,6 +33,8 @@ const howManyTrapsUsedController = (request) => {
   request.session.noLarsenError = false;
   request.session.noLarsenMateError = false;
   request.session.noLarsenPodError = false;
+  request.session.larsenMateValueTooBig = false;
+  request.session.larsenPodValueTooBig = false;
 
   // Set in values into session.
   request.session.numberLarsenMateCaught = request.body.numberLarsenMateCaught;
@@ -48,8 +50,32 @@ const howManyTrapsUsedController = (request) => {
     request.session.noLarsenPodError = true;
   }
 
+  // Convert the number of larsen mate traps from a string to a number.
+  if (!request.session.noLarsenMateError) {
+    request.session.numberLarsenMateCaught = Number(request.session.numberLarsenMateCaught);
+  }
+
+  // Convert the number of larsen pod traps from a string to a number.
+  if (!request.session.noLarsenPodError) {
+    request.session.numberLarsenPodCaught = Number(request.session.numberLarsenPodCaught);
+  }
+
+  // Check if the value of number of larsen mate traps used is greater that 999, if so error.
+  if (!request.session.noLarsenMateError && request.session.numberLarsenMateCaught > 999) {
+    request.session.larsenMateValueTooBig = true;
+  }
+
+  // Check if the value of number of larsen pod traps used is greater that 999, if so error.
+  if (!request.session.noLarsenPodError && request.session.numberLarsenPodCaught > 999) {
+    request.session.larsenPodValueTooBig = true;
+  }
+
   // Set errors under generic error.
-  request.session.noLarsenError = request.session.noLarsenMateError || request.session.noLarsenPodError;
+  request.session.noLarsenError =
+    request.session.noLarsenMateError ||
+    request.session.noLarsenPodError ||
+    request.session.larsenMateValueTooBig ||
+    request.session.larsenPodValueTooBig;
 
   // If we've seen an error in any of the fields, our visitor needs to go back
   // and fix them.

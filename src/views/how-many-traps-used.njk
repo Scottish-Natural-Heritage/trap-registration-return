@@ -4,6 +4,22 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
+{% set mateErrorsHtml %}
+  {% if model.noLarsenMateError %}
+    <p>Enter how many larsen mate traps you used meat baits in, from 0 - 999</p>
+  {% elif model.larsenMateValueTooBig %}
+    <p>The number of larsen mate traps used must be between 0 and 999</p>
+  {% endif %}
+{% endset -%}
+
+{% set podErrorsHtml %}
+  {% if model.noLarsenPodError %}
+    <p>Enter how many larsen pod traps you used meat baits in, from 0 - 999</p>
+  {% elif model.larsenPodValueTooBig %}
+    <p>The number of larsen pod traps used must be between 0 and 999</p>
+  {% endif %}
+{% endset -%}
+
 {% block content %}
 
   {% if model.noLarsenError%}
@@ -11,26 +27,33 @@
       titleText: "There is a problem",
       errorList: [
         {
-          text: "Enter amount of larsen mates, between 0-999",
+          text: "Enter how many larsen mate traps you used meat baits in, from 0 - 999",
           href: "#larsen-mate"
         } if model.noLarsenMateError,
         {
-          text: "Enter amount of larsen pods, between 0-999",
+          text: "Enter how many larsen pod traps you used meat baits in, from 0 - 999",
           href: "#larsen-pod"
-        } if model.noLarsenPodError
+        } if model.noLarsenPodError,
+        {
+          text: "The number of larsen mate traps used must be between 0 and 999",
+          href: "#larsen-mate"
+        } if model.larsenMateValueTooBig,
+        {
+          text: "The number of larsen pod traps used must be between 0 and 999",
+          href: "#larsen-pod"
+        } if model.larsenPodValueTooBig
       ]
     }) }}
   {% endif %}
 
-  <h1 class="govuk-heading-xl">
-    How many traps did you use meat baits in?
-  </h1>
+  <h1 class="govuk-heading-xl">How many traps did you use meat baits in?</h1>
+
   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
 
-        <div class="govuk-grid-column-three-quarters">
-        <p class="govuk-body-m">How many of each type of trap did you use meat baits in?</p>
+      <p class="govuk-body-m">How many of each type of trap did you use meat baits in?</p>
 
-        <form method="post">
+      <form method="post">
 
         {{ govukInput({
           label: {
@@ -41,10 +64,9 @@
           value: model.numberLarsenMateCaught,
           name: "numberLarsenMateCaught",
             errorMessage: {
-            text: "Enter amount of larsen mates, between 0-999"
-          } if model.noLarsenMateError
+            html: mateErrorsHtml
+          } if model.noLarsenMateError or model.larsenMateValueTooBig
         }) }}
-
 
         {{ govukInput({
           label: {
@@ -55,19 +77,19 @@
           value: model.numberLarsenPodCaught,
           name: "numberLarsenPodCaught",
           errorMessage: {
-            text: "Enter amount of larsen pods, between 0-999"
-          } if model.noLarsenPodError
+            html: podErrorsHtml
+          } if model.noLarsenPodError or model.larsenPodValueTooBig
         }) }}
 
-
-      <form method="post">
         {{ govukButton({
           text: "Continue",
           classes: "govuk-!-margin-top-2  govuk-!-margin-bottom-8 naturescot-forward-button",
           isStartButton: true
         }) }}
+
       </form>
+
+    </div>
   </div>
-</div>
 
 {% endblock %}
