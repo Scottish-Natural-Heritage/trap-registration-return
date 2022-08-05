@@ -21,6 +21,8 @@ describe('check-answers page ', () => {
     // ~GET `/meat-baits-in-traps`~
     cy.get('#main-content form button.naturescot-forward-button').click();
     // ~GET `/how-many-traps-used`~
+    cy.get('input[type=text][name=numberLarsenPodCaught]').type('0');
+    cy.get('input[type=text][name=numberLarsenMateCaught]').type('1');
     cy.get('#main-content form button.naturescot-forward-button').click();
     // CLICK yes
     cy.get('#main-content form input[type="radio"][value="yes"]').click();
