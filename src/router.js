@@ -11,9 +11,9 @@ import HowManyTrapsUsedController from './controllers/how-many-traps-used.js';
 import TargetSpeciesController from './controllers/target-species.js';
 import DetailsListController from './controllers/details-list.js';
 import DetailsController from './controllers/details.js';
-import CheckAnswersNoMeatBaitsController from './controllers/check-answers-no-meat-baits';
-import CheckAnswersNoNonTargetController from './controllers/check-answers-no-non-target';
-import CheckAnswersNonTargetSpeciesController from './controllers/check-answers-non-target-species';
+import CheckAnswersNoMeatBaitsController from './controllers/check-answers-no-meat-baits.js';
+import CheckAnswersNoNonTargetController from './controllers/check-answers-no-non-target.js';
+import CheckAnswersNonTargetSpeciesController from './controllers/check-answers-non-target-species.js';
 
 const router = express.Router();
 
