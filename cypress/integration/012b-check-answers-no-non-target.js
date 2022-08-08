@@ -1,11 +1,11 @@
-describe('check answers page directly', () => {
+describe('check-answers-no-non-target page directly', () => {
   it('should prevent access', () => {
-    cy.visit('/check-answers', {failOnStatusCode: false});
+    cy.visit('/check-answers-no-non-target', {failOnStatusCode: false});
     cy.get('h1').should('contain', 'there is a problem with the service');
   });
 });
 
-describe('check-answers page ', () => {
+describe('check-answers-no-non-target page ', () => {
   beforeEach(() => {
     // GET `/login`
     cy.visit(
@@ -24,32 +24,17 @@ describe('check-answers page ', () => {
     cy.get('input[type=text][name=numberLarsenPodCaught]').type('0');
     cy.get('input[type=text][name=numberLarsenMateCaught]').type('1');
     cy.get('#main-content form button.naturescot-forward-button').click();
-    // CLICK yes
-    cy.get('#main-content form input[type="radio"][value="yes"]').click();
-    // POST `/target-species`
-    cy.get('#main-content form button.naturescot-forward-button').click();
-    // ~GET `/details`~
-    cy.get('input[type="text"]#current-grid-reference').type('NO 08529 29128', {delay: 1});
-    cy.get('#main-content form input[type="radio"][value="otherSpecies"]').click();
-    cy.get('input[type="text"]#current-other-species-caught').type('Test Species', {delay: 1});
-    cy.get('input[type="text"]#current-number-caught').type('12', {delay: 1});
-    cy.get('#main-content form input[type="radio"][value="Larsen pod"]').click();
-    cy.get('textarea#current-comment').type('Test comment', {delay: 1});
-    // POST `/details`
-    cy.get('#main-content form button.naturescot-forward-button').click();
-    // ~GET `/details-list`~
-    // POST `/details-list`
-    cy.get('#main-content form button.naturescot-forward-button').click();
-    // ~GET `/check-answers`~
+    // ~GET `/target-species`~
+    cy.get('#main-content form input[type="radio"][value="no"]').click();
   });
 
   it('should allow access if the user visits all the pages in order', () => {
-    cy.visit('/check-answers');
-    cy.get('h1').should('contain', 'Check your answers before sending');
+    cy.visit('/check-answers-no-non-target');
+    cy.get('h1').should('contain', 'Check your answers before sending (no non-target species)');
   });
 
   it('main button should navigate to submitted a return page', () => {
-    cy.visit('/check-answers');
+    cy.visit('/check-answers-no-non-target');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/submitted-return-success');
     cy.get('h1').should('contain', 'You have submitted a return');
