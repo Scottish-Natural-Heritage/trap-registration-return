@@ -13,7 +13,7 @@
 
       <p class="govuk-body">This return is for</p>
 
-      <p class="govuk-body">Reference number {{model.referenceNumber}}</p>
+      <p class="govuk-body">Reference number {{model.loggedInRegNo}}</p>
 
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
@@ -60,7 +60,7 @@
               text: "Larsen mate"
             },
             value: {
-              text: model.numberLarsenMate
+              text: model.numberLarsenMateCaught
             },
             actions: {
               items: [
@@ -77,7 +77,7 @@
               text: "Larsen pod"
             },
             value: {
-              text: model.numberLarsenPod
+              text: model.numberLarsenPodCaught
             },
             actions: {
               items: [
