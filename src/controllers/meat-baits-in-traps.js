@@ -1,8 +1,6 @@
 import {ReturnState} from './_base.js';
 
 const meatBaitInTrapsController = (request) => {
-  // The only way out of the meat bait in traps page is onwards, so return success and begin
-  // the form.
   // Did the user tell us they have used meat baits.
   if (request.body.meatBaitsUsed === 'yes') {
     // Then we don't have any errors. This clears any previous errors.
