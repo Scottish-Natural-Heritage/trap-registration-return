@@ -50,6 +50,7 @@
   {% endif %}
 
   {% set scheduleHtml %}
+
   <div class="govuk-form-group {% if model.currentSpeciesCaughtError %} govuk-form-group--error {% endif %}">
     {% if model.currentSpeciesCaughtError %}
       <span id="current-species-caught-error" class="govuk-error-message">
@@ -63,162 +64,171 @@
       {% endfor %}
     </select>
   </div>
+
   {% endset -%}
 
   {% set otherHtml %}
-  {{ govukInput({
-          label: {
-            text: "Non Target Species Caught"
-          },
-          hint: {
-            text: "The name of the type of non-target species caught."
-          },
-          classes: "govuk-!-width-one-half",
-          id: "current-other-species-caught",
-          name: "currentOtherSpeciesCaught",
-          value: model.currentOtherSpeciesCaught,
-          errorMessage: {
-            text: "Enter the name of the non-target species caught"
-          } if model.currentOtherSpeciesCaughtError,
-          attributes: {
-            spellcheck: "false"
-          }
-      }) }}
+    {{ govukInput({
+      label: {
+        text: "Non Target Species Caught"
+      },
+      hint: {
+        text: "The name of the type of non-target species caught."
+      },
+      classes: "govuk-!-width-one-half",
+      id: "current-other-species-caught",
+      name: "currentOtherSpeciesCaught",
+      value: model.currentOtherSpeciesCaught,
+      errorMessage: {
+        text: "Enter the name of the non-target species caught"
+      } if model.currentOtherSpeciesCaughtError,
+      attributes: {
+        spellcheck: "false"
+      }
+    }) }}
   {% endset -%}
 
   <form method="post">
+
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
         {% call govukFieldset({
-        legend: {
-        text: "What are the details of the non-target species you caught?",
-        classes: "govuk-fieldset__legend--l",
-        isPageHeading: true
-        }
-       }) %}
+          legend: {
+          text: "What are the details of the non-target species you caught?",
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: true
+          }
+        }) %}
 
-        {{ govukInput({
-        label: {
-          text: "Trap location"
-        },
-        hint: {
-          html: "An 8 or 10 digit grid reference. e.g. NH&nbsp;6381&nbsp;4403 or NO&nbsp;08529&nbsp;29128."
-        },
-        classes: "govuk-!-width-one-half govuk-heading-m",
-        id: "current-grid-reference",
-        name: "currentGridReference",
-        value: model.currentGridReference,
-        errorMessage: {
-          text: "Enter a grid reference"
-        } if model.currentGridReferenceError,
-        attributes: {
-          spellcheck: "false"
-        }
+          <p class="govuk-body">
+            If you caught more than one type of non-target species, you will be able to add any additional on the next page.
+          </p>
+
+          {{ govukInput({
+            label: {
+              text: "Trap location"
+            },
+            hint: {
+              html: "An 8 or 10 digit grid reference. e.g. NH&nbsp;6381&nbsp;4403 or NO&nbsp;08529&nbsp;29128."
+            },
+            classes: "govuk-!-width-one-half govuk-heading-m",
+            id: "current-grid-reference",
+            name: "currentGridReference",
+            value: model.currentGridReference,
+            errorMessage: {
+              text: "Enter a grid reference"
+            } if model.currentGridReferenceError,
+            attributes: {
+              spellcheck: "false"
+            }
+          }) }}
+
+          {{ govukRadios({
+            idPrefix: "current-species-caught-option",
+            name: "currentSpeciesCaughtOption",
+            value: model.currentSpeciesCaughtOption,
+            fieldset: {
+              legend: {
+                text: "Non-target species caught",
+                isPageHeading: true,
+                classes: "govuk-heading-m"
+              }
+            },
+            errorMessage: {
+              text: "Select the type of non-target species caught"
+            } if model.currentSpeciesCaughtOptionError,
+            items: [
+              {
+                value: "schedule1Birds",
+                text: "A Raptor or Schedule 1 Bird",
+                checked: model.currentSpeciesCaughtOption === "schedule1Birds",
+                conditional: {
+                  html: scheduleHtml
+                }
+              },
+              {
+                value: "otherSpecies",
+                text: "An Animal or Bird not listed above",
+                checked: model.currentSpeciesCaughtOption === "otherSpecies",
+                conditional: {
+                  html: otherHtml
+                }
+              }
+            ]
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Number Caught"
+            },
+            hint: {
+              text: "How many of this non-target species did you catch?"
+            },
+            classes: "govuk-!-width-one-half govuk-heading-m",
+            id: "current-number-caught",
+            name: "currentNumberCaught",
+            value: model.currentNumberCaught,
+            errorMessage: {
+              text: "Enter the number of non-target species caught"
+            } if model.currentNumberCaughtError,
+            attributes: {
+              spellcheck: "false"
+            }
+          }) }}
+
+          {{ govukRadios({
+            idPrefix: "current-trap-type",
+            name: "currentTrapType",
+            fieldset: {
+              legend: {
+                text: "Trap type",
+                isPageHeading: true,
+                classes: "govuk-heading-m"
+              }
+            },
+            errorMessage: {
+              text: "Select the trap type that was used"
+            } if model.currentTrapTypeError,
+            items: [
+              {
+                value: "Larsen mate",
+                text: "Larsen mate",
+                checked: model.currentTrapType === "Larsen mate"
+              },
+              {
+                value: "Larsen pod",
+                text: "Larsen pod",
+                checked: model.currentTrapType === "Larsen pod"
+              }
+            ]
+          }) }}
+
+          {{ govukTextarea({
+            name: "currentComment",
+            id: "current-comment",
+            classes: "govuk-!-width-one-half govuk-heading-m",
+            label: {
+              text: "Comment"
+            },
+            value: model.currentComment,
+            hint: {
+              text: "Please provide any additional details regarding non-target species caught i.e. same bird twice, released unharmed."
+            }
+          }) }}
+
+        {% endcall %}
+
+        {{ govukButton({
+          text: "Continue",
+          classes: "naturescot-forward-button"
         }) }}
 
-        {{ govukRadios({
-        idPrefix: "current-species-caught-option",
-        name: "currentSpeciesCaughtOption",
-        value: model.currentSpeciesCaughtOption,
-        fieldset: {
-          legend: {
-            text: "Non-target species caught",
-            isPageHeading: true,
-            classes: "govuk-heading-m"
-          }
-        },
-        errorMessage: {
-          text: "Select the type of non-target species caught"
-        } if model.currentSpeciesCaughtOptionError,
-        items: [
-          {
-            value: "schedule1Birds",
-            text: "A Raptor or Schedule 1 Bird",
-            checked: model.currentSpeciesCaughtOption === "schedule1Birds",
-            conditional: {
-              html: scheduleHtml
-            }
-          },
-          {
-            value: "otherSpecies",
-            text: "An Animal or Bird not listed above",
-            checked: model.currentSpeciesCaughtOption === "otherSpecies",
-            conditional: {
-              html: otherHtml
-            }
-          }
-        ]
-        }) }}
+      </div>
 
-      {{ govukInput({
-        label: {
-          text: "Number Caught"
-        },
-        hint: {
-          text: "How many of this non-target species did you catch?"
-        },
-        classes: "govuk-!-width-one-half govuk-heading-m",
-        id: "current-number-caught",
-        name: "currentNumberCaught",
-        value: model.currentNumberCaught,
-        errorMessage: {
-          text: "Enter the number of non-target species caught"
-        } if model.currentNumberCaughtError,
-        attributes: {
-          spellcheck: "false"
-        }
-      }) }}
+      <div class="govuk-grid-column-one-third">
 
-      {{ govukRadios({
-        idPrefix: "current-trap-type",
-        name: "currentTrapType",
-        fieldset: {
-          legend: {
-            text: "Trap type",
-            isPageHeading: true,
-            classes: "govuk-heading-m"
-          }
-        },
-        errorMessage: {
-          text: "Select the trap type that was used"
-        } if model.currentTrapTypeError,
-        items: [
-          {
-            value: "Larsen mate",
-            text: "Larsen mate",
-            checked: model.currentTrapType === "Larsen mate"
-          },
-          {
-            value: "Larsen pod",
-            text: "Larsen pod",
-            checked: model.currentTrapType === "Larsen pod"
-          }
-        ]
-      }) }}
-
-      {{ govukTextarea({
-        name: "currentComment",
-        id: "current-comment",
-        classes: "govuk-!-width-one-half govuk-heading-m",
-        label: {
-          text: "Comment"
-        },
-        value: model.currentComment,
-        hint: {
-          text: "Please provide any additional details regarding non-target species caught i.e. same bird twice, released unharmed."
-        }
-      }) }}
-
-      {% endcall %}
-
-      {{ govukButton({
-      text: "Continue",
-      classes: "naturescot-forward-button"
-    }) }}
-    </div>
-    <div class="govuk-grid-column-one-third">
-          {{ govukAccordion({
+        {{ govukAccordion({
           id: "schedule1BirdExplanation",
           items: [
             {
@@ -236,6 +246,10 @@
             }
           ]
         }) }}
-        </div>
+
+      </div>
+
+    </div>
   </form>
+
 {% endblock %}
