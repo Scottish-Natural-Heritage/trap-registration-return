@@ -1,20 +1,194 @@
 {% extends "_base.njk" %}
 
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% set nonTargetSpeciesCaughtTableHtml %}
+
+  <table class="govuk-table app-table--constrained">
+    <thead>
+      <tr class="govuk-table__row">
+        <th class="govuk-table__header govuk-table__header" scope="col">Grid reference</th>
+        <th class="govuk-table__header govuk-table__header" scope="col">Species caught</th>
+        <th class="govuk-table__header govuk-table__header" scope="col">Number caught</th>
+        <th class="govuk-table__header govuk-table__header" scope="col">Trap type</th>
+        <th class="govuk-table__header govuk-table__header" scope="col">Comments</th>
+      </tr>
+   </thead>
+
+    {% for nonTargetSpecies in model.nonTargetSpeciesCaught %}
+
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">{{ nonTargetSpecies.gridRef }}</td>
+          <td class="govuk-table__cell">{{ nonTargetSpecies.speciesCaught }}</td>
+          <td class="govuk-table__cell">{{ nonTargetSpecies.numberCaught }} </td>
+          <td class="govuk-table__cell">{{ nonTargetSpecies.trapType }} </td>
+          <td class="govuk-table__cell">{{ nonTargetSpecies.comments }} </td>
+        </tr>
+      </tbody>
+
+    {% endfor %}
+
+  </table>
+
+{% endset -%}
 
 {% block content %}
-  <h1 class="govuk-heading-xl">Check your answers before sending (non-target species)</h1>
+  <h1 class="govuk-heading-xl">Check your answers before sending</h1>
 
   <div class="govuk-grid-row">
 
+    <p class="govuk-body">This return is for</p>
+
+    <p class="govuk-body">Reference number {{model.referenceNumber}}</p>
+
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+    <p class="govuk-body"><strong>Activity reported</strong></p>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Year"
+          },
+          value: {
+            text: model.year
+          },
+          actions: {
+            items: [
+              {
+                href: pathPrefix + "/year",
+                text: "Change",
+                visuallyHiddenText: "Year"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Meat baits used"
+          },
+          value: {
+            text: 'No' if model.noMeatBaitsUsed === true else 'Yes'
+          },
+          actions: {
+            items: [
+              {
+                href: pathPrefix + "/meat-baits-in-traps",
+                text: "Change",
+                visuallyHiddenText: "Meat baits in traps"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Larsen mate"
+          },
+          value: {
+            text: model.numberLarsenMate
+          },
+          actions: {
+            items: [
+              {
+                href: pathPrefix + "/how-many-traps-used",
+                text: "Change",
+                visuallyHiddenText: "How many traps used"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Larsen pod"
+          },
+          value: {
+            text: model.numberLarsenPod
+          },
+          actions: {
+            items: [
+              {
+                href: pathPrefix + "/how-many-traps-used",
+                text: "Change",
+                visuallyHiddenText: "How many traps used"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Non-target species to report"
+          },
+          value: {
+            text: 'No' if model.targetSpecies === false else 'Yes'
+          },
+          actions: {
+            items: [
+              {
+                href: pathPrefix + "/target-species",
+                text: "Change",
+                visuallyHiddenText: "Target species"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Non-target species caught"
+          },
+          value: {
+            html: model.detailsListTable
+          },
+          actions: {
+            items: [
+              {
+                href: pathPrefix + "/details-list",
+                text: "Change",
+                visuallyHiddenText: "Details list"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
     <form method="post">
+
+      <p class="govuk-body"><strong>Declaration</strong></p>
+
+      <p class="govuk-body"><strong>I confirm that:</strong></p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <strong><li>The information I've provided is correct</li></strong>
+        <strong><li>I agree with the privacy policy of this service</li></strong>
+      </ul>
+
+      {{ govukCheckboxes({
+        idPrefix: "confirm",
+        name: "confirm",
+        errorMessage: {
+          text: "You must confirm the information you've provided is up-to-date and correct and you agree with the privacy policy."
+        } if error.missingConfirmValue,
+        items: [
+          {
+            value: "confirm",
+            text: "Yes, I confirm",
+            checked: confirmDeclaration === true
+          }
+        ]
+      }) }}
+
       {{ govukButton({
         text: "Continue",
         classes: "govuk-!-margin-top-2  govuk-!-margin-bottom-8 naturescot-forward-button",
-        isStartButton: true
+        isStartButton: false
       }) }}
-    </form>
 
+    </form>
   </div>
 
 {% endblock %}
