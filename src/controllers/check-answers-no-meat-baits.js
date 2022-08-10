@@ -22,8 +22,10 @@ const checkAnswersNoMeatBaitsController = async (request) => {
   const newReturn = {
     noMeatBaitsUsed: !request.session.meatBaitsUsed,
     year: request.session.year,
-    nonTargetSpeciesToReport: request.session.targetSpecies,
-    nonTargetSpeciesCaught: request.session.detailsList
+    // Disabled as targetSpecies could be undefined and we want a value.
+    // eslint-disable-next-line no-unneeded-ternary
+    nonTargetSpeciesToReport: request.session.targetSpecies ? true : false,
+    nonTargetSpeciesCaught: request.session.detailsList ? request.session.detailsList : []
   };
 
   // And send the return data to the API.
