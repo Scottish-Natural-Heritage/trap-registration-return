@@ -28,6 +28,6 @@ describe('year page ', () => {
     cy.visit('/year');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/meat-baits-in-traps');
-    cy.get('h1').should('contain', 'Did you use meat bait in your traps?');
+    cy.get('h1').should('contain', 'Did you use meat baits in your traps?');
   });
 });

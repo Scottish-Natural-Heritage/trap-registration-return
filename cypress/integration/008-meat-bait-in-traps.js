@@ -32,11 +32,19 @@ describe('meat-baits-in-traps page ', () => {
 
   it('should allow access if the user visits all the pages in order', () => {
     cy.visit('/meat-baits-in-traps');
-    cy.get('h1').should('contain', 'Did you use meat bait in your traps?');
+    cy.get('h1').should('contain', 'Did you use meat baits in your traps?');
   });
 
-  it('main button should navigate to how many traps used page', () => {
+  it('if meat baits are not used main button should navigate to check answers page', () => {
     cy.visit('/meat-baits-in-traps');
+    cy.get('#main-content form input[type="radio"][value="no"]').click();
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    cy.url().should('include', '/check-answers-no-meat-baits');
+  });
+
+  it('if meat baits are used main button should navigate to how many traps used page', () => {
+    cy.visit('/meat-baits-in-traps');
+    cy.get('#main-content form input[type="radio"][value="yes"]').click();
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/how-many-traps-used');
     cy.get('h1').should('contain', 'How many traps did you use meat baits in?');
