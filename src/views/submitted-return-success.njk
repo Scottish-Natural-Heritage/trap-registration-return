@@ -1,8 +1,17 @@
 {% extends "_base.njk" %}
 
 {% from "govuk/components/panel/macro.njk" import govukPanel %}
+
 {% block content %}
+
   {{ govukPanel({
         titleText: "You have submitted a return"
       }) }}
+
+  <p class="govuk-body">We have sent you a confirmation email</p>
+
+  <h1 class="govuk-heading-m">What happens next</h1>
+
+  <p class="govuk-body">We will contact you if we have any questions.</p>
+
 {% endblock %}
