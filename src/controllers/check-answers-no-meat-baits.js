@@ -20,7 +20,7 @@ const checkAnswersNoMeatBaitsController = async (request) => {
 
   // If we made it here the user has confirmed their return so get the data ready to send.
   const newReturn = {
-    noMeatBaitsUsed: request.session.noMeatBaitsUsed,
+    noMeatBaitsUsed: !request.session.meatBaitsUsed,
     year: request.session.year,
     nonTargetSpeciesToReport: request.session.targetSpecies,
     nonTargetSpeciesCaught: request.session.detailsList
