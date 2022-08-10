@@ -1,11 +1,11 @@
-describe('check answers page directly', () => {
+describe('check-answers-non-target-species page directly', () => {
   it('should prevent access', () => {
-    cy.visit('/check-answers', {failOnStatusCode: false});
+    cy.visit('/check-answers-non-target-species', {failOnStatusCode: false});
     cy.get('h1').should('contain', 'there is a problem with the service');
   });
 });
 
-describe('check-answers page ', () => {
+describe('check-answers-non-target-species page ', () => {
   beforeEach(() => {
     // GET `/login`
     cy.visit(
@@ -45,12 +45,12 @@ describe('check-answers page ', () => {
   });
 
   it('should allow access if the user visits all the pages in order', () => {
-    cy.visit('/check-answers');
-    cy.get('h1').should('contain', 'Check your answers before sending');
+    cy.visit('/check-answers-non-target-species');
+    cy.get('h1').should('contain', 'Check your answers before sending (non-target species)');
   });
 
   it('main button should navigate to submitted a return page', () => {
-    cy.visit('/check-answers');
+    cy.visit('/check-answers-non-target-species');
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/submitted-return-success');
     cy.get('h1').should('contain', 'You have submitted a return');

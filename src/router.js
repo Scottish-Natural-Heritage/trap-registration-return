@@ -11,7 +11,9 @@ import HowManyTrapsUsedController from './controllers/how-many-traps-used.js';
 import TargetSpeciesController from './controllers/target-species.js';
 import DetailsListController from './controllers/details-list.js';
 import DetailsController from './controllers/details.js';
-import CheckAnswersController from './controllers/check-answers.js';
+import CheckAnswersNoMeatBaitsController from './controllers/check-answers-no-meat-baits.js';
+import CheckAnswersNoNonTargetController from './controllers/check-answers-no-non-target.js';
+import CheckAnswersNonTargetSpeciesController from './controllers/check-answers-non-target-species.js';
 
 const router = express.Router();
 
@@ -79,8 +81,18 @@ router.use(
     path: 'meat-baits-in-traps',
     back: 'year',
     positiveForward: 'how-many-traps-used',
-    negativeForward: 'check-answers',
+    negativeForward: 'check-answers-no-meat-baits',
+
     controller: MeatBaitsInTrapsController
+  })
+);
+
+router.use(
+  Page({
+    path: 'check-answers-no-meat-baits',
+    back: 'meat-baits-in-traps',
+    positiveForward: 'submitted-return-success',
+    controller: CheckAnswersNoMeatBaitsController
   })
 );
 
@@ -98,27 +110,17 @@ router.use(
     path: 'target-species',
     back: 'how-many-traps-used',
     positiveForward: 'details',
-    negativeForward: 'check-answers',
+    negativeForward: 'check-answers-no-non-target',
     controller: TargetSpeciesController
   })
 );
 
 router.use(
   Page({
-    path: 'check-answers',
+    path: 'check-answers-no-non-target',
     back: 'target-species',
     positiveForward: 'submitted-return-success',
-    controller: CheckAnswersController
-  })
-);
-
-router.use(
-  Page({
-    path: 'details-list',
-    back: 'details',
-    positiveForward: 'check-answers',
-    secondaryForward: 'details',
-    controller: DetailsListController
+    controller: CheckAnswersNoNonTargetController
   })
 );
 
@@ -133,10 +135,20 @@ router.use(
 
 router.use(
   Page({
-    path: 'check-answers',
+    path: 'details-list',
+    back: 'details',
+    positiveForward: 'check-answers-non-target-species',
+    secondaryForward: 'details',
+    controller: DetailsListController
+  })
+);
+
+router.use(
+  Page({
+    path: 'check-answers-non-target-species',
     back: 'details-list',
     positiveForward: 'submitted-return-success',
-    controller: CheckAnswersController
+    controller: CheckAnswersNonTargetSpeciesController
   })
 );
 
