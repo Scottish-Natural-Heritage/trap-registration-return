@@ -39,7 +39,7 @@ describe('meat-baits-in-traps page ', () => {
     cy.visit('/meat-baits-in-traps');
     cy.get('#main-content form input[type="radio"][value="no"]').click();
     cy.get('#main-content form button.naturescot-forward-button').click();
-    cy.url().should('include', '/check-answers');
+    cy.url().should('include', '/check-answers-no-meat-baits');
   });
 
   it('if meat baits are used main button should navigate to how many traps used page', () => {
