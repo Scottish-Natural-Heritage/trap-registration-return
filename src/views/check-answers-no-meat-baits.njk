@@ -6,6 +6,23 @@
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% block content %}
+
+  {% if model.missingConfirmValue or model.apiError %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [
+        {
+          text: "You must confirm the information you've provided is up-to-date and correct and you agree with the privacy policy",
+          href: "#confirm"
+        } if model.missingConfirmValue,
+        {
+          text: "An error occurred while submitting your return, try again",
+          href: "#"
+        } if model.apiError
+      ]
+    }) }}
+  {% endif %}
+
   <h1 class="govuk-heading-xl">Check your answers before sending</h1>
 
   <div class="govuk-grid-row">
@@ -73,8 +90,8 @@
           idPrefix: "confirm",
           name: "confirm",
           errorMessage: {
-            text: "You must confirm the information you've provided is up-to-date and correct and you agree with the privacy policy."
-          } if error.missingConfirmValue,
+            text: "You must confirm the information you've provided is up-to-date and correct and you agree with the privacy policy"
+          } if model.missingConfirmValue,
           items: [
             {
               value: "confirm",
