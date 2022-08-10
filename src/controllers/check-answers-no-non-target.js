@@ -30,7 +30,16 @@ const checkAnswersNoNonTargetController = async (request) => {
 
   // And send the return data to the API.
   try {
-    await axios.post(config.apiEndpoint + '/registrations/' + request.session.loggedInRegNo + '/return', newReturn);
+    // Allocate a new return.
+    const newReturnResponse = await axios.post(
+      config.apiEndpoint + '/registrations/' + request.session.loggedInRegNo + '/return'
+    );
+
+    // Determine where the back-end saved it.
+    const newReturnUrl = newReturnResponse.headers.location;
+
+    // Post the return's data to the API.
+    await axios.put(newReturnUrl, newReturn);
   } catch (error) {
     console.log('Error creating new return:' + error);
     request.session.apiError = true;
