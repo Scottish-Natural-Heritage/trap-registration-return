@@ -4,16 +4,17 @@ import {ReturnState} from './_base.js';
 
 const checkAnswersNonTargetSpeciesController = async (request) => {
   // Declare errors and set to false.
-  request.session.confirmedReturnError = false;
+  request.session.missingConfirmValue = false;
+  request.session.apiError = false;
 
   // Did the user click the confirm checkbox?
   request.session.confirmedDeclaration = request.body.confirm === 'confirm';
 
   // If the user didn't click the confirm checkbox this is an error.
-  request.session.confirmedReturnError = !request.session.confirmedDeclaration;
+  request.session.missingConfirmValue = !request.session.confirmedDeclaration;
 
   // If we have an error return the error state to let the user know immediately.
-  if (request.session.confirmedReturnError) {
+  if (request.session.missingConfirmValue) {
     return ReturnState.Error;
   }
 
@@ -30,8 +31,10 @@ const checkAnswersNonTargetSpeciesController = async (request) => {
   // And send the return data to the API.
   try {
     await axios.post(config.apiEndpoint + '/registrations/' + request.session.loggedInRegNo + '/return', newReturn);
-  } catch {
-    console.log('Something has gone very badly wrong indeed...');
+  } catch (error) {
+    console.log('Error creating new return:' + error);
+    request.session.apiError = true;
+    return ReturnState.Error;
   }
 
   // All went well so proceed to success page.

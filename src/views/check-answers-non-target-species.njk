@@ -5,38 +5,24 @@
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
-{% set nonTargetSpeciesCaughtTableHtml %}
-
-  <table class="govuk-table app-table--constrained">
-    <thead>
-      <tr class="govuk-table__row">
-        <th class="govuk-table__header govuk-table__header" scope="col">Grid reference</th>
-        <th class="govuk-table__header govuk-table__header" scope="col">Species caught</th>
-        <th class="govuk-table__header govuk-table__header" scope="col">Number caught</th>
-        <th class="govuk-table__header govuk-table__header" scope="col">Trap type</th>
-        <th class="govuk-table__header govuk-table__header" scope="col">Comments</th>
-      </tr>
-   </thead>
-
-    {% for nonTargetSpecies in model.nonTargetSpeciesCaught %}
-
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">{{ nonTargetSpecies.gridRef }}</td>
-          <td class="govuk-table__cell">{{ nonTargetSpecies.speciesCaught }}</td>
-          <td class="govuk-table__cell">{{ nonTargetSpecies.numberCaught }} </td>
-          <td class="govuk-table__cell">{{ nonTargetSpecies.trapType }} </td>
-          <td class="govuk-table__cell">{{ nonTargetSpecies.comments }} </td>
-        </tr>
-      </tbody>
-
-    {% endfor %}
-
-  </table>
-
-{% endset -%}
-
 {% block content %}
+
+  {% if model.missingConfirmValue or model.apiError %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [
+        {
+          text: "You must confirm the information you've provided is up-to-date and correct and you agree with the privacy policy",
+          href: "#confirm"
+        } if model.missingConfirmValue,
+        {
+          text: "An error occurred while submitting your return, try again",
+          href: "#"
+        } if model.apiError
+      ]
+    }) }}
+  {% endif %}
+
   <h1 class="govuk-heading-xl">Check your answers before sending</h1>
 
   <div class="govuk-grid-row">
@@ -171,8 +157,8 @@
         idPrefix: "confirm",
         name: "confirm",
         errorMessage: {
-          text: "You must confirm the information you've provided is up-to-date and correct and you agree with the privacy policy."
-        } if error.missingConfirmValue,
+          text: "You must confirm the information you've provided is up-to-date and correct and you agree with the privacy policy"
+        } if model.missingConfirmValue,
         items: [
           {
             value: "confirm",
