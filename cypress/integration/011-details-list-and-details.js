@@ -133,7 +133,7 @@ describe('details page ', () => {
     cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the name of the non-target species caught');
   });
 
-  it('main button on details-list page should navigate to confirm page', () => {
+  it('main button on details-list page should navigate to check-answers-non-target-species page', () => {
     cy.visit('/details');
 
     cy.get('input[type="text"]#current-grid-reference').type('NO 08529 29128', {delay: 1});
@@ -160,6 +160,6 @@ describe('details page ', () => {
     cy.url().should('include', '/details-list');
 
     cy.get('#main-content form button.naturescot-forward-button').click();
-    cy.url().should('include', '/check-answers');
+    cy.url().should('include', '/check-answers-non-target-species');
   });
 });
