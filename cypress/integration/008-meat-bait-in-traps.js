@@ -46,7 +46,7 @@ describe('meat-baits-in-traps page ', () => {
     cy.get('#main-content form button.naturescot-forward-button').click();
 
     cy.get('.govuk-error-summary__title').contains('problem', {matchCase: false});
-    cy.get('.govuk-error-summary__body').contains("Select yes if you used meat baits in your traps", {
+    cy.get('.govuk-error-summary__body').contains('Select yes if you used meat baits in your traps', {
       matchCase: false
     });
     cy.url().should('include', '/meat-baits-in-traps');
