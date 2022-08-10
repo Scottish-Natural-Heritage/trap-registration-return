@@ -82,7 +82,6 @@ router.use(
     back: 'year',
     positiveForward: 'how-many-traps-used',
     negativeForward: 'check-answers-no-meat-baits',
-
     controller: MeatBaitsInTrapsController
   })
 );
