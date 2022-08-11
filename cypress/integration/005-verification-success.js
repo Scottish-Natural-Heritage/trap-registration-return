@@ -25,6 +25,6 @@ describe('Verification Success page ', () => {
 
   it('should allow access if the user visits all the pages in order', () => {
     cy.visit('/verification-success', {failOnStatusCode: false});
-    cy.get('p').should('contain', 'We have sent you an email');
+    cy.get('p').should('contain', "We've sent you an email with a secure link");
   });
 });

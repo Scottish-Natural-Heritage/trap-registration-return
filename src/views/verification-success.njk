@@ -1,32 +1,37 @@
 {% extends "_base.njk" %}
 
 {% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
 {% block content %}
+
   {{ govukPanel({
-        titleText: "Authentication complete",
-        html: "Please check your email.<br>"
-      }) }}
-  <p class="govuk-body">We have sent you an email.</p>
-  <h2 class="govuk-heading-m">What happens next</h2>
-  <p class="govuk-body">
-    You will receive an email containing a link that allows you to submit your
-    return.
-  </p>
+    titleText: "You have requested a secure link to continue your return",
+    html: "Check your mail<br>"
+  }) }}
+
+  <h1 class="govuk-heading-m">What happens next</h1>
+
+  <p class="govuk-body">We've sent you an email with a secure link that allows you to continue.</p>
+
+  {{ govukWarningText({
+    text: "The secure link will expire after 30 minutes.",
+    iconFallbackText: "Warning"
+  }) }}
+
   <p  class="govuk-body">
-  If you do not receive an email you may have entered your details incorrectly.
-  Please try again and if the issue persists contact the licensing team.
-  </p>
-  <p class="govuk-body">
-          Email:<br>
-    <strong class="govuk-!-font-weight-bold">
-      <a class="govuk-link" href="mailto:licensing@nature.scot"> licensing@nature.scot</a>
-    </strong>
+    If you don't receive an email you may have entered your details incorrectly.
+    Try again and if the problem persits contact the licensing team.
   </p>
 
-  <p class="govuk-body">
-    <a class="govuk-link" href="http://gateway.snh.gov.uk/go/?id=40">
-      What do you think of this service?
-    </a>
-    (takes 30 seconds)
-  </p>
+  <h2 class="govuk-heading-s">Email<h2>
+  <p class="govuk-body"><a class="govuk-link" href="mailto:licensing@nature.scot"> licensing@nature.scot</a></p>
+  <p class="govuk-body">We aim to respond within 2 working days.</p>
+
+  <h2 class="govuk-heading-s">Telephone<h2>
+  <p class="govuk-body">01463 725 364</p>
+  <p class="govuk-body">Voicemail service. We aim to respond within 2 working days.</p>
+
+  <p class="govuk-body"><a class="govuk-link" href="https://www.gov.uk/call-charges" target="_blank">Find out about call charges</a></p>
+
 {% endblock %}
