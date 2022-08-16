@@ -24,6 +24,13 @@ describe('year page ', () => {
     cy.get('h1').should('contain', 'What year is your return for?');
   });
 
+  it('should error on incorrect submission', () => {
+    cy.visit('/year');
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    cy.get('h2#error-summary-title').should('contain', 'There is a problem');
+    cy.get('h1').should('contain', 'Did you use meat baits in your traps?');
+  });
+
   it('main button should navigate to meat-baits-in-traps page', () => {
     cy.visit('/year');
     cy.get('#main-content form button.naturescot-forward-button').click();
