@@ -1,5 +1,4 @@
 import {ReturnState} from './_base.js';
-
 /**
  * Cleans and sanitises a string form field.
  *
@@ -43,53 +42,43 @@ const cleanInt = (dirtyValue) => {
   return valueAsNumber.valueOf();
 };
 
-/**
- * Clean a user supplied 'year' in to either a `number` or `undefined`.
- *
- * @param {string | undefined} dirtyYear The user's supplied year value.
- * @returns {number | undefined} The cleaned year value.
- */
-const cleanYear = (dirtyYear) => {
-  const yearAsNumber = cleanInt(dirtyYear);
-
-  if (yearAsNumber === undefined) {
-    return undefined;
-  }
-
-  if (yearAsNumber < 1900) {
-    return undefined;
-  }
-
-  return yearAsNumber;
-};
-
 const yearController = async (request) => {
   request.session.invalidYearError = false;
   request.session.noYearError = false;
   request.session.yearInFutureError = false;
+  request.session.yearError = false;
   const today = new Date();
-  const year = cleanYear(request.body.year);
-
-  if (cleanInputString(year) === undefined) {
+  const {year} = request.body;
+  // If we have no value for `year` this is an error.
+  if (!year) {
     request.session.noYearError = true;
     request.session.yearError = true;
     return ReturnState.Error;
   }
 
-  if (year > today.getFullYear()) {
+  // If `year` is not a number this is an error.
+  if (!cleanInt(year)) {
+    request.session.invalidYearError = true;
+    request.session.yearError = true;
+    return ReturnState.Error;
+  }
+
+  // If the year is in the future this is an error.
+  if (cleanInt(year) > today.getFullYear()) {
     request.session.yearInFutureError = true;
     request.session.yearError = true;
     return ReturnState.Error;
   }
 
-  if (year === undefined) {
+  // If the value is not a number after 1900 this is an error.
+  if (cleanInt(year) < 1900) {
     request.session.invalidYearError = true;
     request.session.yearError = true;
     return ReturnState.Error;
   }
 
   request.session.year = request.body.year;
-  // The only way out of the year page is onwards, so return positive if no errors
+  // The only way out of the year page is onwards, so return positive if no errors.
   return ReturnState.Positive;
 };
 
