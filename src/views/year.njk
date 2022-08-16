@@ -1,21 +1,17 @@
 {% extends "_base.njk" %}
-
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
-
 {% set yearErrorMessage %}
   {% if model.invalidYearError %}
-    invalidYear
+    Enter a valid year
   {% elif model.noYearError %}
-    no year.
-  {% else model.yearInFutureError %}
-    year in future
+    Enter a year
+  {% elif model.yearInFutureError %}
+    Enter a year that is not in the future
   {% endif %}
 {% endset -%}
-
 {% block content %}
-
   {% if model.yearError %}
     {{ govukErrorSummary({
       titleText: "There is a problem",
@@ -36,12 +32,10 @@
     }) }}
   {% endif %}
   <div class="govuk-grid-row">
-
     <form method="post">
-
       {{ govukInput({
         label: {
-          text: "What year your return for?",
+          text: "What year is your return for?",
           classes: "govuk-label--l",
           isPageHeading: true
         },
@@ -58,14 +52,11 @@
              model.invalidYearError or
              model.yearInFutureError
       }) }}
-
       {{ govukButton({
         text: "Continue",
         classes: "govuk-!-margin-top-2  govuk-!-margin-bottom-8 naturescot-forward-button",
         isStartButton: true
       }) }}
     </form>
-
   </div>
-
 {% endblock %}
