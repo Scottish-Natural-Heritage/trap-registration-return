@@ -17,6 +17,7 @@ describe('check-answers-no-non-target page ', () => {
     // POST `/login`
     cy.get('#main-content form button.naturescot-forward-button').click();
     // ~GET `/year`~
+    cy.get('input').type('1913');
     cy.get('#main-content form button.naturescot-forward-button').click();
     // ~GET `/meat-baits-in-traps`~
     cy.get('#main-content form input[type="radio"][value="yes"]').click();

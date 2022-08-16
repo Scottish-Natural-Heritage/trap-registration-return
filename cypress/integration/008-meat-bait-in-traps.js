@@ -17,6 +17,8 @@ describe('meat-baits-in-traps page ', () => {
     // POST `/login`
     cy.get('#main-content form button.naturescot-forward-button').click();
     // ~GET `/year`~
+    cy.get('input').type('1913');
+    cy.get('#main-content form button.naturescot-forward-button').click();
   });
 
   it('should allow access if the user visits all the pages in order', () => {
