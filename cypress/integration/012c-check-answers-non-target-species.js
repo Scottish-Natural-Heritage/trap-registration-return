@@ -47,13 +47,26 @@ describe('check-answers-non-target-species page ', () => {
 
   it('should allow access if the user visits all the pages in order', () => {
     cy.visit('/check-answers-non-target-species');
-    cy.get('h1').should('contain', 'Check your answers before sending (non-target species)');
+    cy.get('h1').should('contain', 'Check your answers before sending');
   });
 
-  it('main button should navigate to submitted a return page', () => {
+  it('should navigate to success page if declaration confirmed', () => {
     cy.visit('/check-answers-non-target-species');
+    cy.get('input[type=checkbox][name=confirm][value=confirm]').click();
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/submitted-return-success');
     cy.get('h1').should('contain', 'You have submitted a return');
+  });
+
+  it('should display error and reload page if declaration not confirmed', () => {
+    cy.visit('/check-answers-non-target-species');
+    cy.get('#main-content form button.naturescot-forward-button').click();
+
+    cy.get('.govuk-error-summary__title').contains('problem', {matchCase: false});
+    cy.get('.govuk-error-summary__body').contains("You must confirm the information you've provided is up-to-date", {
+      matchCase: false
+    });
+    cy.url().should('include', '/check-answers-non-target-species');
+    cy.get('h1').should('contain', 'Check your answers before sending');
   });
 });
