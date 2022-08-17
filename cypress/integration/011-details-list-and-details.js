@@ -16,7 +16,16 @@ describe('details page ', () => {
     );
     // POST `/login`
     cy.get('#main-content form button.naturescot-forward-button').click();
-    // ~GET `/target-species`~
+    // ~GET `/year`~
+    cy.get('input').type('1913');
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    // ~GET `/meat-baits-in-traps`~
+    cy.get('#main-content form input[type="radio"][value="yes"]').click();
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    // ~GET `/how-many-traps-used`~
+    cy.get('input[type=text][name=numberLarsenPodCaught]').type('0');
+    cy.get('input[type=text][name=numberLarsenMateCaught]').type('1');
+    cy.get('#main-content form button.naturescot-forward-button').click();
     // CLICK yes
     cy.get('#main-content form input[type="radio"][value="yes"]').click();
     // POST `/target-species`
@@ -126,7 +135,7 @@ describe('details page ', () => {
     cy.get('.govuk-error-summary ul li a').should('contain', 'Enter the name of the non-target species caught');
   });
 
-  it('main button on details-list page should navigate to confirm page', () => {
+  it('main button on details-list page should navigate to check-answers-non-target-species page', () => {
     cy.visit('/details');
 
     cy.get('input[type="text"]#current-grid-reference').type('NO 08529 29128', {delay: 1});
@@ -153,6 +162,6 @@ describe('details page ', () => {
     cy.url().should('include', '/details-list');
 
     cy.get('#main-content form button.naturescot-forward-button').click();
-    cy.url().should('include', '/confirm');
+    cy.url().should('include', '/check-answers-non-target-species');
   });
 });

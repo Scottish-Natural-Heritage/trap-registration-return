@@ -1,0 +1,95 @@
+{% extends "_base.njk" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% set mateErrorsHtml %}
+  {% if model.noLarsenMateError %}
+    <p>Enter how many larsen mate traps you used meat baits in, from 0 - 999</p>
+  {% elif model.larsenMateValueTooBig %}
+    <p>The number of larsen mate traps used must be between 0 and 999</p>
+  {% endif %}
+{% endset -%}
+
+{% set podErrorsHtml %}
+  {% if model.noLarsenPodError %}
+    <p>Enter how many larsen pod traps you used meat baits in, from 0 - 999</p>
+  {% elif model.larsenPodValueTooBig %}
+    <p>The number of larsen pod traps used must be between 0 and 999</p>
+  {% endif %}
+{% endset -%}
+
+{% block content %}
+
+  {% if model.noLarsenError%}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [
+        {
+          text: "Enter how many larsen mate traps you used meat baits in, from 0 - 999",
+          href: "#larsen-mate"
+        } if model.noLarsenMateError,
+        {
+          text: "Enter how many larsen pod traps you used meat baits in, from 0 - 999",
+          href: "#larsen-pod"
+        } if model.noLarsenPodError,
+        {
+          text: "The number of larsen mate traps used must be between 0 and 999",
+          href: "#larsen-mate"
+        } if model.larsenMateValueTooBig,
+        {
+          text: "The number of larsen pod traps used must be between 0 and 999",
+          href: "#larsen-pod"
+        } if model.larsenPodValueTooBig
+      ]
+    }) }}
+  {% endif %}
+
+  <h1 class="govuk-heading-xl">How many traps did you use meat baits in?</h1>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <p class="govuk-body-m">How many of each type of trap did you use meat baits in?</p>
+
+      <form method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Larsen mate"
+        },
+          classes: "govuk-input--width-5",
+          id: "larsen-mate",
+          value: model.numberLarsenMateCaught,
+          name: "numberLarsenMateCaught",
+            errorMessage: {
+            html: mateErrorsHtml
+          } if model.noLarsenMateError or model.larsenMateValueTooBig
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Larsen pod"
+        },
+          classes: "govuk-input--width-5",
+          id: "larsen-pod",
+          value: model.numberLarsenPodCaught,
+          name: "numberLarsenPodCaught",
+          errorMessage: {
+            html: podErrorsHtml
+          } if model.noLarsenPodError or model.larsenPodValueTooBig
+        }) }}
+
+        {{ govukButton({
+          text: "Continue",
+          classes: "govuk-!-margin-top-2  govuk-!-margin-bottom-8 naturescot-forward-button",
+          isStartButton: true
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

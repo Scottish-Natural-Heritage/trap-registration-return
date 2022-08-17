@@ -13,7 +13,7 @@ const buildDetailsList = (session) => {
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Grid Reference</th>
+          <th scope="col" class="govuk-table__header">Grid reference</th>
           <th scope="col" class="govuk-table__header">Species caught</th>
           <th scope="col" class="govuk-table__header">Number caught</th>
           <th scope="col" class="govuk-table__header">Trap type</th>

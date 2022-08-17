@@ -9,36 +9,31 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <p class="govuk-body">
-        If you have registered to use meat baits in:
+        Use this service to provide your annual return if you have registered to use meat baits.​
+      </p>
+      <p class="govuk-body">
+        You will need:​
       </p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>a Larsen mate trap</li>
-        <li>a Larsen pod trap</li>
+        <li>​your trap registration number​</li>
+        <li>your postcode​</li>
+        <li>year of the return</li>
+        <li>number of traps meat bait was used in​</li>
+        <li>non-target species caught and numbers, trap location and trap type</li>
       </ul>
       <p class="govuk-body">
-        Under NatureScot's General Licenses:
-      </p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          <a class="govuk-link" href="https://gateway.snh.gov.uk/go/?id=18">GL01
-           - To kill or take certain birds for the conservation of wild birds</a>
-        </li>
-        <li>
-          <a class="govuk-link" href="https://gateway.snh.gov.uk/go/?id=19">GL02
-           - To kill or take certain birds for the prevention of serious damage</a>
-        </li>
-      </ul>
-      <p class="govuk-body">
-        Please use this service to provide your annual license return.
+        Once you have entered your trap registration number and postcode you will receive a secure link to continue with your return.​
       </p>
       <p class="govuk-body">
-        Providing your return takes around 5 minutes.
+        The link will remain active for 30 minutes.​
+      </p>
+      <p class="govuk-body">
+        Providing your return will take around 5 minutes.​
       </p>
       {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
       {{ govukWarningText({
-         text: "If you have registered to use meat baits you must submit an annual return,
-         even if you have not caught any non-target species or used meat baits in your traps this year",
+         text: "You must submit an annual return even if you have not used meat baits or caught any target species.",
          iconFallbackText: "Warning"
       }) }}
       <form method="post">

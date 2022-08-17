@@ -1,11 +1,11 @@
-describe('confirm page directly', () => {
+describe('submitted return success page directly', () => {
   it('should prevent access', () => {
-    cy.visit('/confirm', {failOnStatusCode: false});
-    cy.get('h1').should('contain', 'there is a problem with the service');
+    cy.visit('/submitted-return-success', {failOnStatusCode: false});
+    cy.get('h1').should('contain', 'Meat Bait Return complete');
   });
 });
 
-describe('confirm page ', () => {
+describe('submitted-return-success page ', () => {
   beforeEach(() => {
     // GET `/login`
     cy.visit(
@@ -16,7 +16,16 @@ describe('confirm page ', () => {
     );
     // POST `/login`
     cy.get('#main-content form button.naturescot-forward-button').click();
-    // ~GET `/target-species`~
+    // ~GET `/year`~
+    cy.get('input').type('1913');
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    // ~GET `/meat-baits-in-traps`~
+    cy.get('#main-content form input[type="radio"][value="yes"]').click();
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    // ~GET `/how-many-traps-used`~
+    cy.get('input[type=text][name=numberLarsenPodCaught]').type('0');
+    cy.get('input[type=text][name=numberLarsenMateCaught]').type('1');
+    cy.get('#main-content form button.naturescot-forward-button').click();
     // CLICK yes
     cy.get('#main-content form input[type="radio"][value="yes"]').click();
     // POST `/target-species`
@@ -33,11 +42,13 @@ describe('confirm page ', () => {
     // ~GET `/details-list`~
     // POST `/details-list`
     cy.get('#main-content form button.naturescot-forward-button').click();
-    // ~GET `/confirm`~
+    // ~GET `/check-answers`~
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    // ~GET `/submitted-return-access`~
   });
 
   it('should allow access if the user visits all the pages in order', () => {
-    cy.visit('/confirm');
-    cy.get('h1').should('contain', 'Confirm the details of your return');
+    cy.visit('/submitted-return-success');
+    cy.get('h1').should('contain', 'You have submitted a return');
   });
 });
