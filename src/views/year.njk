@@ -1,22 +1,62 @@
 {% extends "_base.njk" %}
-
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
-
+{% set yearErrorMessage %}
+  {% if model.invalidYearError %}
+    Enter a valid year
+  {% elif model.noYearError %}
+    Enter a year
+  {% elif model.yearInFutureError %}
+    Enter a year that is not in the future
+  {% endif %}
+{% endset -%}
 {% block content %}
-  <h1 class="govuk-heading-xl">
-    What year is your return for?
-  </h1>
+  {% if model.yearError %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [
+        {
+          text: "Enter a year",
+          href: "#year"
+        } if model.noYearError,
+        {
+          text: "Enter a valid year",
+          href: "#year"
+        } if model.invalidYearError,
+        {
+          text: "Enter a year that is not in the future",
+          href: "#year"
+        } if model.yearInFutureError
+      ]
+    }) }}
+  {% endif %}
   <div class="govuk-grid-row">
-
-
-      <form method="post">
-        {{ govukButton({
-          text: "Continue",
-          classes: "govuk-!-margin-top-2  govuk-!-margin-bottom-8 naturescot-forward-button",
-          isStartButton: true
-        }) }}
-      </form>
-
+    <form method="post">
+      {{ govukInput({
+        label: {
+          text: "What year is your return for?",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        classes: "govuk-input--width-5",
+        hint: {
+          text: "Enter year in format YYYY i.e. 2022"
+        },
+        id: "year",
+        name: "year",
+        value: model.year,
+        errorMessage: {
+        text: yearErrorMessage
+        } if model.noYearError or
+             model.invalidYearError or
+             model.yearInFutureError
+      }) }}
+      {{ govukButton({
+        text: "Continue",
+        classes: "govuk-!-margin-top-2  govuk-!-margin-bottom-8 naturescot-forward-button",
+        isStartButton: true
+      }) }}
+    </form>
   </div>
-
 {% endblock %}
