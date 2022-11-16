@@ -23,6 +23,8 @@ const meatBaitInTrapsController = (request) => {
 
   // The user submitted the form without selecting an option, this is an error.
   request.session.meatBaitsError = true;
+  // Unset any saved value.
+  request.session.meatBaitsUsed = undefined;
   // Reload the page to highlight errors.
   return ReturnState.Error;
 };
