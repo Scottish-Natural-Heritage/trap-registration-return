@@ -77,7 +77,8 @@ const yearController = async (request) => {
     return ReturnState.Error;
   }
 
-  request.session.year = request.body.year;
+  // Unset any saved value.
+  request.session.year = false;
   // The only way out of the year page is onwards, so return positive if no errors.
   return ReturnState.Positive;
 };
