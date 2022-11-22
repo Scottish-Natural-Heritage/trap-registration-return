@@ -42,11 +42,18 @@ const checkAnswersNonTargetSpeciesController = async (request) => {
 
     // Post the return's data to the API.
     await axios.put(newReturnUrl, newReturn);
+    // Clear all data in session now it's been saved to the database.
   } catch (error) {
     console.log('Error creating new return:' + error);
     request.session.apiError = true;
     return ReturnState.Error;
   }
+
+  request.session.year = false,
+  request.session.meatBaitsUsed = undefined,
+  request.session.numberLarsenMateCaught = false,
+  request.session.numberLarsenPodCaught = false,
+  request.session.targetSpecies = undefined;
 
   // All went well so proceed to success page.
   return ReturnState.Positive;
