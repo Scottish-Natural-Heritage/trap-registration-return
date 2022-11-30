@@ -54,6 +54,7 @@ const checkAnswersNoNonTargetController = async (request) => {
   request.session.numberLarsenMateCaught = undefined;
   request.session.numberLarsenPodCaught = undefined;
   request.session.targetSpecies = undefined;
+  request.session.detailsList = undefined;
 
   // All went well so proceed to success page.
   return ReturnState.Positive;
