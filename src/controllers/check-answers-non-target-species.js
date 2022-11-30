@@ -50,10 +50,10 @@ const checkAnswersNonTargetSpeciesController = async (request) => {
   }
 
   // Clear all data in session now it's been saved to the database.
-  request.session.year = false;
+  request.session.year = undefined;
   request.session.meatBaitsUsed = undefined;
-  request.session.numberLarsenMateCaught = false;
-  request.session.numberLarsenPodCaught = false;
+  request.session.numberLarsenMateCaught = undefined;
+  request.session.numberLarsenPodCaught = undefined;
   request.session.targetSpecies = undefined;
 
   // All went well so proceed to success page.
