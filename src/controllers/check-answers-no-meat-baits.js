@@ -46,6 +46,12 @@ const checkAnswersNoMeatBaitsController = async (request) => {
     return ReturnState.Error;
   }
 
+  // Clear all data in session now it's been saved to the database.
+  request.session.year = undefined;
+  request.session.meatBaitsUsed = undefined;
+  request.session.detailsList = undefined;
+  request.session.targetSpecies = undefined;
+
   // All went well so proceed to success page.
   return ReturnState.Positive;
 };
