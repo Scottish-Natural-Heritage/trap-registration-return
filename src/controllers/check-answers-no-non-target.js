@@ -31,7 +31,7 @@ const checkAnswersNoNonTargetController = async (request) => {
   };
 
   // Get the UUID for the request from session.
-  const uuid = request.session.uuid;
+  const {uuid} = request.session;
 
   // And send the return data to the API.
   try {
