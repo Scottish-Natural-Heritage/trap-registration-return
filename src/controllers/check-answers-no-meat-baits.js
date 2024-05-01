@@ -28,18 +28,25 @@ const checkAnswersNoMeatBaitsController = async (request) => {
     nonTargetSpeciesCaught: request.session.detailsList ? request.session.detailsList : []
   };
 
+  // Get the UUID for the request from session.
+  const {uuid} = request.session;
+
   // And send the return data to the API.
   try {
     // Allocate a new return.
     const newReturnResponse = await axios.post(
-      config.apiEndpoint + '/registrations/' + request.session.loggedInRegNo + '/return'
+      config.apiEndpoint + '/registrations/' + request.session.loggedInRegNo + '/return',
+      {uuid}
     );
 
     // Determine where the back-end saved it.
     const newReturnUrl = newReturnResponse.headers.location;
 
-    // Post the return's data to the API.
-    await axios.put(newReturnUrl, newReturn);
+    // Post the return's data to the API, if we have a URL. No URL means we've already
+    // received this request and UUID.
+    if (newReturnUrl) {
+      await axios.put(newReturnUrl, newReturn);
+    }
   } catch (error) {
     console.log('Error creating new return:' + error);
     request.session.apiError = true;
