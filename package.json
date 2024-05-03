@@ -24,12 +24,12 @@
   },
   "dependencies": {
     "accessible-autocomplete": "^2.0.3",
-    "axios": "^0.27.2",
+    "axios": "^1.6.8",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
     "govuk-frontend": "^3.6.0",
     "jimp": "^0.13.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.2",
     "jwk-to-pem": "^2.0.4",
     "memorystore": "^1.6.2",
     "morgan": "^1.10.0",
@@ -42,12 +42,12 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.5.4",
-    "cypress": "^5.0.0",
+    "cypress": "^9.5.2",
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-jsdoc": "^39.3.3",
-    "nodemon": "^2.0.18",
+    "nodemon": "^3.1.0",
     "prettier": "^2.0.5",
-    "start-server-and-test": "^1.14.0",
+    "start-server-and-test": "^2.0.3",
     "xo": "^0.50.0"
   },
   "xo": {
