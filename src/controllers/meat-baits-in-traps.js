@@ -1,6 +1,10 @@
+import {randomUUID} from 'node:crypto';
 import {ReturnState} from './_base.js';
 
 const meatBaitInTrapsController = (request) => {
+  // To mitigate the risk of replay attack we generate a UUID and save to session.
+  request.session.uuid = randomUUID();
+
   // Did the user tell us they have used meat baits.
   if (request.body.meatBaitsUsed === 'yes') {
     // Then we don't have any errors. This clears any previous errors.
