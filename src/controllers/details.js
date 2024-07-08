@@ -145,7 +145,9 @@ const detailsController = (request) => {
     request.session.currentSpeciesCaughtError ||
     request.session.currentOtherSpeciesCaughtError ||
     request.session.currentNumberCaughtError ||
-    request.session.currentTrapTypeError || request.session.invalidCharsOtherSpecies || request.session.invalidCharsComment;
+    request.session.currentTrapTypeError ||
+    request.session.invalidCharsOtherSpecies ||
+    request.session.invalidCharsComment;
 
   if (request.session.detailsError) {
     // Don't return the 'formatted' one here, just send back the original one. It's too confusing otherwise.
