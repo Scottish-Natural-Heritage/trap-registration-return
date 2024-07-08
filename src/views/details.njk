@@ -1,5 +1,13 @@
 {% extends "_base.njk" %}
 
+{% set otherSpeciesCaughtErrors %}
+  {% if model.currentOtherSpeciesCaughtError %}
+    Enter the name of the non-target species caught
+    {% elif model.invalidCharsOtherSpecies %}
+    Name of the non-target species caught must only include letters a to z, and special characters such as hyphens, spaces and apostrophes
+  {% endif %}
+{% endset -%}
+
 {% block head %}
   {{ super() }}
   <link rel="stylesheet" href="{{pathPrefix}}/accessible-autocomplete/accessible-autocomplete.min.css">
@@ -44,7 +52,15 @@
         {
           text: "Select the trap type that was used",
           href: "#current-trap-type-error"
-        } if model.currentTrapTypeError
+        } if model.currentTrapTypeError,
+        {
+          text: "Name of the non-target species caught must only include letters a to z, and special characters such as hyphens, spaces and apostrophes",
+          href: "#current-other-species-caught-error"
+        } if model.invalidCharsOtherSpecies,
+        {
+          text: "More detail must only include letters a to z, and special characters such as hyphens, spaces and apostrophes",
+          href: "#current-comment-error"
+        } if model.invalidCharsComment
       ]
     }) }}
   {% endif %}
@@ -80,8 +96,8 @@
       name: "currentOtherSpeciesCaught",
       value: model.currentOtherSpeciesCaught,
       errorMessage: {
-        text: "Enter the name of the non-target species caught"
-      } if model.currentOtherSpeciesCaughtError,
+        html: otherSpeciesCaughtErrors
+      } if model.currentOtherSpeciesCaughtError or model.invalidCharsOtherSpecies,
       attributes: {
         spellcheck: "false"
       }
@@ -214,7 +230,10 @@
             value: model.currentComment,
             hint: {
               text: "Provide any additional details e.g. same bird caught twice, or released unharmed"
-            }
+            },
+            errorMessage: {
+              text: "More detail must only include letters a to z, and special characters such as hyphens, spaces and apostrophes"
+            } if model.invalidCharsComment
           }) }}
 
         {% endcall %}
