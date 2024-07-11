@@ -164,4 +164,31 @@ describe('details page ', () => {
     cy.get('#main-content form button.naturescot-forward-button').click();
     cy.url().should('include', '/check-answers-non-target-species');
   });
+
+  it('forbidden characters on some inputs generate errors', () => {
+    cy.visit('/details');
+
+    cy.get('input[type="text"]#current-grid-reference').type('NO 08529 29128', {delay: 1});
+    cy.get('#main-content form input[type="radio"][value="otherSpecies"]').click();
+    cy.get('input[type="text"]#current-other-species-caught').type(
+      '<a href="https://duckduckgo.com">FakeNastyLink</a>',
+      {delay: 1}
+    );
+    cy.get('input[type="text"]#current-number-caught').type('3', {delay: 1});
+    cy.get('#main-content form input[type="radio"][value="Larsen pod"]').click();
+    cy.get('textarea#current-comment').type('<a href="https://duckduckgo.com">FakeNastyLink</a>', {delay: 1});
+
+    cy.get('#main-content form button.naturescot-forward-button').click();
+    cy.url().should('include', '/details');
+
+    cy.get('.govuk-error-summary ul li a')
+      .should(
+        'contain',
+        'Name of the non-target species caught must only include letters a to z, and special characters such as hyphens, spaces and apostrophes'
+      )
+      .and(
+        'contain',
+        'More detail must only include letters a to z, and special characters such as hyphens, spaces and apostrophes'
+      );
+  });
 });

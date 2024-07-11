@@ -1,3 +1,4 @@
+import validation from '../utils/validation.js';
 import {ReturnState} from './_base.js';
 
 const validSpecies = (species, speciesArray) => {
@@ -106,6 +107,8 @@ const detailsController = (request) => {
   request.session.currentNumberCaughtError = false;
   request.session.currentTrapTypeError = false;
   request.session.detailsError = false;
+  request.session.invalidCharsOtherSpecies = false;
+  request.session.invalidCharsComment = false;
 
   request.session.currentGridReferenceError = !validGridReference(request.body.currentGridReference);
   request.session.currentSpeciesCaughtOptionError = !request.body.currentSpeciesCaughtOption;
@@ -126,13 +129,25 @@ const detailsController = (request) => {
   request.session.currentNumberCaughtError = !validNumber(request.body.currentNumberCaught);
   request.session.currentTrapTypeError = !request.body.currentTrapType;
 
+  request.session.invalidCharsOtherSpecies = validation.hasInvalidCharacters(
+    request.body.currentOtherSpeciesCaught,
+    validation.invalidCharacters
+  );
+
+  request.session.invalidCharsComment = validation.hasInvalidCharacters(
+    request.body.currentComment,
+    validation.invalidCharacters
+  );
+
   request.session.detailsError =
     request.session.currentGridReferenceError ||
     request.session.currentSpeciesCaughtOptionError ||
     request.session.currentSpeciesCaughtError ||
     request.session.currentOtherSpeciesCaughtError ||
     request.session.currentNumberCaughtError ||
-    request.session.currentTrapTypeError;
+    request.session.currentTrapTypeError ||
+    request.session.invalidCharsOtherSpecies ||
+    request.session.invalidCharsComment;
 
   if (request.session.detailsError) {
     // Don't return the 'formatted' one here, just send back the original one. It's too confusing otherwise.
