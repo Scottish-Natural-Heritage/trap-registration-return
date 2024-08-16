@@ -37,8 +37,8 @@ const validOtherSpecies = (species) => {
  * @param {string} gridRef A user supplied grid ref of dubious quality.
  * @returns {string} A nice tidy version of the grid ref.
  */
-const formatGridReference = (gridRef) => {
-  return gridRef.toUpperCase().replace(/[^A-Z\d]/g, '');
+const formatGridReference = (gridReference) => {
+  return gridReference.toUpperCase().replaceAll(/[^A-Z\d]/g, '');
 };
 
 /**
@@ -50,25 +50,25 @@ const formatGridReference = (gridRef) => {
  * @param {string} gridRef A candidate grid ref.
  * @returns {boolean} True if this looks like a valid grid ref, otherwise false.
  */
-const validGridReference = (gridRef) => {
+const validGridReference = (gridReference) => {
   // Check to make sure we've got some input before we go any further.
-  if (gridRef === undefined) {
+  if (gridReference === undefined) {
     return false;
   }
 
   // Tidy up the grid ref so that it's likely to pass validation.
-  const formattedGridRef = formatGridReference(gridRef);
+  const formattedGridReference = formatGridReference(gridReference);
 
   // Later, we'll check that it's in the AA00000000 style, but we'll only be
   // checking for 8 or more digits, not an even number of digits, so we need
   // this one extra check.
-  if (formattedGridRef.length % 2 !== 0) {
+  if (formattedGridReference.length % 2 !== 0) {
     return false;
   }
 
   // Check that the gridRef is in the AA00000000 format, and fail them if
   // it's not.
-  return /^[A-Z]{2}\d{8,10}$/g.test(formattedGridRef);
+  return /^[A-Z]{2}\d{8,10}$/g.test(formattedGridReference);
 };
 
 /**

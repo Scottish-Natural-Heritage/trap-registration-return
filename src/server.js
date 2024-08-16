@@ -2,8 +2,6 @@
 import process from 'node:process';
 import config from './config/app.js';
 import {counterpart100yearToken} from './config/http-request.js';
-
-// Load the app.
 import app from './app.js';
 
 // Run it.
