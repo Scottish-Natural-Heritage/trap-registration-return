@@ -27,7 +27,7 @@ const checkAnswersNonTargetSpeciesController = async (request) => {
     // Disabled as targetSpecies could be undefined and we want a value.
     // eslint-disable-next-line no-unneeded-ternary
     nonTargetSpeciesToReport: request.session.targetSpecies ? true : false,
-    nonTargetSpeciesCaught: request.session.detailsList ? request.session.detailsList : []
+    nonTargetSpeciesCaught: request.session.detailsList ?? []
   };
 
   // Get the UUID for the request from session.

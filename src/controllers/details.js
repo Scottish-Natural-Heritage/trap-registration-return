@@ -1,3 +1,4 @@
+import validation from '../utils/validation.js';
 import {ReturnState} from './_base.js';
 
 const validSpecies = (species, speciesArray) => {
@@ -36,8 +37,8 @@ const validOtherSpecies = (species) => {
  * @param {string} gridRef A user supplied grid ref of dubious quality.
  * @returns {string} A nice tidy version of the grid ref.
  */
-const formatGridReference = (gridRef) => {
-  return gridRef.toUpperCase().replace(/[^A-Z\d]/g, '');
+const formatGridReference = (gridReference) => {
+  return gridReference.toUpperCase().replaceAll(/[^A-Z\d]/g, '');
 };
 
 /**
@@ -49,25 +50,25 @@ const formatGridReference = (gridRef) => {
  * @param {string} gridRef A candidate grid ref.
  * @returns {boolean} True if this looks like a valid grid ref, otherwise false.
  */
-const validGridReference = (gridRef) => {
+const validGridReference = (gridReference) => {
   // Check to make sure we've got some input before we go any further.
-  if (gridRef === undefined) {
+  if (gridReference === undefined) {
     return false;
   }
 
   // Tidy up the grid ref so that it's likely to pass validation.
-  const formattedGridRef = formatGridReference(gridRef);
+  const formattedGridReference = formatGridReference(gridReference);
 
   // Later, we'll check that it's in the AA00000000 style, but we'll only be
   // checking for 8 or more digits, not an even number of digits, so we need
   // this one extra check.
-  if (formattedGridRef.length % 2 !== 0) {
+  if (formattedGridReference.length % 2 !== 0) {
     return false;
   }
 
   // Check that the gridRef is in the AA00000000 format, and fail them if
   // it's not.
-  return /^[A-Z]{2}\d{8,10}$/g.test(formattedGridRef);
+  return /^[A-Z]{2}\d{8,10}$/g.test(formattedGridReference);
 };
 
 /**
@@ -106,6 +107,8 @@ const detailsController = (request) => {
   request.session.currentNumberCaughtError = false;
   request.session.currentTrapTypeError = false;
   request.session.detailsError = false;
+  request.session.invalidCharsOtherSpecies = false;
+  request.session.invalidCharsComment = false;
 
   request.session.currentGridReferenceError = !validGridReference(request.body.currentGridReference);
   request.session.currentSpeciesCaughtOptionError = !request.body.currentSpeciesCaughtOption;
@@ -126,13 +129,25 @@ const detailsController = (request) => {
   request.session.currentNumberCaughtError = !validNumber(request.body.currentNumberCaught);
   request.session.currentTrapTypeError = !request.body.currentTrapType;
 
+  request.session.invalidCharsOtherSpecies = validation.hasInvalidCharacters(
+    request.body.currentOtherSpeciesCaught,
+    validation.invalidCharacters
+  );
+
+  request.session.invalidCharsComment = validation.hasInvalidCharacters(
+    request.body.currentComment,
+    validation.invalidCharacters
+  );
+
   request.session.detailsError =
     request.session.currentGridReferenceError ||
     request.session.currentSpeciesCaughtOptionError ||
     request.session.currentSpeciesCaughtError ||
     request.session.currentOtherSpeciesCaughtError ||
     request.session.currentNumberCaughtError ||
-    request.session.currentTrapTypeError;
+    request.session.currentTrapTypeError ||
+    request.session.invalidCharsOtherSpecies ||
+    request.session.invalidCharsComment;
 
   if (request.session.detailsError) {
     // Don't return the 'formatted' one here, just send back the original one. It's too confusing otherwise.

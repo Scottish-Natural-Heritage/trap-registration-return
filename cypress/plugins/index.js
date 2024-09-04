@@ -18,7 +18,7 @@
  *
  * @type {Cypress.PluginConfig}
  */
-// eslint-disable-next-line no-unused-vars, unicorn/prefer-module
+// eslint-disable-next-line no-unused-vars, unicorn/prefer-module, unicorn/no-anonymous-default-export
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
