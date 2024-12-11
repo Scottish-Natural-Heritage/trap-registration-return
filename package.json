@@ -15,6 +15,7 @@
     "prestart": "npm run build",
     "start": "node --experimental-modules src/server.js",
     "dev": "TRR_PORT=3999 COOKIE_PREFIX=_ TRR_TEST=true nodemon --exec \"npm run lint && npm run start\" -e js,njk,scss --ignore build/ --ignore dist/ --ignore cypress/",
+    "start:dev": "COOKIE_PREFIX=_ TRR_DEV=true node --experimental-modules src/server.js",
     "cy:run": "cypress run",
     "test": "COOKIE_PREFIX=_ TRR_TEST=true start-server-and-test start http://localhost:3010/trap-registration-return/health cy:run",
     "cy:open": "cypress open"
