@@ -15,7 +15,6 @@
     "prestart": "npm run build",
     "start": "node --experimental-modules src/server.js",
     "dev": "TRR_PORT=3999 COOKIE_PREFIX=_ TRR_TEST=true nodemon --exec \"npm run lint && npm run start\" -e js,njk,scss --ignore build/ --ignore dist/ --ignore cypress/",
-    "start:dev": "COOKIE_PREFIX=_ TRR_DEV=true node --experimental-modules src/server.js",
     "cy:run": "cypress run",
     "test": "COOKIE_PREFIX=_ TRR_TEST=true start-server-and-test start http://localhost:3010/trap-registration-return/health cy:run",
     "cy:open": "cypress open"
@@ -30,7 +29,7 @@
     "express-session": "^1.17.3",
     "govuk-frontend": "^3.6.0",
     "jimp": "^0.22.12",
-    "jsonwebtoken": "^9.0.2",
+    "jsonwebtoken": "^8.5.1",
     "jwk-to-pem": "^2.0.4",
     "memorystore": "^1.6.2",
     "morgan": "^1.10.0",
