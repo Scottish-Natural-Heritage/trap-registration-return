@@ -2,8 +2,8 @@
 # Builder Stage
 ################################################################################
 
-# we're deploying to the node:20-alpine image, so do our building on it too
-FROM node:20-alpine as builder
+# we're deploying to the node:24-alpine image, so do our building on it too
+FROM node:24-alpine AS builder
 
 # node-gyp runs as part of the npm install, so we need to install dependencies
 # we need git for cypress as it's using a custom version of requests that
@@ -31,8 +31,8 @@ RUN npm ci && npm prune --production
 # Deployable Image
 ################################################################################
 
-# we built on the node:20-alpine image, so we need to deploy on it too
-FROM node:20-alpine
+# we built on the node:24-alpine image, so we need to deploy on it too
+FROM node:24-alpine
 
 # drop back to the non-privileged user for run-time
 WORKDIR /home/node
@@ -48,12 +48,12 @@ RUN mkdir -p ./dist
 
 # these variables are for overriding but keep them consistent between image and
 # run
-ENV TRR_PORT 3010
-ENV TRR_PATH_PREFIX trap-registration-return
+ENV TRR_PORT=3010
+ENV TRR_PATH_PREFIX=trap-registration-return
 
 # these variables are for overriding and they only matter during run
-ENV TRR_SESSION_SECRET override_this_value
-ENV TR_API_URL override_this_value
+ENV TRR_SESSION_SECRET=override_this_value
+ENV TR_API_URL=override_this_value
 
 # let docker know about our listening port
 EXPOSE $TRR_PORT
