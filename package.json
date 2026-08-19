@@ -40,7 +40,8 @@
     "winston": "^3.8.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.5.4",
+    "@babel/core": "^7.29.7",
+    "@babel/eslint-parser": "^7.29.7",
     "cypress": "^9.5.2",
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-jsdoc": "^39.3.3",
