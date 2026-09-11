@@ -85,6 +85,9 @@ const howManyTrapsUsedController = (request) => {
 
   // The request passed all our validation, we've stored copies of everything we
   // need, so it's time to go on.
+  // Unset any saved value.
+  request.session.numberLarsenPodCaught = false;
+  request.session.numberLarsenMateCaught = false;
   return ReturnState.Positive;
 };
 
